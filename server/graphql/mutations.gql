@@ -1,0 +1,97 @@
+# import Account from "accounts.gql"
+# import Contact from "contacts.gql"
+# import Message from "messages.gql"
+
+scalar DateTime
+
+input SignUpInput {
+    name: String!
+    email: String!
+    password: String!
+}
+
+type NewAccountPayload {
+    successful: Boolean!
+    account: Account
+}
+
+type SignOutPayload {
+    successful: Boolean!
+}
+
+input SendMessageInput {
+    from: String!
+    to: String!
+    subject: String!
+    body: String!
+}
+
+input SaveMessageInput {
+    id: ID!
+    message: SendMessageInput!
+}
+
+type OutBoxPayload {
+    successful: Boolean!
+}
+type MessageRemovedPayload {
+    successful: Boolean!
+}
+
+input MarkMessageInput {
+    mailboxId: ID!
+    messageId: ID!
+    starred: Boolean
+    read: Boolean
+}
+
+type MarkedMessage implements Message {
+     _id: ID!
+    to: String!
+    from: String!
+    forwardedBy: String
+    subject: String!
+    body: String
+    starred: Boolean
+    read: Boolean
+    created: DateTime!
+}
+
+type MarkedMessagePayload {
+    successful: Boolean!
+    message: MarkedMessage
+}
+
+type DraftsPayload {
+    successful: Boolean!
+}
+
+input AddContactInput {
+    userId: ID!
+    name: String!
+    email: String!
+}
+
+input EditContactInput {
+    userId: ID!
+    contactId: ID!
+    name: String!
+    email: String!
+}
+
+type ContactPayload {
+    successful: Boolean!
+    contact: Contact
+}
+type ContactRemovedPayload {
+    successful: Boolean!
+}
+
+type AccountRemovedPayload {
+    successful: Boolean!
+}
+
+input EditUserInput {
+    userId: ID!
+    name: String
+}

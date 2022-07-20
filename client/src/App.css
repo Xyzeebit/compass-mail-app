@@ -1,0 +1,191 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.app {
+  display: flex;
+  flex-direction: row;
+  /* justify-content: center; */
+}
+
+.header {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 20px;
+}
+.menu-button {
+  border: none;
+  font-weight: bold;
+  font-size: 25px;
+  background-color: #fff;
+}
+.logo {
+  width: 50px;
+  height: 50px;
+  padding: 10px;
+}
+.header-text {
+  font-weight: bold;
+  font-size: 30px;
+  padding: 10px;
+}
+.search-form {
+  padding: 10px 10px 10px 10px;
+  margin-left: 100px;
+}
+.search-input {
+  width: 500px;
+  height: 45px;
+  background-color: #ccc;
+  outline: none;
+  border: none;
+  padding: 10px;
+}
+.search-form-control {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.search-icon {
+  background-color: #ccc;
+  padding: 12px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+.settings-icon {
+  background-color: #ccc;
+  padding: 12px;
+   border-top-right-radius: 5px;
+   border-bottom-right-radius: 5px;
+}
+
+.sidebar {
+  width: 300px;
+}
+.bold {
+  font-weight: bold
+}
+.mr-2 {
+  margin-right: 10px;
+}
+.message-list {
+  width: 100%;
+  padding: 10px;
+}
+.message {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-top: 1px solid #ccc;
+  border-collapse: collapse;
+}
+.message:hover {
+  box-shadow: 0px 0px 8px #ccc;
+}
+.message div {
+  display: flex;
+}
+.m-select {
+  padding-right: 10px;
+}
+.m-from, .m-subject, .m-body {
+  padding-right: 10px;
+}
+.m-time {
+  /* justify-self: flex-end; */
+}
+.compose-button {
+  padding: 10px;
+  margin-left: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  background-color: #fff;
+  box-shadow: 0px 0px 5px #666;
+  border:none;
+  width: 150px;
+
+}
+.compose-button:hover {
+  box-shadow: 0px 0px 5px #ccc;
+}
+.compose-icon {
+  width: 20px;
+  height: 20px;
+}
+.compose-button span {
+  padding: 5px 20px 5px 10px;
+  font-weight: bold;
+}
+ul.sidebar-items {
+  list-style: none;
+  padding-left: 10px;
+}
+ul.sidebar-items li {
+  margin-left: 0px;
+  padding: 10px;
+}
+ul.sidebar-items li span {
+  padding-right: 20px;
+}
+.sidebar-item-active {
+  background-color: #d21e1e4a;
+  color: #f44336;
+  font-weight: bold;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+ul.sidebar-items li:hover {
+  background-color: #b4abab4a;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+.compose-container {
+  width: 600px;
+  max-height: 400px;
+  padding: 20px;
+  background-color: rgb(131, 131, 149);
+  position: absolute;
+  right: 10px;
+  bottom: 100px
+}
+.compose-container form {
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+}
+input.input-to {
+  height: 35px;
+  background-color: #ccc;
+  border: none;
+  border-radius: 20px;
+  padding-left: 20px;
+  margin-bottom: 10px;
+}
+input.input-to:focus {
+  background-color: #fff;
+  outline: none;
+}
+textarea.input-body {
+  height: 200px;
+   background-color: #ccc;
+}
+textarea.input-body:focus {
+  outline: none;
+  font-size: 16px;
+  background-color: #fff;
+}
+.form-control {
+  margin-top: 20px;
+}
+.save-button {
+  margin-right: 10px;
+  padding: 10px;
+}
+.submit-button {
+  margin-left: 10px;
+  padding: 10px;
+}

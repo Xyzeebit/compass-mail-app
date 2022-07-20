@@ -1,0 +1,14 @@
+# import User from "user.gql"
+# import MailBox from "mailbox.gql"
+scalar DateTime
+type Account {
+    _id: ID!
+    user: User!
+    mailbox: MailBox!
+    created: DateTime!
+}
+
+type AccountError {
+    message: String!
+    fields: [String!]
+}

@@ -1,0 +1,8 @@
+# import Comment from 'comments.gql'
+
+type Post {
+    Comments: [Comment]
+    id: ID!
+    text: String!
+    tags: [String]
+}

@@ -1,0 +1,11 @@
+# import Contact from "contacts.gql"
+
+scalar DateTime
+
+type User {
+    _id: ID!
+    name: String!
+    email: String!
+    contacts: [Contact!]!
+    created: DateTime!
+}

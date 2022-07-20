@@ -1,0 +1,89 @@
+# import Message from "messages.gql"
+# import DraftsMessage from "messages.gql"
+
+scalar DateTime
+
+type MailBox {
+    _id: ID!
+    inbox: [Inbox!]!
+    outbox: [Outbox!]!
+    drafts: [Drafts!]
+    trash: [Trash!]!
+    spam: [Spam!]!
+    starred: [Starred!]!
+    mailboxTotal: MailBoxTotal!
+    created: DateTime!
+}
+
+type MailBoxTotal {
+  totalInbox: Int!
+  totalOutbox: Int!
+  totalDrafts: Int!
+  totalTrash: Int!
+  totalSpam: Int!
+}
+
+
+type Inbox implements Message {
+    _id: ID!
+    to: String!
+    from: String!
+    forwardedBy: String
+    subject: String!
+    body: String
+    starred: Boolean
+    read: Boolean
+    created: DateTime!
+}
+
+type Outbox implements Message {
+  _id: ID!
+  to: String!
+  from: String!
+  forwardedBy: String
+  subject: String!
+  body: String
+  created: DateTime!
+}
+
+type Drafts implements DraftsMessage {
+  _id: ID!
+  to: String
+  from: String!
+  forwardedBy: String
+  subject: String!
+  body: String
+  created: DateTime!
+}
+
+type Trash implements Message {
+  _id: ID!
+  to: String!
+  from: String!
+  forwardedBy: String
+  subject: String!
+  body: String
+  created: DateTime!
+}
+
+type Starred implements Message {
+  _id: ID!
+  to: String!
+  from: String!
+  forwardedBy: String
+  subject: String!
+  body: String
+  starred: Boolean
+  read: Boolean
+  created: DateTime!
+}
+
+type Spam implements Message {
+  _id: ID!
+  to: String!
+  from: String!
+  forwardedBy: String
+  subject: String!
+  body: String
+  created: DateTime!
+}

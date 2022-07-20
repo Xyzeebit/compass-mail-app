@@ -1,0 +1,30 @@
+# import User from "user.gql"
+# import Contact from "contacts.gql"
+# import MailBox from "mailbox.gql"
+# import MailBoxTotal from "mailbox.gql"
+# import Account, AccountError from "accounts.gql"
+
+type UserPayload {
+    successful: Boolean!
+    user: User
+}
+
+type MailBoxPayload {
+    successful: Boolean!
+    error: String
+    mailbox: MailBox
+}
+
+type MailBoxTotalPayload {
+    successful: Boolean!
+    error: String
+    mailboxDetails: MailBoxTotal
+}
+
+type AccountPayload {
+    successful: Boolean!
+    account: Account
+    error: AccountError
+}
+
+union UserOrMailBox = User | MailBox
