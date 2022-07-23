@@ -15,7 +15,8 @@ export default function SideBar() {
     setCompose(!compose);
   };
 
-  const handleLinks = (value) => {
+  const handleLinks = (evt, value) => {
+    // evt.preventDefault();
     setActive(value);
   };
 
@@ -35,31 +36,84 @@ export default function SideBar() {
         </div>
         <p>Compose</p>
       </button>
-      <nav onClick={handleLinks}>
+
+      <nav>
         <a
           href="/mail/inbox"
           className={`${compose ? "expand" : ""} ${
             active === 0 ? "active" : ""
           }`}
-          onClick={() => handleLinks(0)}
+          onClick={(evt) => handleLinks(evt, 0)}
         >
           <div title="Inbox">
-            <GoInbox size={25} />
+            <GoInbox size={20} />
           </div>
           <p>Inbox</p>
         </a>
 
         <a
-          href="/mail/outbox"
+          href="/mail/starred"
           className={`${compose ? "expand" : ""} ${
             active === 1 ? "active" : ""
           }`}
-          onClick={() => handleLinks(1)}
+          onClick={(evt) => handleLinks(evt, 1)}
+        >
+          <div title="Starred">
+            <IoStar size={20} />
+          </div>
+          <p>Starred</p>
+        </a>
+
+        <a
+          href="/mail/outbox"
+          className={`${compose ? "expand" : ""} ${
+            active === 2 ? "active" : ""
+          }`}
+          onClick={(evt) => handleLinks(evt, 2)}
         >
           <div title="Outbox">
-            <IoSend size={25} />
+            <IoSend size={20} />
           </div>
           <p>Outbox</p>
+        </a>
+
+        <a
+          href="/mail/drafts"
+          className={`${compose ? "expand" : ""} ${
+            active === 3 ? "active" : ""
+          }`}
+          onClick={(evt) => handleLinks(evt, 3)}
+        >
+          <div title="Drafts">
+            <RiDraftFill size={20} />
+          </div>
+          <p>Drafts</p>
+        </a>
+
+        <a
+          href="/mail/spam"
+          className={`${compose ? "expand" : ""} ${
+            active === 4 ? "active" : ""
+          }`}
+          onClick={(evt) => handleLinks(evt, 4)}
+        >
+          <div title="Spam mails">
+            <RiSpam2Fill size={20} />
+          </div>
+          <p>Spam</p>
+        </a>
+
+        <a
+          href="/mail/trash"
+          className={`${compose ? "expand" : ""} ${
+            active === 5 ? "active" : ""
+          }`}
+          onClick={(evt) => handleLinks(evt, 5)}
+        >
+          <div title="Trash">
+            <IoMdTrash size={20} />
+          </div>
+          <p>Trash</p>
         </a>
       </nav>
     </aside>
