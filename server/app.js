@@ -11,9 +11,9 @@ const { graphqlHTTP } = require('express-graphql');
 const mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise;
-let mongoDB = 'mongodb://localhost:27017/mailbox_db';
+const mongoDB = 'mongodb://localhost:27017/mailbox_db';
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
-var db = mongoose.connection;
+const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 db.on('connected', console.log.bind(console, 'Connected to database'));

@@ -3,9 +3,14 @@ import './App.css';
 // import {useQuery, gql} from '@apollo/client';
 
 import Header from './Header';
-import SideBar from './SideBar';
+// import SideBar from './SideBar';
 import Compose from './Compose';
-import MessageList, {Message} from './MessageList';
+import MessageList, { Message } from './MessageList';
+//////////////////////////////
+
+import SideBar from './components/SideBar';
+
+//////////////////////////////
 
 function App() {
   const [composeVisible, setComposeVisible] = useState(false);
