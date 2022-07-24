@@ -26,6 +26,9 @@ aside button.nav-button div {
     align-items: center;
     
 }
+button.nav-button div img {
+    transition: all 250ms ease;
+}
 aside button.nav-button p {
     padding-left: 10px;
     font-weight: 700;
@@ -34,6 +37,9 @@ aside button.nav-button p {
 }
 aside button.nav-button.expand-button {
     width: 120px;
+}
+button.nav-button.expand-button div img {
+    transform: rotate(90deg);
 }
 
 nav {
