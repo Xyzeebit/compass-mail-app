@@ -7,9 +7,10 @@ import { IoMdTrash } from "react-icons/io";
 import { IoSend, IoStar } from "react-icons/io5";
 import { RiDraftFill, RiSpam2Fill } from "react-icons/ri";
 
-export default function SideBar() {
+export default function SideBar({ sidebar, dispatch }) {
   const [compose, setCompose] = useState(false);
   const [active, setActive] = useState(0);
+  const { open } = sidebar;
 
   const handleCompose = () => {
     setCompose(!compose);
@@ -22,7 +23,7 @@ export default function SideBar() {
 
   return (
     <aside className={style.aside} aria-label="Sidebar menu">
-      <button
+      <button title="Compose mail"
         className={`nav-button ${compose ? "expand-button" : ""}`}
         onClick={handleCompose}
       >
@@ -40,7 +41,8 @@ export default function SideBar() {
       <nav>
         <a
           href="/mail/inbox"
-          className={`${compose ? "expand" : ""} ${
+          title="Inbox mail"
+          className={`${open ? "expand" : ""} ${
             active === 0 ? "active" : ""
           }`}
           onClick={(evt) => handleLinks(evt, 0)}
@@ -53,7 +55,8 @@ export default function SideBar() {
 
         <a
           href="/mail/starred"
-          className={`${compose ? "expand" : ""} ${
+          title="Starred mail"
+          className={`${open ? "expand" : ""} ${
             active === 1 ? "active" : ""
           }`}
           onClick={(evt) => handleLinks(evt, 1)}
@@ -66,7 +69,8 @@ export default function SideBar() {
 
         <a
           href="/mail/outbox"
-          className={`${compose ? "expand" : ""} ${
+          title="Outbox"
+          className={`${open ? "expand" : ""} ${
             active === 2 ? "active" : ""
           }`}
           onClick={(evt) => handleLinks(evt, 2)}
@@ -79,7 +83,8 @@ export default function SideBar() {
 
         <a
           href="/mail/drafts"
-          className={`${compose ? "expand" : ""} ${
+          title="Drafts"
+          className={`${open ? "expand" : ""} ${
             active === 3 ? "active" : ""
           }`}
           onClick={(evt) => handleLinks(evt, 3)}
@@ -92,7 +97,8 @@ export default function SideBar() {
 
         <a
           href="/mail/spam"
-          className={`${compose ? "expand" : ""} ${
+          title="Spam mail"
+          className={`${open ? "expand" : ""} ${
             active === 4 ? "active" : ""
           }`}
           onClick={(evt) => handleLinks(evt, 4)}
@@ -105,7 +111,8 @@ export default function SideBar() {
 
         <a
           href="/mail/trash"
-          className={`${compose ? "expand" : ""} ${
+          title="Trash"
+          className={`${open ? "expand" : ""} ${
             active === 5 ? "active" : ""
           }`}
           onClick={(evt) => handleLinks(evt, 5)}
