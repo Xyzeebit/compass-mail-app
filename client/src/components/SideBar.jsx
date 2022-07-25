@@ -24,7 +24,7 @@ export default function SideBar({ sidebar, dispatch }) {
   return (
     <aside className={style.aside} aria-label="Sidebar menu">
       <button title="Compose mail"
-        className={`nav-button ${compose ? "expand-button" : ""}`}
+        className="nav-button"
         onClick={handleCompose}
       >
         <div>

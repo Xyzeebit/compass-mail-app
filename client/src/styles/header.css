@@ -3,6 +3,13 @@ header {
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    width: 100vw;
+}
+@media screen and (max-width: 600px){
+    header {
+        width: 100%;
+        flex-wrap: wrap;
+    }
 }
 button.toggle-sidebar {
     position: relative;
@@ -53,6 +60,29 @@ header .brand img {
     height: 40px;
 }
 
+@media screen and (max-width: 600px) {
+    header .brand {
+        margin-left: 20px;
+    }
+    header .brand img {
+        width: 35px;
+        height: 25px
+    }
+}
+@media screen and (max-width: 861px) {
+    header .brand {
+        margin-left: 20px;
+    }
+    header .brand img {
+        width: 35px;
+        height: 25px
+    }
+    header .brand h1 {
+        font-size: 1.5rem;
+    }
+}
+
+
 header form {
     display: flex;
     justify-content: center;
@@ -86,4 +116,25 @@ header form button {
 }
 .search-box .suggestion-box {
     width: 50%;
+}
+@media screen and (max-width: 600px) {
+    .search-box {
+        margin-left: 20px;
+        
+    }
+    .search-box form input[type="text"] {
+        height: 35px;
+    }
+}
+@media screen and (max-width: 861px) {
+    .search-box {
+        margin-left: 20px;
+        padding-right: 20px;
+    }
+    .search-box form {
+        width: 100%;
+    }
+    .search-box form input[type="text"] {
+        height: 35px;
+    }
 }
