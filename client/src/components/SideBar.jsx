@@ -10,7 +10,7 @@ import { RiDraftFill, RiSpam2Fill } from "react-icons/ri";
 export default function SideBar({ sidebar, dispatch }) {
   // const [compose, setCompose] = useState(false);
 
-  // const { open } = sidebar;
+  const { open } = sidebar;
 
   const handleCompose = () => {
     // setCompose(!compose);
@@ -33,7 +33,7 @@ export default function SideBar({ sidebar, dispatch }) {
         <p>Compose</p>
       </button>
 
-      <nav>
+      <nav className={open ? 'expand' : ''}>
         <NavLink
           to="/mail/inbox"
           title="Inbox mail"
@@ -46,7 +46,7 @@ export default function SideBar({ sidebar, dispatch }) {
         </NavLink>
 
         <NavLink
-          href="/mail/starred"
+          to="/mail/starred"
           title="Starred mail"
           className={({ isActive }) => isActive ? 'active' : ''}
         >
@@ -57,7 +57,7 @@ export default function SideBar({ sidebar, dispatch }) {
         </NavLink>
 
         <NavLink
-          href="/mail/outbox"
+          to="/mail/outbox"
           title="Outbox"
           className={({ isActive }) => isActive ? 'active' : ''}
         >
@@ -68,7 +68,7 @@ export default function SideBar({ sidebar, dispatch }) {
         </NavLink>
 
         <NavLink
-          href="/mail/drafts"
+          to="/mail/drafts"
           title="Drafts"
           className={({ isActive }) => isActive ? 'active' : ''}
         >
@@ -79,7 +79,7 @@ export default function SideBar({ sidebar, dispatch }) {
         </NavLink>
 
         <NavLink
-          href="/mail/spam"
+          to="/mail/spam"
           title="Spam mail"
           className={({ isActive }) => isActive ? 'active' : ''}
         >
@@ -90,7 +90,7 @@ export default function SideBar({ sidebar, dispatch }) {
         </NavLink>
 
         <NavLink
-          href="/mail/trash"
+          to="/mail/trash"
           title="Trash"
           className={({ isActive }) => isActive ? 'active' : ''}
         >

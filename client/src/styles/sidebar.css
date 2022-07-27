@@ -56,7 +56,7 @@ nav a {
     overflow: hidden;
     transition: all 200ms ease-in-out;
 }
-nav a.expand {
+nav.expand a {
     width: 220px;
 }
 nav a.active {

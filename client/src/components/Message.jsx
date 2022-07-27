@@ -1,40 +1,52 @@
-import { useState } from 'react'
-import { IoMdCheckmark } from 'react-icons/io';
-
+import { useState } from "react";
+import { IoMdCheckmark } from "react-icons/io";
+import { Link } from "react-router-dom";
 
 export default function Message({ message, dispatch }) {
-    const { id, type, sender, subject, body, time } = message;
-    return (
-        <a href={'/' + type + '/' + id} rel={"noopener"} title={subject}>
-            <Icon id={id} type={ type } sender={sender} dispatch={dispatch} />
-            <article>
-                <h2>{subject}</h2>
-                <p>{body}</p>
-            </article>
-            <Time time={time} />
-      </a>
-    );
+  const { id, type, sender, subject, body, time } = message;
+  return (
+    <article className="mail-head" title={subject}>
+      <Icon id={id} type={type} sender={sender} dispatch={dispatch} />
+      <Link to={"/" + type + "/" + id} rel="noopener">
+        <div className="message-summary">
+          <h2>{sender}</h2>
+          <h3>{subject}</h3>
+          <p>{body}</p>
+        </div>
+        <Time time={time} />
+      </Link>
+    </article>
+  );
 }
 
 const Time = ({ time }) => {
-    const now = new Date();
-    const ago = new Date(time);
-    const value = '09:23AM';
-    return (
-        <p>{value}</p>
-    )
-}
+  const now = new Date();
+  const ago = new Date(time);
+    let value = "";
+    let next = now.setHours() + 24;
+  if (next > ago) {
+    value = ago.toLocaleDateString();
+  } else {
+    const [h, m] = ago.toTimeString().split(":");
+    value = `${h}:${m}`;
+  }
+  return <p className="time">{value}</p>;
+};
 
 const Icon = ({ id, type, sender, dispatch }) => {
-    const [marked, setMarked] = useState(false);
-    const firstLetter = sender.substring(0, 1).toUpperCase();
-    const markMessage = () => {
-        setMarked(!marked);
-        dispatch({ type: 'MARKED', location: type, id })
-    }
-    return (
-        <button onClick={markMessage}>
-            {marked ? <IoMdCheckmark size={20} /> : <span>{firstLetter}</span>}
-        </button>
-    )
-}
+  const [marked, setMarked] = useState(false);
+  const firstLetter = sender.substring(0, 1).toUpperCase();
+  const markMessage = (evt) => {
+    evt.preventDefault();
+    setMarked(!marked);
+    dispatch({ type: "MARKED", location: type, id });
+  };
+  return (
+    <div className={`${marked ? "flipped" : ""} icon`} onClick={markMessage}>
+      <div className="side front">
+        <IoMdCheckmark color="#fff" size={25} />
+      </div>
+      <div className="side back"><span>{firstLetter}</span></div>
+    </div>
+  );
+};

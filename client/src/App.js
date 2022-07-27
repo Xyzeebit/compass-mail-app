@@ -1,18 +1,10 @@
 import { useState } from 'react';
 import './App.css';
+import './styles/list.css';
 // import {useQuery, gql} from '@apollo/client';
 
-import { useReducer } from 'react';
 
-// import Header from './Header';
-// import SideBar from './SideBar';
-import Compose from './Compose';
-import MessageList, { Message } from './MessageList';
-//////////////////////////////
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import SideBar from './components/SideBar';
-import Header from './components/Header';
-import combineReducers, { initState } from './reducer/reducer';
 import Home from './pages/Home';
 import Inbox from './pages/Inbox';
 import Outbox from './pages/Outbox';
@@ -24,12 +16,7 @@ import Spam from './pages/Spam';
 //////////////////////////////
 
 function App() {
-  const [state, dispatch] = useReducer(combineReducers, initState);
-  const [composeVisible, setComposeVisible] = useState(false);
-  const handleCompose = e => {
-    setComposeVisible(true);
-    alert(composeVisible)
-  }
+ 
 
   return (
     <Router>

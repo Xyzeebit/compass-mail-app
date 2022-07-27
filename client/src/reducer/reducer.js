@@ -2,7 +2,7 @@ import data from './data';
 
 export const initState = {
     sidebar: {
-    open: false,
+    open: true,
     },
     marked: [],
     mails: data

@@ -1,0 +1,85 @@
+section.list {
+    
+}
+
+.list article.mail-head {
+    padding: 2px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* box-shadow: 0px 0px 3px #666; */
+}
+.icon {
+    margin: 10px 15px 10px 15px;
+    width: 50px;
+    height: 50px;
+    border-radius: 100px;
+    /* border: 2px solid #ccc; */
+    position: relative;
+    transition: all 400ms linear;
+    transform-style: preserve-3d;
+}
+.side {
+    width: inherit;
+    height: inherit;
+    top: 0;
+    left: 0;
+    backface-visibility: hidden;
+}
+.front {
+    border-radius: 100px;
+    
+    position: absolute;
+    transform: rotateY(180deg);
+    /* background-color: rgb(228, 58, 16); */
+    background-color: #f44336;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.back {
+    border-radius: 100px;
+    font-weight: 700;
+    font-size: 1.5rem;
+    background-color: #0b5b8b;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.back span {
+    padding: 0;
+    margin: 0;
+}
+.flipped {
+    transform: rotateY(180deg);
+}
+.mail-head a {
+    text-decoration: none;
+    color: inherit;
+    margin-left: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-overflow: ellipsis;
+}
+.message-summary h2 {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+.mail-head a .message-summary h2, h3, p {
+    margin-block-start: 0.2rem;
+    margin-block-end: 0.2rem;
+}
+.mail-head a .message-summary h3 {
+    font-size: 1rem;
+    font-weight: 500;
+}
+.mail-head a .message-summary p {
+    font-size: 0.95rem;
+}
+.time {
+    font-weight: 500;
+    margin-left: 20px;
+}

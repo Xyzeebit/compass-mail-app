@@ -8,7 +8,7 @@
   /* justify-content: center; */
 }
 
-.header {
+/* .header {
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -95,7 +95,7 @@
 }
 .m-time {
   /* justify-self: flex-end; */
-}
+/*}
 .compose-button {
   padding: 10px;
   margin-left: 15px;
@@ -188,4 +188,4 @@ textarea.input-body:focus {
 .submit-button {
   margin-left: 10px;
   padding: 10px;
-}
+} */

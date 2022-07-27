@@ -8,6 +8,7 @@ import combineReducers, { initState } from "../reducer/reducer";
 
 export default function Inbox() {
     const [state, dispatch] = useReducer(combineReducers, initState);
+  
     const { mails } = state;
     useEffect(() => {
 
