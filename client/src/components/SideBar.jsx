@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import { NavLink } from 'react-router-dom';
 import style from "../styles/sidebar.css";
 import compose_image from "../compose-icon.png";
 import { GoInbox } from "react-icons/go";
@@ -8,17 +8,12 @@ import { IoSend, IoStar } from "react-icons/io5";
 import { RiDraftFill, RiSpam2Fill } from "react-icons/ri";
 
 export default function SideBar({ sidebar, dispatch }) {
-  const [compose, setCompose] = useState(false);
-  const [active, setActive] = useState(0);
-  const { open } = sidebar;
+  // const [compose, setCompose] = useState(false);
+
+  // const { open } = sidebar;
 
   const handleCompose = () => {
-    setCompose(!compose);
-  };
-
-  const handleLinks = (evt, value) => {
-    // evt.preventDefault();
-    setActive(value);
+    // setCompose(!compose);
   };
 
   return (
@@ -39,89 +34,71 @@ export default function SideBar({ sidebar, dispatch }) {
       </button>
 
       <nav>
-        <a
-          href="/mail/inbox"
+        <NavLink
+          to="/mail/inbox"
           title="Inbox mail"
-          className={`${open ? "expand" : ""} ${
-            active === 0 ? "active" : ""
-          }`}
-          onClick={(evt) => handleLinks(evt, 0)}
+          className={({ isActive }) => isActive ? 'active' : ''}
         >
           <div title="Inbox">
             <GoInbox size={20} />
           </div>
           <p>Inbox</p>
-        </a>
+        </NavLink>
 
-        <a
+        <NavLink
           href="/mail/starred"
           title="Starred mail"
-          className={`${open ? "expand" : ""} ${
-            active === 1 ? "active" : ""
-          }`}
-          onClick={(evt) => handleLinks(evt, 1)}
+          className={({ isActive }) => isActive ? 'active' : ''}
         >
           <div title="Starred">
             <IoStar size={20} />
           </div>
           <p>Starred</p>
-        </a>
+        </NavLink>
 
-        <a
+        <NavLink
           href="/mail/outbox"
           title="Outbox"
-          className={`${open ? "expand" : ""} ${
-            active === 2 ? "active" : ""
-          }`}
-          onClick={(evt) => handleLinks(evt, 2)}
+          className={({ isActive }) => isActive ? 'active' : ''}
         >
           <div title="Outbox">
             <IoSend size={20} />
           </div>
           <p>Outbox</p>
-        </a>
+        </NavLink>
 
-        <a
+        <NavLink
           href="/mail/drafts"
           title="Drafts"
-          className={`${open ? "expand" : ""} ${
-            active === 3 ? "active" : ""
-          }`}
-          onClick={(evt) => handleLinks(evt, 3)}
+          className={({ isActive }) => isActive ? 'active' : ''}
         >
           <div title="Drafts">
             <RiDraftFill size={20} />
           </div>
           <p>Drafts</p>
-        </a>
+        </NavLink>
 
-        <a
+        <NavLink
           href="/mail/spam"
           title="Spam mail"
-          className={`${open ? "expand" : ""} ${
-            active === 4 ? "active" : ""
-          }`}
-          onClick={(evt) => handleLinks(evt, 4)}
+          className={({ isActive }) => isActive ? 'active' : ''}
         >
           <div title="Spam mails">
             <RiSpam2Fill size={20} />
           </div>
           <p>Spam</p>
-        </a>
+        </NavLink>
 
-        <a
+        <NavLink
           href="/mail/trash"
           title="Trash"
-          className={`${open ? "expand" : ""} ${
-            active === 5 ? "active" : ""
-          }`}
-          onClick={(evt) => handleLinks(evt, 5)}
+          className={({ isActive }) => isActive ? 'active' : ''}
         >
           <div title="Trash">
             <IoMdTrash size={20} />
           </div>
           <p>Trash</p>
-        </a>
+        </NavLink>
       </nav>
     </aside>
   );
