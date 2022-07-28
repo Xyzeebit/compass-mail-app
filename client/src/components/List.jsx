@@ -1,14 +1,26 @@
 import { useState, useEffect } from 'react'
 
-import { IoShare, IoStar, IoTrashBin } from "react-icons/io5";
+import { IoStarSharp } from "react-icons/io5";
+import { IoMdTrash } from 'react-icons/io';
+import { IoShareSocial } from 'react-icons/io5';
+import { GoStar } from 'react-icons/go';
 import Message from "./Message";
 
 export default function List({ list, marked, dispatch }) {
     return (
         <>
-            {marked && <Actions marked={ marked } dispatch={dispatch} />}
-            {list.map((message) => 
-                <Message message={message} dispatch={dispatch} key={message.id} />
+            {<Actions marked={() => {
+                return list.filter(i => i.isMarked === true )
+            } } dispatch={dispatch} />}
+            {list.map((message) => {
+                return (
+                  <Message
+                    message={message}
+                    dispatch={dispatch}
+                    key={message.id}
+                  />
+                );
+            }
             )}
         </>
     )
@@ -54,17 +66,17 @@ const Actions = ({ marked, dispatch }) => {
     }, [action]);
 
     return (
-      <article>
-        <p>{marked.length} selected</p>
+      <article className={`marked ${marked().length > 0 ? "show-marked" : ""}`}>
+        <p>{marked() ? marked().length : 0} items selected</p>
 
-        <button onClick={deleteMarked}>
-          <IoTrashBin size={20} />
+        <button onClick={deleteMarked} title="Delete all selections">
+          <IoMdTrash size={25} />
         </button>
-        <button onClick={starMarked}>
-          <IoStar size={20} />
+        <button onClick={starMarked} title="Star selections">
+          <GoStar size={25} />
         </button>
-        <button onClick={shareMarked}>
-          <IoShare size={20} />
+        <button onClick={shareMarked} title="Share selections">
+          <IoShareSocial size={25} />
         </button>
       </article>
     );

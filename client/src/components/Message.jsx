@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { IoMdCheckmark } from "react-icons/io";
+import { GoCheck } from "react-icons/go";
 import { Link } from "react-router-dom";
 
 export default function Message({ message, dispatch }) {
-  const { id, type, sender, subject, body, time } = message;
+  const { id, type, sender, subject, body, time, isMarked } = message;
   return (
     <article className="mail-head" title={subject}>
-      <Icon id={id} type={type} sender={sender} dispatch={dispatch} />
+      <Icon id={id} type={type} isMarked={isMarked} sender={sender} dispatch={dispatch} />
       <Link to={"/" + type + "/" + id} rel="noopener">
         <div className="message-summary">
           <h2>{sender}</h2>
@@ -33,18 +33,16 @@ const Time = ({ time }) => {
   return <p className="time">{value}</p>;
 };
 
-const Icon = ({ id, type, sender, dispatch }) => {
-  const [marked, setMarked] = useState(false);
+const Icon = ({ id, type, sender, isMarked, dispatch }) => {
   const firstLetter = sender.substring(0, 1).toUpperCase();
   const markMessage = (evt) => {
     evt.preventDefault();
-    setMarked(!marked);
-    dispatch({ type: "MARKED", location: type, id });
+    dispatch({ type: "TOGGLE_MARK", id });
   };
   return (
-    <div className={`${marked ? "flipped" : ""} icon`} onClick={markMessage}>
+    <div className={`${isMarked ? "flipped" : ""} icon`} onClick={markMessage}>
       <div className="side front">
-        <IoMdCheckmark color="#fff" size={25} />
+        <GoCheck color="#fff" size={25} />
       </div>
       <div className="side back"><span>{firstLetter}</span></div>
     </div>

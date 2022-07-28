@@ -1,5 +1,5 @@
 section.list {
-    
+    width: 60%;
 }
 
 .list article.mail-head {
@@ -62,7 +62,13 @@ section.list {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    
+}
+.message-summary {
+    overflow: hidden;
+    width: 400px;
     text-overflow: ellipsis;
+    white-space: nowrap;
 }
 .message-summary h2 {
     font-size: 1.2rem;
@@ -76,10 +82,47 @@ section.list {
     font-size: 1rem;
     font-weight: 500;
 }
-.mail-head a .message-summary p {
+.message-summary p {
     font-size: 0.95rem;
 }
 .time {
     font-weight: 500;
     margin-left: 20px;
+}
+
+.marked {
+    width: 100%;
+    overflow: hidden;
+    height: 0px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    opacity: 0;
+    transition: all 250ms linear;
+}
+.show-marked {
+    height: 50px;
+    opacity: 1;
+    padding: 10px;
+}
+.marked p {
+    font-weight: 500;
+}
+.marked button {
+    padding: 10px;
+    margin: 2px;
+    /* outline: none; */
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100px;
+    transition: all 250ms linear;
+    box-shadow: 0px 0px 5px #666;
+}
+.marked button:hover {
+    background: #f44336;
+}
+.marked button:hover path {
+    fill: #fff;
 }

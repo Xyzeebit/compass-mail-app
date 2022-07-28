@@ -13,7 +13,7 @@ const data = [
     id: 2,
     type: "inbox",
     subject: "VueJS Tutorial with Rose",
-    body: "Vue is a JavaScript framework for building web applications.",
+    body: "Vue is a JavaScript framework for building web applications. Vue is a JavaScript framework for building web applications.",
     from: "example@packmail.com",
     to: "anotherexample@packmail",
     sender: "Rose Doe",

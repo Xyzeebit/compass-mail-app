@@ -1,11 +1,12 @@
-import data from './data';
+import data from '../data';
 
 export const initState = {
     sidebar: {
     open: true,
     },
+    contacts: [],
     marked: [],
-    mails: data
+    mails: [],
 };
 
 function sidebarReducer(state, action) {
@@ -19,27 +20,56 @@ function sidebarReducer(state, action) {
 function markedReducer(state, action) {
     switch (action.type) {
         case 'MARK':
-            state.push(action.id);
-            return state;
-        case 'UNMARK':
-            const index = state.indexOf(action.id);
-            if (index !== -1) {
-                state.splice(index, 1);
+            const mark = state.find(i => i.id === action.id);
+            if (mark) {
+                const index = state.indexOf(mark);
+                if (index !== -1) {
+                  state.splice(index, 1);
+                }
+            } else {
+                state.push({ location: action.location, id: action.id });
             }
             return state;
-        case 'EMPTY_MARKED':
-            state = [];
-            return state;
+        // case 'EMPTY_MARKED':
+        //     state = [];
+        //     return state;
         default: return state;
     }
 }
 
 function mailsReducer(state, action) {
     switch (action.type) {
-        case 'FETCH':
-            state = action.mails;
+        case 'FETCH_MAIL':
+            const mails = action.mails
+            // for (let mail of mails) {
+            //     mail.isMarked = false;
+            // }
+            state = mails;
+            return state;
+        case 'TOGGLE_MARK':
+            const found = state.find(i => i.id === action.id);
+            if (found) {
+                found.isMarked = found.isMarked === undefined ? true : !found.isMarked;
+            }
+            return state;
+        case 'EMPTY_MARKED':
+            for (let mail of state) {
+                if (mail.isMarked) {
+                    mail.isMarked = false;
+                }
+            }
             return state;
         default: return state;
+    }
+}
+
+function contactsReducer(state, action) {
+    switch (action.type) {
+        case 'FETCH_CONTACTS':
+            return state;
+    
+        default:
+            return state;
     }
 }
 
@@ -47,6 +77,7 @@ export default function combineReducers(state, action) {
     return {
         sidebar: sidebarReducer(state.sidebar, action),
         marked: markedReducer(state.marked, action),
-        mails: mailsReducer(state.mails, action)
+        mails: mailsReducer(state.mails, action),
+        contacts: contactsReducer(state.contacts, action),
     }
 }

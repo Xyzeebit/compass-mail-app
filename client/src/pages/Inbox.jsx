@@ -2,28 +2,26 @@ import { useEffect, useReducer } from 'react';
 import Paginator from '../components/Paginator';
 import List from '../components/List';
 
-import Header from "../components/Header";
-import SideBar from "../components/SideBar";
 import combineReducers, { initState } from "../reducer/reducer";
+import Layout from '../components/Layout';
+
+import data from '../data';
 
 export default function Inbox() {
     const [state, dispatch] = useReducer(combineReducers, initState);
   
-    const { mails } = state;
+    const { sidebar, contacts, mails, marked } = state;
     useEffect(() => {
-
+      dispatch({ type: 'FETCH_MAIL', mails: data });
     }, []);
-    return (
-      <main>
-        <Header dispatch={dispatch} />
-        <div className="app">
-          <SideBar sidebar={state.sidebar} dispatch={dispatch} />
-          <section className="list">
-            <List list={mails} dispatch={dispatch} />
-            <Paginator />
-          </section>
-        </div>
-      </main>
-    );
+  
+  return (
+    <Layout sidebar={sidebar} contacts={contacts} dispatch={dispatch}>
+      <section className="list">
+        <List list={mails} marked={marked} dispatch={dispatch} />
+        <Paginator />
+      </section>
+    </Layout>
+  );
 }
 
