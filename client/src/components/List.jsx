@@ -1,18 +1,20 @@
 import { useState, useEffect } from 'react'
 
-import { IoStarSharp } from "react-icons/io5";
 import { IoMdTrash } from 'react-icons/io';
-import { IoShareSocial } from 'react-icons/io5';
+import { IoShareSocial, IoClose } from "react-icons/io5";
 import { GoStar } from 'react-icons/go';
 import Message from "./Message";
+import EmptyList from './EmptyList';
 
 export default function List({ list, marked, dispatch }) {
     return (
         <>
             {<Actions marked={() => {
                 return list.filter(i => i.isMarked === true )
-            } } dispatch={dispatch} />}
-            {list.map((message) => {
+            }} dispatch={dispatch} />}
+           
+            {list.length > 0 ?
+                (list.map((message) => {
                 return (
                   <Message
                     message={message}
@@ -20,8 +22,8 @@ export default function List({ list, marked, dispatch }) {
                     key={message.id}
                   />
                 );
-            }
-            )}
+            })) : ( <EmptyList text="Your inbox is empty" /> )
+        }
         </>
     )
 }
@@ -37,11 +39,14 @@ const Actions = ({ marked, dispatch }) => {
     }
     const deleteMarked = () => {
         setAction(DELETE);
-        dispatch({ type: "EMPTY_MARKED" });
+        dispatch({ type: "DELETE_MARKED" });
     }
     const shareMarked = () => {
         setAction(SHARE);
         dispatch({ type: "EMPTY_MARKED" });
+    }
+    const clearMarked = () => {
+        dispatch({ type: 'EMPTY_MARKED'})
     }
 
     useEffect(() => {
@@ -68,6 +73,10 @@ const Actions = ({ marked, dispatch }) => {
     return (
       <article className={`marked ${marked().length > 0 ? "show-marked" : ""}`}>
         <p>{marked() ? marked().length : 0} items selected</p>
+
+        <button onClick={clearMarked} title="Clear selections">
+          <IoClose size={25} />
+        </button>
 
         <button onClick={deleteMarked} title="Delete all selections">
           <IoMdTrash size={25} />

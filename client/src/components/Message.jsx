@@ -35,6 +35,7 @@ const Time = ({ time }) => {
 
 const Icon = ({ id, type, sender, isMarked, dispatch }) => {
   const firstLetter = sender.substring(0, 1).toUpperCase();
+  const colors = ['#d4793d', '#8abcdb', '#2140db', '#479167', '#cfd66f'];
   const markMessage = (evt) => {
     evt.preventDefault();
     dispatch({ type: "TOGGLE_MARK", id });
@@ -44,7 +45,9 @@ const Icon = ({ id, type, sender, isMarked, dispatch }) => {
       <div className="side front">
         <GoCheck color="#fff" size={25} />
       </div>
-      <div className="side back"><span>{firstLetter}</span></div>
+      <div className="side back" style={{ backgroundColor: colors[4], color: '#210a1e' }}>
+        <span>{firstLetter}</span>
+      </div>
     </div>
   );
 };

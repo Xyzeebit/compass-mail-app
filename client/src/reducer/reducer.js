@@ -59,6 +59,9 @@ function mailsReducer(state, action) {
                 }
             }
             return state;
+        case 'DELETE_MARKED':
+            state = state.filter(i => (i.isMarked === undefined || i.isMarked !== true));
+            return state;
         default: return state;
     }
 }
