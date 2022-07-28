@@ -3,20 +3,27 @@ import { GoCheck } from "react-icons/go";
 import { Link } from "react-router-dom";
 
 export default function Message({ message, dispatch }) {
-  const { id, type, sender, subject, body, time, isMarked } = message;
+  const { id, type, sender, subject, body, time, isMarked, isNew } = message;
   return (
     <article className="mail-head" title={subject}>
       <Icon id={id} type={type} isMarked={isMarked} sender={sender} dispatch={dispatch} />
-      <Link to={"/" + type + "/" + id} rel="noopener">
+      <Link to={"/" + type + "/" + id}>
         <div className="message-summary">
           <h2>{sender}</h2>
           <h3>{subject}</h3>
           <p>{body}</p>
         </div>
-        <Time time={time} />
+        <div className="time-and--badge">
+          <Time time={time} />
+          {isNew && <Badge label="New" />}
+        </div>
       </Link>
     </article>
   );
+}
+
+const Badge = ({ label }) => {
+  return <p className="badge">{label}</p>
 }
 
 const Time = ({ time }) => {
@@ -33,7 +40,7 @@ const Time = ({ time }) => {
   return <p className="time">{value}</p>;
 };
 
-const Icon = ({ id, type, sender, isMarked, dispatch }) => {
+const Icon = ({ id, sender, isMarked, dispatch }) => {
   const firstLetter = sender.substring(0, 1).toUpperCase();
   const colors = ['#d4793d', '#8abcdb', '#2140db', '#479167', '#cfd66f'];
   const markMessage = (evt) => {
@@ -45,7 +52,7 @@ const Icon = ({ id, type, sender, isMarked, dispatch }) => {
       <div className="side front">
         <GoCheck color="#fff" size={25} />
       </div>
-      <div className="side back" style={{ backgroundColor: colors[4], color: '#210a1e' }}>
+      <div className="side back" style={{ backgroundColor: colors[Math.floor(Math.random() * colors.length)], color: '#210a1e' }}>
         <span>{firstLetter}</span>
       </div>
     </div>

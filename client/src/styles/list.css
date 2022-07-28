@@ -1,5 +1,6 @@
 section.list {
     width: 60%;
+    padding: 50px;
 }
 
 .list article.mail-head {
@@ -8,7 +9,15 @@ section.list {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0 auto;
+    margin: 5px auto;
+    border-radius: 10px;
+    transition: all 150ms linear;
+    /* border-bottom: 2px solid #666; */
+}
+article.mail-head:hover {
+    /* border-top: 2px solid #f44336;
+    border-bottom: 2px solid #f44336; */
+    box-shadow: 0px 0px 5px #666;
 }
 .icon {
     margin: 10px 15px 10px 15px;
@@ -89,9 +98,22 @@ section.list {
     text-overflow: ellipsis;
     overflow: hidden;
 }
+.time-and--badge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-left: 20px;
+}
 .time {
     font-weight: 500;
-    margin-left: 20px;
+}
+.badge {
+    background-color: rgb(33, 59, 202);
+    color: #fff;
+    border-radius: 10px;
+    font-size: 0.6rem;
+    padding: 3px 7px 3px 7px;
 }
 
 .marked {
@@ -105,7 +127,7 @@ section.list {
     transition: all 250ms linear;
 }
 .show-marked {
-    height: 50px;
+    height: 70px;
     opacity: 1;
     padding: 10px;
 }
@@ -114,7 +136,7 @@ section.list {
 }
 .marked button {
     padding: 10px;
-    margin: 2px;
+    margin: 2px 2px 20px 2px;
     /* outline: none; */
     border: none;
     display: flex;
@@ -129,4 +151,14 @@ section.list {
 }
 .marked button:hover path {
     fill: #fff;
+}
+
+.empty-list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.empty-list h1 {
+    color: #666;
 }

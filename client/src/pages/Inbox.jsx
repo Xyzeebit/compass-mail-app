@@ -10,7 +10,7 @@ import data from '../data';
 export default function Inbox() {
     const [state, dispatch] = useReducer(combineReducers, initState);
   
-    const { sidebar, contacts, mails, marked } = state;
+    const { sidebar, contacts, mails } = state;
     useEffect(() => {
       dispatch({ type: 'FETCH_MAIL', mails: data });
     }, []);
@@ -18,7 +18,7 @@ export default function Inbox() {
   return (
     <Layout sidebar={sidebar} contacts={contacts} dispatch={dispatch}>
       <section className="list">
-        <List list={mails} marked={marked} dispatch={dispatch} />
+        <List list={mails} label="inbox" dispatch={dispatch} />
         <Paginator />
       </section>
     </Layout>

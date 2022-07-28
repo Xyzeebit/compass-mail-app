@@ -6,7 +6,7 @@ import { GoStar } from 'react-icons/go';
 import Message from "./Message";
 import EmptyList from './EmptyList';
 
-export default function List({ list, marked, dispatch }) {
+export default function List({ list, label, dispatch }) {
     return (
         <>
             {<Actions marked={() => {
@@ -22,7 +22,7 @@ export default function List({ list, marked, dispatch }) {
                     key={message.id}
                   />
                 );
-            })) : ( <EmptyList text="Your inbox is empty" /> )
+            })) : ( <EmptyList text={`Your ${label} is empty`} /> )
         }
         </>
     )
