@@ -18,7 +18,7 @@ export default function Inbox() {
   return (
     <Layout sidebar={sidebar} contacts={contacts} dispatch={dispatch}>
       <section className="list">
-        <List list={mails} label="inbox" dispatch={dispatch} />
+        <List list={mails} label="Your inbox is empty" dispatch={dispatch} />
         <Paginator />
       </section>
     </Layout>

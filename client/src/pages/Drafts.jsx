@@ -12,9 +12,9 @@ export default function Drafts() {
   useEffect(() => {}, []);
 
   return (
-    <Layout sidebar={sidebar} contacts={contacts}>
+    <Layout sidebar={sidebar} contacts={contacts} dispatch={dispatch}>
       <section className="list">
-        <List list={mails} dispatch={dispatch} />
+        <List list={mails} label="You have no saved messages" dispatch={dispatch} />
         <Paginator />
       </section>
     </Layout>

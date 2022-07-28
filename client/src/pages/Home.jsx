@@ -11,7 +11,7 @@ export default function Home() {
     useEffect(() => {}, []);
 
     return (
-      <Layout sidebar={sidebar} contacts={contacts}>
+      <Layout sidebar={sidebar} contacts={contacts} dispatch={dispatch}>
         <section className="home">
           <h1>Pack Mail Home</h1>
         </section>

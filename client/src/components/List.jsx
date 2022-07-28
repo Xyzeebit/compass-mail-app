@@ -22,7 +22,7 @@ export default function List({ list, label, dispatch }) {
                     key={message.id}
                   />
                 );
-            })) : ( <EmptyList text={`Your ${label} is empty`} /> )
+            })) : ( <EmptyList text={label} /> )
         }
         </>
     )

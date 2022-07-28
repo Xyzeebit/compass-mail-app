@@ -14,7 +14,7 @@ export default function Outbox() {
   return (
     <Layout sidebar={sidebar} contacts={contacts} dispatch={dispatch}>
       <section className="list">
-        <List list={mails} label="outbox" dispatch={dispatch} />
+        <List list={mails} label="Your outbox is empty" dispatch={dispatch} />
         <Paginator />
       </section>
     </Layout>

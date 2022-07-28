@@ -12,9 +12,9 @@ export default function Spam() {
   useEffect(() => {}, []);
 
   return (
-    <Layout sidebar={sidebar} contacts={contacts}>
+    <Layout sidebar={sidebar} contacts={contacts} dispatch={dispatch}>
       <section className="list">
-        <List list={mails} dispatch={dispatch} />
+        <List list={mails} label="Hurray! you have no spam messages" dispatch={dispatch} />
         <Paginator />
       </section>
     </Layout>

@@ -12,9 +12,9 @@ export default function Trash() {
   useEffect(() => {}, []);
 
   return (
-    <Layout sidebar={sidebar} contacts={contacts}>
+    <Layout sidebar={sidebar} contacts={contacts} dispatch={dispatch}>
       <section className="list">
-        <List list={mails} dispatch={dispatch} />
+        <List list={mails} label="Your have no messages in your trash" dispatch={dispatch} />
         <Paginator />
       </section>
     </Layout>
