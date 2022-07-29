@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import "../styles/header.css";
-import logo from "../mailbox-logo.png";
+import logo from "../images/logo.png";
 import { IoSearch } from "react-icons/io5";
 import { RiEqualizerFill } from "react-icons/ri";
 

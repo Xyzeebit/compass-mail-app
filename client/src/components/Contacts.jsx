@@ -3,15 +3,27 @@ import '../styles/contacts.css'
 import { RiContactsBook2Fill } from 'react-icons/ri'
 import { IoPersonAddSharp } from 'react-icons/io5'
 import { GoAlert } from 'react-icons/go';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function Contacts({ contacts, dispatch }) {
-    const [addContact, setAddContact] = useState(false);
+  const [addContact, setAddContact] = useState(false);
+  const [slideIn, setSlideIn] = useState(false);
+ 
     const addNewContact = () => {
         setAddContact(true)
     }
+
+  useEffect(() => {
+    const slideInTimer = setTimeout(() => {
+      if (!slideIn) {
+        setSlideIn(true);
+      }
+    }, 1000);
+    return () => clearTimeout(slideInTimer);
+  }, [slideIn]);
+
     return (
-      <aside className="contacts">
+      <aside className={`contacts ${slideIn ? 'slide-in' : ''}`}>
         <h1>
           <RiContactsBook2Fill />
           {"  Contacts"}

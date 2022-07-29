@@ -15,5 +15,6 @@ body {
 .app {
   display: flex;
   flex-direction: row;
-  /* justify-content: center; */
+  overflow-x: hidden;
+  justify-content: space-between;
 }

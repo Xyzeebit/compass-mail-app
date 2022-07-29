@@ -21,6 +21,7 @@ aside button.nav-button:hover {
     /* box-shadow: 0px 0px 2px #666; */
     width: 120px;
 }
+
 aside button.nav-button div {
     display: flex;
     justify-content: center;
@@ -65,6 +66,26 @@ nav a.active {
     font-weight: bold;
     border-top-right-radius: 25px;
     border-bottom-right-radius: 25px;
+}
+@media screen and (max-width: 600px) {
+    aside.collapse-mb {
+        max-width: 0px;
+    }
+    aside.expand-mb {
+        max-width: 150px;
+    }
+    nav a {
+        transform: translateX(-50px);
+    }
+    nav.expand a {
+        max-width: 150px;
+        transform: translateX(0px);
+    }
+}
+@media screen and (max-width: 861px) {
+    nav.expand a {
+        width: 150px;
+    }
 }
 nav a:not(.active):hover {
     background-color: #b4abab4a;

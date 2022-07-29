@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, memo } from 'react'
 
 import { IoMdTrash } from 'react-icons/io';
 import { IoShareSocial, IoClose } from "react-icons/io5";
@@ -90,3 +90,6 @@ const Actions = ({ marked, dispatch }) => {
       </article>
     );
 }
+
+
+// export default memo(List);

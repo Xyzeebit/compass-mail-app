@@ -1,20 +1,25 @@
-import { useEffect, useReducer } from "react";
-import Layout from "../components/Layout";
-import combineReducers, {initState} from "../reducer/reducer";
 
+import { useEffect, useReducer } from "react";
+
+import logo from '../images/logo.png'
+import '../styles/home.css';
 
 // use home for login signup and mail for home
 export default function Home() {
-    const [state, dispatch] = useReducer(combineReducers, initState);
-
-    const { sidebar, contacts } = state;
-    useEffect(() => {}, []);
+  
 
     return (
-      <Layout sidebar={sidebar} contacts={contacts} dispatch={dispatch}>
-        <section className="home">
-          <h1>Pack Mail Home</h1>
-        </section>
-      </Layout>
+      <main className="home">
+        
+        <div className="brand">
+          <img
+            src={logo}
+            alt="Packmail Home page"
+            width={35}
+            height={35}
+          />
+          <h1>PACKMAIL</h1>
+        </div>
+      </main>
     );
 }

@@ -2,6 +2,12 @@ section.list {
     width: 60%;
     padding: 50px;
 }
+@media screen and (max-width: 861px) {
+    section.list {
+        width: auto;
+        padding: 20px 15px 50px 15px;
+    }
+}
 
 .list article.mail-head {
     padding: 2px;
@@ -77,6 +83,15 @@ article.mail-head:hover {
     text-overflow: ellipsis;
     white-space: nowrap;
     /* margin: 0 auto; */
+}
+@media screen and (max-width: 861px) {
+    .message-summary {
+        width: 300px;
+    }
+    .time-and--badge {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
 }
 .message-summary h2 {
     font-size: 1.2rem;
