@@ -23,7 +23,7 @@ export default function Header({ dispatch }) {
         <div />
         <div />
       </button>
-      <div className="brand" title="Packmail brand name">
+      <div className="brand" aria-label="Packmail brand name">
         <img
           src={logo}
           alt="Packmail logo featuring a red envelope"

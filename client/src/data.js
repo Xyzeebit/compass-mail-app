@@ -32,4 +32,25 @@ const data = [
   },
 ];
 
-module.exports = data;
+const contacts = [
+  {
+    id: "hns_ksuiFya27k",
+    name: "John Doe",
+    email: "johndoe@john.com",
+  },
+  {
+    id: "hns_ksui8787Fya27k",
+    name: "Rex Mark",
+    email: "rexma@rm.com",
+  },
+  {
+    id: "hGGy78a_ujs2YUJ",
+    name: "Mason ",
+    email: "happymason@gomo.mo",
+  },
+];
+
+module.exports = {
+  data,
+  users: contacts
+}

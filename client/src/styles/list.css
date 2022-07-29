@@ -12,6 +12,7 @@ section.list {
     margin: 5px auto;
     border-radius: 10px;
     transition: all 150ms linear;
+    background-color: #cccddd;
     /* border-bottom: 2px solid #666; */
 }
 article.mail-head:hover {

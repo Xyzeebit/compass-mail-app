@@ -69,6 +69,7 @@ function mailsReducer(state, action) {
 function contactsReducer(state, action) {
     switch (action.type) {
         case 'FETCH_CONTACTS':
+            state = action.contacts;
             return state;
     
         default:
