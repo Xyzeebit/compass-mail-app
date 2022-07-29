@@ -1,4 +1,4 @@
-// import 
+import '../styles/contacts.css'
 
 export default function Contacts({ contacts, dispatch }) {
     const addNewContact = () => {
