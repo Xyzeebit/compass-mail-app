@@ -71,7 +71,9 @@ function contactsReducer(state, action) {
         case 'FETCH_CONTACTS':
             state = action.contacts;
             return state;
-    
+        case 'ADD_CONTACT':
+            state.push({ id: Date.now(), name: action.contact.name, email: action.contact.email });
+            return state;
         default:
             return state;
     }
