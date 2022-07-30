@@ -23,14 +23,14 @@ export default function Header({ dispatch }) {
         <div />
         <div />
       </button>
-      <div className="brand" aria-label="Packmail brand name">
+      <div className="brand" aria-label="Compass mail">
         <img
           src={logo}
-          alt="Packmail logo featuring a red envelope"
+          alt="Compass logo featuring a red envelope"
           width="50"
           height="50"
         />
-        <h1>PACKMAIL</h1>
+        <h1>COMPASS</h1>
       </div>
 
       <div className="search-box">

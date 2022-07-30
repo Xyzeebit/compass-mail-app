@@ -3,9 +3,11 @@ import { NavLink } from 'react-router-dom';
 import style from "../styles/sidebar.css";
 import compose_image from "../compose-icon.png";
 import { GoInbox } from "react-icons/go";
-import { IoMdTrash } from "react-icons/io";
+import { IoMdContact, IoMdContacts, IoMdTrash } from "react-icons/io";
 import { IoSend, IoStar } from "react-icons/io5";
-import { RiDraftFill, RiSpam2Fill } from "react-icons/ri";
+
+// IoMdContact
+import { RiDraftFill, RiSpam2Fill, RiContactsBook2Fill } from "react-icons/ri";
 
 export default function SideBar({ sidebar, dispatch }) {
   // const [compose, setCompose] = useState(false);
@@ -15,6 +17,13 @@ export default function SideBar({ sidebar, dispatch }) {
   const handleCompose = () => {
     // setCompose(!compose);
   };
+
+  const closeSidebar = () => {
+    // dispatch({ type: 'TOGGLE_SIDEBAR' });
+  }
+  const showContacts = () => {
+    dispatch({ type: 'TOGGLE_SIDEBAR' });
+  }
 
   return (
     <aside className={`${open ? 'expand-mb' : 'collapse-mb'} menu`} aria-label="Sidebar menu">
@@ -33,7 +42,7 @@ export default function SideBar({ sidebar, dispatch }) {
         <p>Compose</p>
       </button>
 
-      <nav className={open ? 'expand' : ''}>
+      <nav className={open ? 'expand' : ''} onClick={closeSidebar}>
         <NavLink
           to="/mail/inbox"
           title="Inbox mail"
@@ -99,6 +108,11 @@ export default function SideBar({ sidebar, dispatch }) {
           </div>
           <p>Trash</p>
         </NavLink>
+        <hr />
+        <button className="contact-button" onClick={showContacts}>
+          <IoMdContacts size={20} />
+          <span>Contacts</span>
+        </button>
       </nav>
     </aside>
   );

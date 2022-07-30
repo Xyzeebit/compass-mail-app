@@ -4,7 +4,10 @@ export const initState = {
     sidebar: {
     open: true,
     },
-    contacts: [],
+    contacts: {
+        open: false,
+        users: []
+    },
     marked: [],
     mails: [],
 };
@@ -69,10 +72,13 @@ function mailsReducer(state, action) {
 function contactsReducer(state, action) {
     switch (action.type) {
         case 'FETCH_CONTACTS':
-            state = action.contacts;
+            state = {...state, users: action.contacts }
             return state;
         case 'ADD_CONTACT':
-            state.push({ id: Date.now(), name: action.contact.name, email: action.contact.email });
+            state.users.push({ id: Date.now(), name: action.contact.name, email: action.contact.email });
+            return state;
+        case 'TOGGLE_CONTACT':
+            state.open = !state.open;
             return state;
         default:
             return state;

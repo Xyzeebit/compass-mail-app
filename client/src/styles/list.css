@@ -2,10 +2,15 @@ section.list {
     width: 60%;
     padding: 50px;
 }
-@media screen and (max-width: 861px) {
+@media screen and (max-width: 900px) {
     section.list {
         width: auto;
         padding: 20px 15px 50px 15px;
+    }
+}
+@media  screen and (max-width: 600px) {
+    section.list {
+        /* width: 90vw; */
     }
 }
 
@@ -93,6 +98,23 @@ article.mail-head:hover {
         margin-right: 10px;
     }
 }
+@media screen and (max-width: 900px) {
+    .message-summary {
+        width: 400px;
+    }
+    .time-and--badge {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+}
+@media screen and (max-width: 600px) {
+    .message-summary {
+        width: 50vw;
+    }
+    .marked p {
+        font-size: 0.9rem;
+    }
+}
 .message-summary h2 {
     font-size: 1.2rem;
     font-weight: 600;
@@ -149,10 +171,12 @@ article.mail-head:hover {
 }
 .marked p {
     font-weight: 500;
+    margin-block-start: 0rem;
+    margin-block-end: 0rem;
 }
 .marked button {
     padding: 10px;
-    margin: 2px 2px 20px 2px;
+    margin: 2px 2px 2px 2px;
     /* outline: none; */
     border: none;
     display: flex;

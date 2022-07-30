@@ -6,8 +6,8 @@ import { GoAlert } from 'react-icons/go';
 import { useState, useEffect } from 'react';
 
 export default function Contacts({ contacts, dispatch }) {
+  const { open, users } = contacts;
   const [addContact, setAddContact] = useState(false);
-  const [slideIn, setSlideIn] = useState(false);
  
     const addNewContact = () => {
         setAddContact(true)
@@ -15,22 +15,22 @@ export default function Contacts({ contacts, dispatch }) {
 
   useEffect(() => {
     const slideInTimer = setTimeout(() => {
-      if (!slideIn) {
-        setSlideIn(true);
+      if (open) {
+        dispatch({ type: 'TOGGLE_CONTACT' })
       }
     }, 1000);
     return () => clearTimeout(slideInTimer);
-  }, [slideIn]);
+  }, [open, dispatch]);
 
     return (
-      <aside className={`contacts ${slideIn ? 'slide-in' : ''}`}>
+      <aside className={`contacts ${open ? 'slide-in' : ''}`}>
         <h1>
           <RiContactsBook2Fill />
           {"  Contacts"}
         </h1>
         {addContact && <ContactForm setAddContact={setAddContact} dispatch={dispatch} />}
         {!addContact && <>
-          {contacts.map((contact, i) => {
+          {users.map((contact, i) => {
             return <Contact {...contact} key={i + contact.id + i} />;
           })}
           <button onClick={addNewContact}>
