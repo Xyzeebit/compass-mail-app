@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import style from "../styles/sidebar.css";
 import compose_image from "../compose-icon.png";
 import { GoInbox } from "react-icons/go";
@@ -10,12 +10,12 @@ import { IoSend, IoStar } from "react-icons/io5";
 import { RiDraftFill, RiSpam2Fill } from "react-icons/ri";
 
 export default function SideBar({ sidebar, dispatch }) {
-  // const [compose, setCompose] = useState(false);
+  const navigate = useNavigate();
 
   const { open } = sidebar;
 
   const handleCompose = () => {
-    // setCompose(!compose);
+    navigate('/mail/compose');
   };
 
   const closeSidebar = () => {

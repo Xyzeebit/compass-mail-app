@@ -29,13 +29,15 @@ const Badge = ({ label }) => {
 const Time = ({ time }) => {
   const now = new Date();
   const ago = new Date(time);
-    let value = "";
-  now.setDate(now.getDate() + 1);
-  if (now > ago) {
+  let value = "";
+  now.setDate((new Date().getDate() + 1));
+  const ndate = new Date(ago.getTime());
+  ndate.setDate(ndate.getDate() + 1);
+  
+  if (now.getTime() < ago.getTime()) {
     value = ago.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
   } else {
-    const [_, mth, day] = ago.toDateString().split(" ");
-    value = `${mth}/${day}`;
+    value = ago.toLocaleString('en-US', { month: 'short', day: 'numeric' }).replace(' ', '/');
   }
   return <p className="time">{value}</p>;
 };

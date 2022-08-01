@@ -12,6 +12,7 @@ import Starred from './pages/Starred';
 import Drafts from './pages/Drafts';
 import Trash from './pages/Trash';
 import Spam from './pages/Spam';
+import ComposePage from './pages/Compose';
 
 //////////////////////////////
 
@@ -47,6 +48,8 @@ function App() {
         <Route path="/mail/trash" element={<Trash />} />
 
         <Route path="/mail/spam" element={<Spam />} />
+
+        <Route path="/mail/compose" element={<ComposePage />} />
       </Routes>
     </Router>
   );

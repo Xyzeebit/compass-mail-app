@@ -1,6 +1,11 @@
 import { data, users } from '../data';
 
 export const initState = {
+    user: {
+        id: 'ayuUIB780xui0',
+        name: 'Peters',
+        email: 'Peters@pt.com'
+    },
     sidebar: {
     open: true,
     },

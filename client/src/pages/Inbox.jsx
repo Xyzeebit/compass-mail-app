@@ -5,8 +5,6 @@ import List from '../components/List';
 import combineReducers, { initState } from "../reducer/reducer";
 import Layout from '../components/Layout';
 
-import { data } from '../data';
-
 export default function Inbox() {
     const [state, dispatch] = useReducer(combineReducers, initState);
   
