@@ -1,43 +1,54 @@
 import '../styles/contacts.css'
 // import { IoMdContact } from 'react-icons/io'
 import { RiContactsBook2Fill } from 'react-icons/ri'
-import { IoPersonAddSharp } from 'react-icons/io5'
+import { IoArrowForward, IoPersonAddSharp } from 'react-icons/io5'
+
 import { GoAlert } from 'react-icons/go';
 import { useState, useEffect } from 'react';
 
 export default function Contacts({ contacts, dispatch }) {
-  const { open, users } = contacts;
   const [addContact, setAddContact] = useState(false);
- 
+  const [first, setFirst] = useState(true);
     const addNewContact = () => {
-        setAddContact(true)
+        setAddContact(true);
     }
 
   useEffect(() => {
+    
     const slideInTimer = setTimeout(() => {
-      if (open) {
-        dispatch({ type: 'TOGGLE_CONTACT' })
+      if (first) {
+        dispatch({ type: 'SHOW_CONTACTS' });
+        setFirst(false);
       }
     }, 1000);
+
     return () => clearTimeout(slideInTimer);
-  }, [open, dispatch]);
+  }, [first, dispatch]);
 
     return (
-      <aside className={`contacts ${open ? 'slide-in' : ''}`}>
+      <aside className={`contacts ${contacts.open ? 'slide-in' : ''}`}>
+        <div className='close-button__panel'>
+          <button onClick={() => dispatch({ type: 'CLOSE_CONTACTS'})}>
+            <IoArrowForward size={25} />
+          </button>
+        </div>
+
+        <div className='contacts-panel'>
         <h1>
           <RiContactsBook2Fill />
           {"  Contacts"}
         </h1>
         {addContact && <ContactForm setAddContact={setAddContact} dispatch={dispatch} />}
         {!addContact && <>
-          {users.map((contact, i) => {
+          {contacts.contacts.map((contact, i) => {
             return <Contact {...contact} key={i + contact.id + i} />;
           })}
-          <button onClick={addNewContact}>
+          <button className='add-contact' onClick={addNewContact}>
             <IoPersonAddSharp size={20} />
             <span>Add contact</span>
           </button>
-        </>}
+          </>}
+          </div>
       </aside>
     );
 }

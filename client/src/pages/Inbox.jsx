@@ -5,7 +5,7 @@ import List from '../components/List';
 import combineReducers, { initState } from "../reducer/reducer";
 import Layout from '../components/Layout';
 
-import { data, users } from '../data';
+import { data } from '../data';
 
 export default function Inbox() {
     const [state, dispatch] = useReducer(combineReducers, initState);
@@ -13,8 +13,8 @@ export default function Inbox() {
     const { sidebar, contacts, mails } = state;
   useEffect(() => {
     dispatch({ type: 'TOGGLE_SIDEBAR' });
-    dispatch({ type: 'FETCH_MAIL', mails: data });
-    dispatch({ type: 'FETCH_CONTACTS', contacts: { users, open: false } });
+    dispatch({ type: 'FETCH_MAIL' });
+    dispatch({ type: 'FETCH_CONTACTS' })
   }, []);
   
   return (

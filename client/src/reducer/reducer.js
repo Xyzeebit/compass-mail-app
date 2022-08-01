@@ -1,4 +1,4 @@
-import data from '../data';
+import { data, users } from '../data';
 
 export const initState = {
     sidebar: {
@@ -6,7 +6,7 @@ export const initState = {
     },
     contacts: {
         open: false,
-        users: []
+        contacts: []
     },
     marked: [],
     mails: [],
@@ -43,11 +43,8 @@ function markedReducer(state, action) {
 function mailsReducer(state, action) {
     switch (action.type) {
         case 'FETCH_MAIL':
-            const mails = action.mails
-            // for (let mail of mails) {
-            //     mail.isMarked = false;
-            // }
-            state = mails;
+            
+            state = data;
             return state;
         case 'TOGGLE_MARK':
             const found = state.find(i => i.id === action.id);
@@ -72,13 +69,16 @@ function mailsReducer(state, action) {
 function contactsReducer(state, action) {
     switch (action.type) {
         case 'FETCH_CONTACTS':
-            state = {...state, users: action.contacts }
+            state = { open: false, contacts: users };
             return state;
         case 'ADD_CONTACT':
-            state.users.push({ id: Date.now(), name: action.contact.name, email: action.contact.email });
+            state.contacts.push({ id: Date.now(), name: action.contact.name, email: action.contact.email });
             return state;
-        case 'TOGGLE_CONTACT':
-            state.open = !state.open;
+        case 'SHOW_CONTACTS':
+            state.open = true;
+            return state;
+        case 'CLOSE_CONTACTS':
+            state.open = false;
             return state;
         default:
             return state;

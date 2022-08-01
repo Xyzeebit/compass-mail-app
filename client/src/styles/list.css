@@ -100,7 +100,7 @@ article.mail-head:hover {
 }
 @media screen and (max-width: 900px) {
     .message-summary {
-        width: 400px;
+        width: 300px;
     }
     .time-and--badge {
         margin-left: 10px;

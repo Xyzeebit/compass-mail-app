@@ -7,7 +7,7 @@ import { IoMdContact, IoMdContacts, IoMdTrash } from "react-icons/io";
 import { IoSend, IoStar } from "react-icons/io5";
 
 // IoMdContact
-import { RiDraftFill, RiSpam2Fill, RiContactsBook2Fill } from "react-icons/ri";
+import { RiDraftFill, RiSpam2Fill } from "react-icons/ri";
 
 export default function SideBar({ sidebar, dispatch }) {
   // const [compose, setCompose] = useState(false);
@@ -23,6 +23,7 @@ export default function SideBar({ sidebar, dispatch }) {
   }
   const showContacts = () => {
     dispatch({ type: 'TOGGLE_SIDEBAR' });
+    dispatch({ type: 'SHOW_CONTACTS' });
   }
 
   return (
