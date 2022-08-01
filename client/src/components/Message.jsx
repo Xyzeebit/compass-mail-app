@@ -30,12 +30,12 @@ const Time = ({ time }) => {
   const now = new Date();
   const ago = new Date(time);
     let value = "";
-    let next = now.setHours() + 24;
-  if (next > ago) {
-    value = ago.toLocaleDateString();
+  now.setDate(now.getDate() + 1);
+  if (now > ago) {
+    value = ago.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
   } else {
-    const [h, m] = ago.toTimeString().split(":");
-    value = `${h}:${m}`;
+    const [_, mth, day] = ago.toDateString().split(" ");
+    value = `${mth}/${day}`;
   }
   return <p className="time">{value}</p>;
 };

@@ -145,6 +145,7 @@ article.mail-head:hover {
 }
 .time {
     font-weight: 500;
+    font-size: 0.8rem;
 }
 .badge {
     background-color: rgb(33, 59, 202);
