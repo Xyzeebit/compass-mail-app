@@ -16,21 +16,32 @@ export default function Compose({ from, contact, dispatch }) {
         setBody(target.value);
     }
     return (
-        <section className='compose-message'>
-            <div className="compose-title-bar">
-                <IoMdExpand />
-            </div>
-            <div>
-                <input type="text" value={from} randomly />
-                <input type="email" value={to} onChange={handleTos} placeholder="recipient" />
-            </div>
-            <div className='compose-body'>
-                <textarea value={body} onChange={handleBody} />
-            </div>
-            <div>
-                <button>Send</button>
-                <button>Save</button>
-            </div>
-        </section>
-    )
+      <section className="compose-message">
+        <div className="compose-title-bar">
+          <IoMdExpand />
+        </div>
+        <div>
+          <label>
+            <span>From</span>
+            <input type="text" value={from} randomly />
+          </label>
+          <label>
+            <span>To</span>
+            <input
+            type="email"
+            value={to}
+            onChange={handleTos}
+            placeholder="recipient"
+          />
+          </label>
+        </div>
+        <div className="compose-body">
+          <textarea value={body} onChange={handleBody} />
+        </div>
+        <div>
+          <button>Send</button>
+          <button>Save</button>
+        </div>
+      </section>
+    );
 }

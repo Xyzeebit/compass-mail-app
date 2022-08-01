@@ -7,7 +7,7 @@ export const initState = {
         email: 'Peters@pt.com'
     },
     sidebar: {
-    open: true,
+        open: true,
     },
     contacts: {
         open: false,
@@ -90,11 +90,20 @@ function contactsReducer(state, action) {
     }
 }
 
+function userReducer(state, action) {
+    switch (action.type) {
+        case 'FETCH_USER':
+            return state;
+        default: return state;
+    }
+}
+
 export default function combineReducers(state, action) {
     return {
         sidebar: sidebarReducer(state.sidebar, action),
         marked: markedReducer(state.marked, action),
         mails: mailsReducer(state.mails, action),
         contacts: contactsReducer(state.contacts, action),
+        user: userReducer(state.user, action),
     }
 }

@@ -1,0 +1,38 @@
+.compose-message {
+    width: 100%;
+    padding: 10px;
+    margin: 10px;
+    background-color: #b2d3d8;
+}
+
+.compose-message label {
+    display: block;
+    border-bottom: 1px solid #666;
+}
+
+.compose-message label input {
+    height: 45px;
+    padding: 20px;
+    background: none;
+    border: none;
+    outline: none;
+}
+.compose-message label input:focus {
+    outline: none;
+}
+.compose-body {
+    margin: 20px 0 20px 0;
+}
+.compose-body textarea {
+    resize: none;
+    width: 100%;
+    height: 200px;
+    background: none;
+    font-size: 1rem;
+    padding: 10px;
+}
+.compose-body textarea:focus {
+    outline: none;
+    background: #d1dfe1;
+}
+
