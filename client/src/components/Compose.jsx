@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { IoMdExpand } from 'react-icons/io';
+import { IoSave, IoSend } from 'react-icons/io5';
 
 import '../styles/compose.css';
 
@@ -17,30 +18,34 @@ export default function Compose({ from, contact, dispatch }) {
     }
     return (
       <section className="compose-message">
-        <div className="compose-title-bar">
-          <IoMdExpand />
-        </div>
         <div>
-          <label>
+          <label htmlFor="from">
             <span>From</span>
-            <input type="text" value={from} randomly />
+            <input type="text" value={from} id="from" randomly />
           </label>
-          <label>
+          <label htmlFor="to">
             <span>To</span>
             <input
-            type="email"
-            value={to}
-            onChange={handleTos}
-            placeholder="recipient"
-          />
+              type="email"
+              value={to}
+              id="to"
+              onChange={handleTos}
+              placeholder="recipient"
+            />
           </label>
         </div>
         <div className="compose-body">
           <textarea value={body} onChange={handleBody} />
         </div>
-        <div>
-          <button>Send</button>
-          <button>Save</button>
+        <div className="buttons">
+          <button>
+            <IoSave size={20} />
+            <span>Save</span>
+          </button>
+          <button>
+            <IoSend size={20} />
+            <span>Send</span>
+          </button>
         </div>
       </section>
     );
