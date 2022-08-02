@@ -4904,6 +4904,11 @@
     "minimalistic-assert" "^1.0.1"
     "minimalistic-crypto-utils" "^1.0.1"
 
+"email-validator@^2.0.4":
+  "integrity" "sha512-gYCwo7kh5S3IDyZPLZf6hSS0MnZT8QmJFqYvbqlDZSbwdZlY6QZWxJ4i/6UhITOJ4XzyI647Bm2MXKCLqnJ4nQ=="
+  "resolved" "https://registry.npmjs.org/email-validator/-/email-validator-2.0.4.tgz"
+  "version" "2.0.4"
+
 "emittery@^0.7.1":
   "integrity" "sha512-A8OG5SR/ij3SsJdWDJdkkSYUjQdCUx6APQXem0SaEePBSRg4eymGYwBkKo1Y6DU+af/Jn2dBQqDBvjnr9Vi8nQ=="
   "resolved" "https://registry.npmjs.org/emittery/-/emittery-0.7.2.tgz"
@@ -10208,6 +10213,11 @@
   "integrity" "sha512-cB10MXLTs3gVuXimblAdI71jrJx8njrJZmNMEMC+sQu5B/BIOmlsAjskdqpn81y8UBVEGuHODd7/ci5DvoSzTQ=="
   "resolved" "https://registry.npmjs.org/react-icons/-/react-icons-4.3.1.tgz"
   "version" "4.3.1"
+
+"react-infinite-scroll@^0.1.5":
+  "integrity" "sha512-5i6ndJNL68I4+Kc6+AxLwGho4TGBKG0cnIKjW2F6kTT8JNCzpYMhe+jCOo9u6yTXzFL5DE2OmmNvxkUIcAtUow=="
+  "resolved" "https://registry.npmjs.org/react-infinite-scroll/-/react-infinite-scroll-0.1.5.tgz"
+  "version" "0.1.5"
 
 "react-input-autosize@^2.2.1":
   "integrity" "sha512-jQJgYCA3S0j+cuOwzuCd1OjmBmnZLdqQdiLKRYrsMMzbjUrVDS5RvJUDwJqA7sKuksDuzFtm6hZGKFu7Mjk5aw=="
