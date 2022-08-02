@@ -74,7 +74,8 @@ nav a.active {
         right: 20px;
     }
     .menu {
-        background-color: #b2d3d8;
+        /* background-color: #b2d3d8; */
+        
         transition: all 300ms ease; 
     }
     aside.collapse-mb {

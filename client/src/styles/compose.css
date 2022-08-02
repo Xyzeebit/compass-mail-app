@@ -3,7 +3,8 @@
     /* height: 100vh; */
     padding: 10px;
     margin: 10px;
-    background-color: #b2d3d8;
+    /* background-color: #b2d3d8; */
+    /* background-color: #f0e6e8; */
 }
 @media screen and (min-width: 901px) {
     .compose-message {
@@ -67,7 +68,8 @@
 }
 .compose-body textarea:focus {
     outline: none;
-    background: #d1dfe1;
+    /* background: #d1dfe1; */
+    background: #d1dfe18e;
 }
 
 .compose-message .buttons {
@@ -89,7 +91,7 @@
     align-items: center;
     font-weight: 500;
 }
-.buttons button:hover {
+.buttons button:not(:disabled):hover {
     background-color: #3535c9;
     color: #fff;
 }
