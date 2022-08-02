@@ -18,7 +18,7 @@ export default function Contacts({ contacts, dispatch }) {
   
   const handleClick = email => {
     dispatch({ type: 'TO', to: email });
-    navigate('/mail/compose');
+    navigate('/compose');
   }
 
   useEffect(() => {

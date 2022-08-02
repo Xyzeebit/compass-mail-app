@@ -13,6 +13,7 @@ import Drafts from './pages/Drafts';
 import Trash from './pages/Trash';
 import Spam from './pages/Spam';
 import ComposePage from './pages/Compose';
+import Auth from './pages/Auth';
 
 //////////////////////////////
 
@@ -37,19 +38,25 @@ function App() {
 
         <Route path="/mail" element={<Home />} />
 
-        <Route path="/mail/inbox" element={<Inbox />} />
+        <Route path="/auth" element={<Auth />} />
 
-        <Route path="/mail/outbox" element={<Outbox />} />
+        <Route path="/auth/signup" element={<Auth />} />
 
-        <Route path="/mail/starred" element={<Starred />} />
+        <Route path="/auth/signin" element={<Auth />} />
 
-        <Route path="/mail/Drafts" element={<Drafts />} />
+        <Route path="/inbox" element={<Inbox />} />
 
-        <Route path="/mail/trash" element={<Trash />} />
+        <Route path="/outbox" element={<Outbox />} />
 
-        <Route path="/mail/spam" element={<Spam />} />
+        <Route path="/starred" element={<Starred />} />
 
-        <Route path="/mail/compose" element={<ComposePage />} />
+        <Route path="/Drafts" element={<Drafts />} />
+
+        <Route path="/trash" element={<Trash />} />
+
+        <Route path="/spam" element={<Spam />} />
+
+        <Route path="/compose" element={<ComposePage />} />
       </Routes>
     </Router>
   );

@@ -15,7 +15,7 @@ export default function SideBar({ sidebar, dispatch }) {
   const { open } = sidebar;
 
   const handleCompose = () => {
-    navigate('/mail/compose');
+    navigate('/compose');
   };
 
   const closeSidebar = () => {
@@ -45,7 +45,7 @@ export default function SideBar({ sidebar, dispatch }) {
 
       <nav className={open ? 'expand' : ''} onClick={closeSidebar}>
         <NavLink
-          to="/mail/inbox"
+          to="/inbox"
           title="Inbox mail"
           className={({ isActive }) => isActive ? 'active' : ''}
         >
@@ -56,7 +56,7 @@ export default function SideBar({ sidebar, dispatch }) {
         </NavLink>
 
         <NavLink
-          to="/mail/starred"
+          to="/starred"
           title="Starred mail"
           className={({ isActive }) => isActive ? 'active' : ''}
         >
@@ -67,7 +67,7 @@ export default function SideBar({ sidebar, dispatch }) {
         </NavLink>
 
         <NavLink
-          to="/mail/outbox"
+          to="/outbox"
           title="Outbox"
           className={({ isActive }) => isActive ? 'active' : ''}
         >
@@ -78,7 +78,7 @@ export default function SideBar({ sidebar, dispatch }) {
         </NavLink>
 
         <NavLink
-          to="/mail/drafts"
+          to="/drafts"
           title="Drafts"
           className={({ isActive }) => isActive ? 'active' : ''}
         >
@@ -89,7 +89,7 @@ export default function SideBar({ sidebar, dispatch }) {
         </NavLink>
 
         <NavLink
-          to="/mail/spam"
+          to="/spam"
           title="Spam mail"
           className={({ isActive }) => isActive ? 'active' : ''}
         >
@@ -100,7 +100,7 @@ export default function SideBar({ sidebar, dispatch }) {
         </NavLink>
 
         <NavLink
-          to="/mail/trash"
+          to="/trash"
           title="Trash"
           className={({ isActive }) => isActive ? 'active' : ''}
         >
