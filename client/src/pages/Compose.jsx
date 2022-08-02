@@ -16,7 +16,7 @@ export default function ComposePage() {
 
   return (
     <Layout sidebar={sidebar} contacts={contacts} dispatch={dispatch}>
-          <Compose from={ user.email }  dispatch={dispatch} />
+          <Compose user={user}  dispatch={dispatch} />
     </Layout>
   );
 }

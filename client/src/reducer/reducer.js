@@ -2,9 +2,12 @@ import { data, users } from '../data';
 
 export const initState = {
     user: {
-        id: 'ayuUIB780xui0',
-        name: 'Peters',
-        email: 'Peters@pt.com'
+        from: {
+            id: 'ayuUIB780xui0',
+            name: 'Peters',
+            email: 'Peters@pt.com'
+        },
+        to : ''
     },
     sidebar: {
         open: true,
@@ -93,6 +96,9 @@ function contactsReducer(state, action) {
 function userReducer(state, action) {
     switch (action.type) {
         case 'FETCH_USER':
+            return state;
+        case 'TO':
+            state.to = action.to;
             return state;
         default: return state;
     }

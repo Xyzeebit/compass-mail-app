@@ -1,5 +1,5 @@
 import '../styles/contacts.css'
-// import { IoMdContact } from 'react-icons/io'
+import { useNavigate } from 'react-router-dom';
 import { RiContactsBook2Fill } from 'react-icons/ri'
 import { IoArrowForward, IoPersonAddSharp } from 'react-icons/io5'
 
@@ -9,9 +9,16 @@ import { useState, useEffect } from 'react';
 export default function Contacts({ contacts, dispatch }) {
   const [addContact, setAddContact] = useState(false);
   const [first, setFirst] = useState(true);
+  const navigate = useNavigate();
+
     const addNewContact = () => {
         setAddContact(true);
-    }
+  }
+  
+  const handleClick = email => {
+    dispatch({ type: 'TO', to: email });
+    navigate('/mail/compose');
+  }
 
   useEffect(() => {
     
@@ -41,7 +48,7 @@ export default function Contacts({ contacts, dispatch }) {
         {addContact && <ContactForm setAddContact={setAddContact} dispatch={dispatch} />}
         {!addContact && <>
           {contacts.contacts.map((contact, i) => {
-            return <Contact {...contact} key={i + contact.id + i} />;
+            return <Contact {...contact} key={i + contact.id + i} handleClick={ () => handleClick(contact.email) } />;
           })}
           <button className='add-contact' onClick={addNewContact}>
             <IoPersonAddSharp size={20} />
@@ -54,9 +61,9 @@ export default function Contacts({ contacts, dispatch }) {
 }
 
 
-function Contact({ name, email }) {
+function Contact({ name, email, handleClick }) {
     return (
-      <article className="contact" aria-label={name}>
+      <article className="contact" aria-label={name} onClick={handleClick}>
         {/* <div className="icon"><IoMdContact size={40} /></div> */}
         <div className="icon">{name.substring(0, 1).toUpperCase()}</div>
         <div className="details">

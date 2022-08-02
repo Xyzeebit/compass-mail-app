@@ -1,16 +1,24 @@
 import { useState, useEffect } from 'react';
-import { IoMdExpand } from 'react-icons/io';
+import validator from 'email-validator';
 import { IoSave, IoSend } from 'react-icons/io5';
 
 import '../styles/compose.css';
 
-export default function Compose({ from, contact, dispatch }) {
+export default function Compose({ user, contact, dispatch }) {
     const [body, setBody] = useState('');
-    const [subject, setSubject] = useState('');
-    const [to, setTo] = useState('');
+    const [subject, setSubject] = useState(user.to);
+  const [to, setTo] = useState('');
+  const [error, setError] = useState(true);
 
-    const handleTos = ({ target }) => {
-        setTo(target.value);
+  const handleTos = ({ target }) => {
+      setTo(target.value);
+    if (!validator.validate(to)) {
+        
+        setError(true);
+      } else {
+      setError(false)
+      
+      }
     }
 
     const handleBody = ({ target }) => {
@@ -28,7 +36,7 @@ export default function Compose({ from, contact, dispatch }) {
         <div>
           <label htmlFor="from">
             <span>From</span>
-            <input type="text" value={from} id="from" randomly />
+            <input type="text" value={user.from.email} id="from" randomly readOnly />
           </label>
           <label htmlFor="to">
             <span>To</span>
@@ -45,11 +53,11 @@ export default function Compose({ from, contact, dispatch }) {
           <textarea value={body} onChange={handleBody} />
         </div>
         <div className="buttons">
-          <button>
+          <button disabled={!body}>
             <IoSave size={20} />
             <span>Save</span>
           </button>
-          <button>
+          <button disabled={error}>
             <IoSend size={20} />
             <span>Send</span>
           </button>

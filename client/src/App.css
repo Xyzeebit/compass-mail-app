@@ -17,4 +17,6 @@ body {
   flex-direction: row;
   overflow-x: hidden;
   justify-content: space-between;
+  /* height: 100vh; */
+  overflow-y: auto;
 }

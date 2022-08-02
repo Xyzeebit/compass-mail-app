@@ -26,12 +26,21 @@
 }
 
 .compose-message label {
-    display: block;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
     border-bottom: 1px solid #666;
+}
+
+.compose-message label span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .compose-message label input {
     height: 45px;
+    width: 100%;
     padding: 20px;
     background: none;
     border: none;
@@ -39,6 +48,7 @@
 }
 .compose-message label input:focus {
     outline: none;
+    background: none;
 }
 .compose-message label:focus {
     background-color: #d1dfe1;
