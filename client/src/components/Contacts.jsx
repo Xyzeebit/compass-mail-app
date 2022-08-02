@@ -5,6 +5,7 @@ import { IoArrowForward, IoPersonAddSharp } from 'react-icons/io5'
 
 import { GoAlert } from 'react-icons/go';
 import { useState, useEffect } from 'react';
+import validator from 'email-validator';
 
 export default function Contacts({ contacts, dispatch }) {
   const [addContact, setAddContact] = useState(false);
@@ -77,20 +78,20 @@ function Contact({ name, email, handleClick }) {
 function ContactForm({ setAddContact, dispatch }) {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
-    const [error, setError] = useState('');
+  const [emailErr, setEmailError] = useState('');
+  const [nameErr, setNameError] = useState('');
 
     const submit = (evt) => {
         evt.preventDefault();
-        if (!name || name.length < 3) {
-            setError('Enter a valid name');
+        if (name.length < 3 || name.length > 25) {
+            setNameError('Enter a valid name');
             return;
         }
-        if (!email || email.length < 10) { // validate email
-            setError("Enter a valid email address");
+        if (!validator.validate(email)) { 
+            setEmailError("Enter a valid email address");
             return;
         }
-        if (!error) {
-            // do not dispatch on error
+        if (!emailErr || !nameErr) {
             dispatch({ type: 'ADD_CONTACT', contact: { name, email } });
             cancel();
         }
@@ -98,13 +99,23 @@ function ContactForm({ setAddContact, dispatch }) {
     const cancel = () => {
         setEmail('')
         setName('');
-        setError('');
+        setEmailError('');
+        setNameError('')
         setAddContact(false);
     }
     return (
       <form onSubmit={submit}>
         <h2>Add New Contact</h2>
-        {error && <p style={{ color: 'red'}}><GoAlert color='red' /> { ' ' } { error}</p>}
+        {nameErr && (
+          <p style={{ color: "red" }}>
+            <GoAlert color="red" /> {nameErr}
+          </p>
+        )}
+        {emailErr && (
+          <p style={{ color: "red" }}>
+            <GoAlert color="red" /> {emailErr}
+          </p>
+        )}
         <div className="input-group">
           <input
             type="text"
@@ -119,13 +130,13 @@ function ContactForm({ setAddContact, dispatch }) {
             type="email"
             value={email}
             id="contact-email"
-                    onChange={(evt) => setEmail(evt.target.value)}
+            onChange={(evt) => setEmail(evt.target.value)}
           />
           {!email && <label htmlFor="contact-email">Email</label>}
         </div>
-            <div className='form-buttons'>
-                <input type="button" onClick={cancel} value="Cancel" />
-                <input type="submit" value="Save" />
+        <div className="form-buttons">
+          <input type="button" onClick={cancel} value="Cancel" />
+          <input type="submit" value="Save" />
         </div>
       </form>
     );
