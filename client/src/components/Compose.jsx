@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { IoMdExpand } from 'react-icons/io';
 import { IoSave, IoSend } from 'react-icons/io5';
 
@@ -16,6 +16,13 @@ export default function Compose({ from, contact, dispatch }) {
     const handleBody = ({ target }) => {
         setBody(target.value);
     }
+
+    useEffect(() => {
+      document.getElementsByClassName('nav-button')[0].classList.add('hide-mb');
+      document.getElementsByClassName('search-box')[0].classList.add('hide-mb');
+      document.querySelector('.contacts').classList.add('hide-mb');
+    }, []);
+
     return (
       <section className="compose-message">
         <div>

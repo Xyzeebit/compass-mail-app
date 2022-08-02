@@ -5,9 +5,23 @@
     margin: 10px;
     background-color: #b2d3d8;
 }
+@media screen and (min-width: 901px) {
+    .compose-message {
+        width: 50%;
+    }
+}
+@media screen and (max-width: 900px) {
+    .compose-message {
+        width: 70%;
+    }
+}
 @media screen and (max-width: 600px) {
     .compose-message {
         min-width: 95vw;
+        min-height: 100%;
+    }
+    .hide-mb {
+        display: none !important;
     }
 }
 
@@ -39,6 +53,7 @@
     background: none;
     font-size: 1rem;
     padding: 10px;
+    line-height: 1.5;
 }
 .compose-body textarea:focus {
     outline: none;

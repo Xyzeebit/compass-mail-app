@@ -99,6 +99,11 @@ header form {
     border-radius: 10px;
     width: 50%;
 }
+@media screen and (max-width: 900px) {
+    header form {
+        width: 100%;
+    }
+}
 header form div {
     margin-left: 5px;
 }
