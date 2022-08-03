@@ -15,33 +15,48 @@ const contactSchema = new mongoose.Schema({
 })
 
 const userSchema = new mongoose.Schema({
-    name: {
-        type: String,
-        required: true,
-        trim: true
-    },
-    email: {
-        type: String,
-        required: [true, 'Email is required'],
-        unique: true,
-        lowercase: true,
-        trim: true
-    },
-    salt: {
-        type: String
-    },
-    hash: {
-        type: String
-    },
-    contacts: [contactSchema],
-    mailbox: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'MailBox'
-    },
-    created: {
-        type: Date,
-        default: Date.now()
-    }
+  name: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  firstName: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  lastName: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  username: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  email: {
+    type: String,
+    required: [true, "Email is required"],
+    unique: true,
+    lowercase: true,
+    trim: true,
+  },
+  salt: {
+    type: String,
+  },
+  hash: {
+    type: String,
+  },
+  contacts: [contactSchema],
+  mailbox: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "MailBox",
+  },
+  created: {
+    type: Date,
+    default: Date.now(),
+  },
 });
 
 userSchema.methods.setPassword = function (password) {

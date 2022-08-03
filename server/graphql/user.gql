@@ -6,6 +6,7 @@ type User {
     _id: ID!
     name: String!
     email: String!
+    username: String!
     contacts: [Contact!]!
     created: DateTime!
 }
