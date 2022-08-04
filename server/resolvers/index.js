@@ -1,5 +1,5 @@
-const mailbox = require('./mailbox');
+const { Query, Mutation } = require('./resolvers');
 
 module.exports = {
-    ...mailbox
+    Query, Mutation
 }

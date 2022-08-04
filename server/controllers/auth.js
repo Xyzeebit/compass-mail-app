@@ -2,7 +2,7 @@ const User = require('../models/userSchema');
 const jwt = require('jsonwebtoken');
 const fs = require('fs');
 
-async function signUp(root, args) {
+async function signUp(args, req) {
     const signUpPayload = {};
     try {
         const { firstName, lastName, username, password } = args.input;
@@ -41,7 +41,7 @@ async function signUp(root, args) {
 }
 
 
-async function signIn(root, args) {
+async function signIn(args) {
     const signInPayload = {};
     try {
         const { username, password } = args.input;
@@ -90,6 +90,12 @@ function sign(payload) {
         return token;
     });
 }
+
+/**
+ * Verifies a jsonwebtoken
+ * @param token - token to verify
+ * @returns boolean
+ */
 function verify(token) {
     const secret = fs.readFileSync('./secret.txt');
     jwt.verify(token, Buffer.from(secret, 'base64'), (err, decoded) => {
