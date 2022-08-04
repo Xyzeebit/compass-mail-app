@@ -1,4 +1,4 @@
-const User = require('../model/userSchema');
+const User = require('../models/userSchema');
 const jwt = require('jsonwebtoken');
 const fs = require('fs');
 
@@ -19,14 +19,15 @@ async function signUp(root, args) {
                 iss: 'compass',
                 iat: Date.now(),
                 exp: '24h'
-            }
+            };
             const token = sign(payload);
             signUpPayload.token = token;
             signUpPayload.successful = true;
             return signUpPayload;
         } else {
             signUpPayload.error = {
-              message: 'username name already in use'
+                message: 'username name already in use',
+                name: 'NameExist'
             };
             return signUpPayload;
         }
@@ -49,20 +50,21 @@ async function signIn(root, args) {
             const checkPassword = user.validatePassword(password);
             if (checkPassword) {
                 const payload = {
-                id: user._id,
-                username,
+                    id: user._id,
+                    username,
 
-                iss: 'compass',
-                iat: Date.now(),
-                exp: '24h'
-            }
+                    iss: 'compass',
+                    iat: Date.now(),
+                    exp: '24h'
+                };
                 const token = sign(payload);
                 signInPayload.token = token;
                 signInPayload.successful = true;
                 return signInPayload;
             } else {
                 signInPayload.error  = {
-                    message: 'invalid password'
+                    message: 'invalid password',
+                    name: 'PassswordError'
                 }
                 return signInPayload;
             }
@@ -103,4 +105,10 @@ async function userExist(username) {
     } else {
         return false
     }
+}
+
+module.exports = {
+    signUp,
+    signIn,
+    verify,
 }

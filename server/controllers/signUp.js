@@ -1,5 +1,5 @@
-const User = require('../model/userSchema');
-const MailBox = require('../model/mailboxSchema');
+const User = require('../models/userSchema');
+const MailBox = require('../models/mailboxSchema');
 
 let account = {};
 const accountError = {};
