@@ -20,7 +20,14 @@ export default function Home() {
             />
 
           </div>
-          <div className="home-bottom"></div>
+          <div className="home-bottom">
+            <h1>Compass Mail Sender</h1>
+            <p>The top mail client in  the world</p>
+            <div className="home-buttons">
+              <button>Register</button>
+              <button>Sign in</button>
+            </div>
+          </div>
         </div>
       </div>
     );
