@@ -34,7 +34,7 @@ const schemaWithResolvers = addResolversToSchema({
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
-var app = express();
+const app = express();
 const PORT = 4000;
 
 app.use(logger('dev'));

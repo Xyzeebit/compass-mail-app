@@ -1,4 +1,4 @@
-
+# import User from 'user.gql'
 
 scalar DateTime
 
@@ -9,7 +9,11 @@ input SignUpInput {
     password: String!
 }
 
-type NewUserPayload {
+input SignInInput {
+    username: String!
+    password: String!
+}
+
+type AuthUserPayload {
     successful: Boolean!
-    token: ID!
 }

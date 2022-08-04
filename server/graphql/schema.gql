@@ -1,29 +1,10 @@
-
-# import UserPayload from "queries-payload.gql"
-
-# import SignUpInput, SendMessageInput, SaveMessageInput, AddContactInput, EditUserInput, EditContactInput from "mutations.gql"
-# import NewAccountPayload, ContactPayload, ContactRemovedPayload, AccountRemovedPayload from "mutations.gql"
-# import SignOutPayload, OutBoxPayload, MarkedMessagePayload, MarkMessageInput, MessageRemovedPayload, DraftsPayload from "mutations.gql"
-
-# import AccountPayload, UserOrMailBox from "queries-payload.gql"
+# import SignUpInput, SignInInput, AuthUserPayload from "mutations.gql"
 
 type Query {
-    # account queries
-    """ id is the user's ID """
-    account(id: ID!): AccountPayload!
+    username: String!
 }
 
 type Mutation {
-    signUp(input: SignUpInput!): NewAccountPayload!
-    signIn(email: String! password: String!): AccountPayload!
-    signOut(id: ID!): SignOutPayload!
-    sendMessage(input: SendMessageInput!): OutBoxPayload!
-    markMessage(input: MarkMessageInput!): MarkedMessagePayload!
-    removeMessage(mailboxId: ID! messageId: ID! location: String!): MessageRemovedPayload!
-    saveToDrafts(input: SaveMessageInput!): DraftsPayload!
-    addContact(input: AddContactInput!): ContactPayload!
-    editContact(input: EditContactInput!): ContactPayload!
-    removeContact(userId: ID! contactId: ID!): ContactRemovedPayload!
-    removeAccount(id: ID!): AccountRemovedPayload!
-    editUser(input: EditUserInput!): UserPayload!
+    signUp(input: SignUpInput!): AuthUserPayload!
+    signIn(input: SignInInput!): AuthUserPayload!
 }

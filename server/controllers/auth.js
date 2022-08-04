@@ -70,7 +70,7 @@ async function signIn(args) {
             }
 
         } else {
-            signInPayload.error {
+            signInPayload.error = {
                 message: 'Cannot fine use with ' + username
             }
             return signInPayload;
