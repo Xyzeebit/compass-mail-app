@@ -1,8 +1,60 @@
 .home {
-    position: absolute;
-    top: 0px;
-    right: 0px;
-    left: 0px;
-    bottom: 0px;
-    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
 }
+.home-body {
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+    border-radius: 20px;
+    padding: 0.8rem;
+    background-color: #868181e5;
+}
+
+.home-top {
+    background-color: #8f28a8;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+    border-radius: 20px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media screen and (min-width: 320px) {
+    .home-body {
+        width: 80vw;
+    }
+}
+@media screen and (min-width: 540px) {
+    
+}
+@media screen and (min-width: 746px) {
+    
+}
+@media screen and (min-width: 900px) {
+    .home-body {
+        width: 20rem;
+    }
+}
+
+
+
+/* @media screen and (min-width: 320px) {
+    
+}
+@media screen and (min-width: 540px) {
+    
+}
+@media screen and (min-width: 746px) {
+    
+}
+@media screen and (min-width: 900px) {
+    
+} */

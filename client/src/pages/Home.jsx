@@ -2,24 +2,26 @@
 import { useEffect, useReducer } from "react";
 
 import logo from '../images/logo.png'
+import bg from '../images/sustainable.jpg'
 import '../styles/home.css';
 
-// use home for login signup and mail for home
 export default function Home() {
-  
 
     return (
-      <main className="home">
-        
-        <div className="brand">
-          <img
-            src={logo}
-            alt="Packmail Home page"
-            width={35}
-            height={35}
-          />
-          <h1>PACKMAIL</h1>
+      <div className="home">
+        <div className="home-body">
+          <div className="home-top">
+
+            <img
+              src={logo}
+              alt="Compass home page"
+              width="100"
+              height="100"
+            />
+
+          </div>
+          <div className="home-bottom"></div>
         </div>
-      </main>
+      </div>
     );
 }
