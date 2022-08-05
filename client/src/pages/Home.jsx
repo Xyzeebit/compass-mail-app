@@ -8,8 +8,6 @@ import '../styles/home.css';
 
 export default function Home() {
 
-  const navigate = useNavigate();
-
     return (
       <div className="home">
         <div className="home-body">
@@ -27,8 +25,8 @@ export default function Home() {
             <h1>Fast, Reliable, Easy, Compass Mailer</h1>
             <p>The top mail client in  the world</p>
             <div className="home-buttons">
-              <Link to="/auth">Register</Link>
-              <Link to="/auth">Sign in</Link>
+              <Link to="/auth/signup">Sign up</Link>
+              <Link to="/auth/signin">Sign in</Link>
             </div>
           </div>
         </div>
