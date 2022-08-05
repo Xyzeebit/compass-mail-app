@@ -1,5 +1,6 @@
 :root {
     --gray: #e3e2e7;
+    --primary: blue;
 }
 
 .home {
@@ -9,6 +10,9 @@
     background: #fff;
     width: 100vw;
     height: 100vh;
+    background-image: url(/images/bg-stars.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 .home-body {
     -webkit-border-radius: 20px;
@@ -72,14 +76,14 @@
     
 }
 .home-buttons button:first-child:hover {
-    background-color: var(--gray);
+    background-color: var(--primary);
 }
 
 .home-buttons button:last-child {
     background-color: var(--gray);
 }
 .home-buttons button:last-child:hover {
-    background-color: #fff;
+    background-color: var(--primary);
 }
 
 @media screen and (min-width: 320px) {
