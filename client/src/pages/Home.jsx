@@ -1,11 +1,14 @@
 
 import { useEffect, useReducer } from "react";
+import { Link } from 'react-router-dom';
 
 import logo from '../images/logo.png'
 import bg from '../images/sustainable.jpg'
 import '../styles/home.css';
 
 export default function Home() {
+
+  const navigate = useNavigate();
 
     return (
       <div className="home">
@@ -21,11 +24,11 @@ export default function Home() {
 
           </div>
           <div className="home-bottom">
-            <h1>Compass Mail Sender</h1>
+            <h1>Fast, Reliable, Easy, Compass Mailer</h1>
             <p>The top mail client in  the world</p>
             <div className="home-buttons">
-              <button>Register</button>
-              <button>Sign in</button>
+              <Link to="/auth">Register</Link>
+              <Link to="/auth">Sign in</Link>
             </div>
           </div>
         </div>
