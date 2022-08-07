@@ -37,11 +37,13 @@ export default function Home() {
         />
         <div className="intro">
           <div className="intro-headings">
-            <h1 ref={fast}>Fast{", "} </h1>
-            <h1 ref={easy}>Easy{", "} </h1>
+            <h1 ref={fast}>Fast,</h1>
+            <h1 ref={easy}>Easy,</h1>
             <h1 ref={reliable}>Reliable</h1>
           </div>
-          <p>Fast email client for sending mail</p>
+          <div className="intro-text">
+            <p>Fast email client for sending mail</p>
+          </div>
         </div>
 
         <div className="block b-1" />
@@ -51,40 +53,25 @@ export default function Home() {
         <div className="home-body">
           <div className="home-buttons">
             <div className="home-buttons">
-              <Link to="/auth/signup" className="button-link" ref={buttonSignUp}>
-                Sign up
+              <Link
+                to="/auth/signup"
+                className="button-link"
+                ref={buttonSignUp}
+              >
+                Register
+                <div className="ripple" />
               </Link>
-              <Link to="/auth/signin" className="button-link" ref={buttonSignIn}>
+              <Link
+                to="/auth/signin"
+                className="button-link"
+                ref={buttonSignIn}
+              >
                 Sign in
+                <div className="ripple" />
               </Link>
             </div>
-            {/* <img
-              src={bg}
-              alt="compass messages"
-              width="100"
-              height="100"
-              className="home-desc-image"
-            /> */}
           </div>
         </div>
-
-        {/* <div className="home-body">
-          <div className="home-top">
-            <img src={logo} alt="Compass home page" width="100" height="100" />
-          </div>
-          <div className="home-bottom">
-            <h1>Fast, Reliable, Easy, Compass Mailer</h1>
-            <p>The top mail client in the world</p>
-            <div className="home-buttons">
-              <Link to="/auth/signup" ref={buttonSignUp}>
-                Sign up
-              </Link>
-              <Link to="/auth/signin" ref={buttonSignIn}>
-                Sign in
-              </Link>
-            </div>
-          </div>
-        </div> */}
       </div>
     );
 }
