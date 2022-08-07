@@ -13,12 +13,13 @@ export default function Home() {
   const fast = useRef(null);
   const easy = useRef(null);
   const reliable = useRef(null);
+  const desc = useRef(null);
 
   useEffect(() => {
     fast.current.classList.add('fast');
     easy.current.classList.add('easy');
     reliable.current.classList.add('reliable');
-
+    desc.current.classList.add('desc');
     const blocks = document.getElementsByClassName('block');
     for (let el of blocks) {
       el.classList.add('fade-in');
@@ -42,7 +43,10 @@ export default function Home() {
             <h1 ref={reliable}>Reliable</h1>
           </div>
           <div className="intro-text">
-            <p>Fast email client for sending mail</p>
+            <p ref={desc}>
+              Fast email client for sending mail. Fast email client for sending
+              mail
+            </p>
           </div>
         </div>
 

@@ -65,6 +65,19 @@
     transform: translateY(0);
     opacity: 1;
 }
+.intro-text {
+    height: 50px;
+    overflow: hidden;
+}
+.intro-text p {
+    opacity: 0.2;
+    transform: translateY(20px);
+    transition: all 500ms linear;
+}
+p.desc {
+    transform: translateY(0);
+    opacity: 1;
+}
 
 .block {
     width: 5rem;
@@ -98,7 +111,7 @@
     bottom: 0;
     right: 0;
     left: 40vw;
-    height: 25rem;
+    height: 20rem;
     z-index: 2;
     background-image: url(../images/sustainable.jpg);
     background-position: center;
