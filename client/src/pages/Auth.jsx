@@ -2,10 +2,21 @@ import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
 export default function Auth() {
-    const [name, setName] = useState('');
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
-    const [cpassword, setCPassword] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [firstNameError, setFirstNameError] = useState('');
+
+  const [lastName, setLastName] = useState('');
+  const [lastNameError, setLastNameError] = useState('');
+
+  const [username, setUsername] = useState('');
+  const [usernameError, setUsernameError] = useState('');
+
+  const [password, setPassword] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+
+  const [cpassword, setCPassword] = useState('');
+  const [cpasswordError, setCPasswordError] = useState('');
+
     const location = useLocation();
     const paths = location.pathname.split('/')
     const formType = paths[paths.length - 1]
@@ -13,7 +24,7 @@ export default function Auth() {
     console.log(paths)
 
     const handleName = (evt) => {
-        setName(evt.target.value);
+        // setName(evt.target.value);
     }
     const handleUsername = evt => {
         setUsername(evt.target.value);
@@ -33,41 +44,65 @@ export default function Auth() {
         <form onSubmit={handleSubmit}>
           {formType === "signup" && (
             <>
-              <label htmlFor="name">Name</label>
-              <input type="text" id="name" value={name} onChange={handleName} />
+              <div className="stack">
+                <label htmlFor="first-name">First name</label>
+                <input
+                  type="text"
+                  id="first-name"
+                  value={firstName}
+                  onChange={handleName}
+                />
+              </div>
+              <div className="stack">
+                <label htmlFor="name">Last name</label>
+                <input
+                  type="text"
+                  id="name"
+                  value={lastName}
+                  onChange={handleName}
+                />
+              </div>
             </>
           )}
 
-          <label htmlFor="username">username</label>
-          <input
-            type="text"
-            id="username"
-            value={username}
-            onChange={handleUsername}
-          />
+          <div className="stack">
+            <label htmlFor="username">Username</label>
+            <input
+              type="text"
+              id="username"
+              value={username}
+              onChange={handleUsername}
+            />
+          </div>
 
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            value={password}
-            onChange={handlePassword}
-          />
-
-          {formType === 'signup' && <>
-            <label htmlFor="cpassword">Confirm password</label>
+          <div className="stack">
+            <label htmlFor="password">Password</label>
             <input
               type="password"
-              id="cpassword"
-              value={cpassword}
-              onChange={handleCPassword}
+              id="password"
+              value={password}
+              onChange={handlePassword}
             />
-          </>
-}
+          </div>
+
+          {formType === "signup" && (
+            <div className="stack">
+              <label htmlFor="cpassword">Confirm password</label>
+              <input
+                type="password"
+                id="cpassword"
+                value={cpassword}
+                onChange={handleCPassword}
+              />
+            </div>
+          )}
           <input
             type="submit"
             value={formType === "signin" ? "Sign in" : "Sign up"}
           />
+          <p>
+            Don't have a? <a>sign up</a>
+          </p>
         </form>
       </div>
     );
