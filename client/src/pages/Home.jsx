@@ -8,8 +8,8 @@ import '../styles/home.css';
 
 export default function Home() {
 
-  // const buttonSignUp = useRef(null);
-  // const buttonSignIn = useRef(null);
+  const buttonSignUp = useRef(null);
+  const buttonSignIn = useRef(null);
   const fast = useRef(null);
   const easy = useRef(null);
   const reliable = useRef(null);
@@ -49,7 +49,23 @@ export default function Home() {
         <div className="block b-3" />
 
         <div className="home-body">
-
+          <div className="home-buttons">
+            <div className="home-buttons">
+              <Link to="/auth/signup" className="button-link" ref={buttonSignUp}>
+                Sign up
+              </Link>
+              <Link to="/auth/signin" className="button-link" ref={buttonSignIn}>
+                Sign in
+              </Link>
+            </div>
+            {/* <img
+              src={bg}
+              alt="compass messages"
+              width="100"
+              height="100"
+              className="home-desc-image"
+            /> */}
+          </div>
         </div>
 
         {/* <div className="home-body">
