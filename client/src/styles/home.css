@@ -13,6 +13,56 @@
     position: relative;
     background: var(--primary);
 }
+.home-logo {
+    position: absolute;
+    top: 10px;
+    left: 20px;
+}
+.intro {
+    position: absolute;
+    top: 100px;
+    left: 100px;
+    width: 18rem;
+    color: #ffffff;
+}
+.intro-headings {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    overflow: hidden;
+    height: 50px;
+}
+.intro-headings h1 {
+    margin-block-start: 0.2rem;
+    margin-block-end: 0.2rem;
+    opacity: 0.2;
+    transform: translateY(50px);
+}
+.intro-headings h1:nth-child(1) {
+    transition: all 500ms linear;
+}
+.intro-headings h1:nth-child(2) {
+    transition: all 500ms 200ms linear;
+    /* transition-delay: 200ms; */
+}
+.intro-headings h1:nth-child(3) {
+    transition: all 500ms 400ms linear;
+    /* transition-delay: 400ms; */
+}
+
+.intro-headings h1.fast {
+    transform: translateY(0);
+    opacity: 1;
+}
+.intro-headings h1.easy {
+    transform: translateY(0);
+    opacity: 1;
+}
+.intro-headings h1.reliable {
+    transform: translateY(0);
+    opacity: 1;
+}
+
 .home-body {
     -webkit-border-radius: 20px;
     -moz-border-radius: 20px;
