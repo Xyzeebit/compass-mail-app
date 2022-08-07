@@ -19,6 +19,11 @@ export default function Home() {
     easy.current.classList.add('easy');
     reliable.current.classList.add('reliable');
 
+    const blocks = document.getElementsByClassName('block');
+    for (let el of blocks) {
+      el.classList.add('fade-in');
+    }
+
   }, [])
 
     return (
@@ -27,19 +32,25 @@ export default function Home() {
           src={logo}
           alt="Compass home page"
           width="40"
-          height="30"
-          className="home-logo"
+          height="40"
+          className="home-logo spin"
         />
         <div className="intro">
           <div className="intro-headings">
-            <h1 ref={fast}>Fast{', '} </h1>
-            <h1 ref={easy}>Easy{', '} </h1>
+            <h1 ref={fast}>Fast{", "} </h1>
+            <h1 ref={easy}>Easy{", "} </h1>
             <h1 ref={reliable}>Reliable</h1>
           </div>
           <p>Fast email client for sending mail</p>
         </div>
 
-        <div className="block" />
+        <div className="block b-1" />
+        <div className="block b-2" />
+        <div className="block b-3" />
+
+        <div className="home-body">
+
+        </div>
 
         {/* <div className="home-body">
           <div className="home-top">
