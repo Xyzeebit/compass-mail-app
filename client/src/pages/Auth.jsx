@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { useLocation, Link } from "react-router-dom";
+import { useLocation, Link, useNavigate } from "react-router-dom";
 import { IoEye, IoEyeOff } from 'react-icons/io5';
 import Loader from '../components/Loader';
 
@@ -350,6 +350,7 @@ export default function Auth() {
 
 const AuthLoading = () => {
   const loaderRef = useRef(null);
+  const navigate = useNavigate();
   useEffect(() => {
     const timer = setTimeout(() => {
       loaderRef.current.classList.add("auth-spread");
@@ -357,10 +358,16 @@ const AuthLoading = () => {
 
     return () => clearTimeout(timer);
   }, []);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      navigate('/inbox');
+    }, 5000);
+    return () => clearTimeout(timer);
+  })
   return (
     <div className="auth-loading flex-center flex-column" ref={loaderRef}>
       <Loader />
-      <p>Loading...</p>
     </div>
   )
 }
