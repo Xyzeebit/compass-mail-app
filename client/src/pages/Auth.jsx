@@ -23,9 +23,16 @@ export default function Auth() {
   const [cpasswordError, setCPasswordError] = useState('');
 
   const [rememberMe, setRememberMe] = useState(false);
+  const [canSubmit, setCanSubmit] = useState(false);
 
   const passwordRef = useRef(null);
   const cpasswordRef = useRef(null);
+
+  const error = "1px solid #f44336";
+  const noError = "1px solid #3940a7e0";
+
+  const errorOutline = "#f44336";
+  const noErrorOutline = "#3940a7e0";
 
     const location = useLocation();
     const paths = location.pathname.split('/')
@@ -64,7 +71,12 @@ export default function Auth() {
     cpasswordRef.current.style.border = "1px solid grey";
   };
     const handleSubmit = evt => {
-        evt.preventDefault();
+      evt.preventDefault();
+      if (formType === 'signup') {
+        
+      } else {
+        
+      }
     }
 
   
@@ -81,6 +93,10 @@ export default function Auth() {
                   id="first-name"
                   value={firstName}
                   onChange={handleFirstName}
+                  style={{
+                    border: firstNameError ? error : noError,
+                    outline: firstNameError ? errorOutline : noErrorOutline,
+                  }}
                 />
               </div>
               <div className="stack">
@@ -90,6 +106,10 @@ export default function Auth() {
                   id="name"
                   value={lastName}
                   onChange={handleLastName}
+                  style={{
+                    border: lastNameError ? error : noError,
+                    outline: lastNameError ? errorOutline : noErrorOutline,
+                  }}
                 />
               </div>
             </>
@@ -102,12 +122,23 @@ export default function Auth() {
               id="username"
               value={username}
               onChange={handleUsername}
+              style={{
+                border: usernameError ? error : noError,
+                outline: usernameError ? errorOutline : noErrorOutline,
+              }}
             />
           </div>
 
           <div className="stack">
             <label htmlFor="password">Password</label>
-            <div className="input-group" ref={passwordRef}>
+            <div
+              className="input-group"
+              ref={passwordRef}
+              style={{
+                border: passwordError ? error : noError,
+                outline: passwordError ? errorOutline : noErrorOutline,
+              }}
+            >
               <input
                 type={passwordOrText}
                 id="password"
@@ -127,7 +158,14 @@ export default function Auth() {
           {formType === "signup" ? (
             <div className="stack">
               <label htmlFor="cpassword">Confirm password</label>
-              <div className="input-group" ref={cpasswordRef}>
+              <div
+                className="input-group"
+                ref={cpasswordRef}
+                style={{
+                  border: cpasswordError ? error : noError,
+                  outline: cpasswordError ? errorOutline : noErrorOutline,
+                }}
+              >
                 <input
                   type={cpasswordOrText}
                   id="cpassword"
