@@ -55,27 +55,79 @@ export default function Auth() {
         setPassword(evt.target.value)
   }
   const handlePasswordFocused = evt => {
-    passwordRef.current.style.border = '2px solid black';
+    passwordRef.current.style.border = "2px solid #3940a7e0";
   }
   const handlePasswordBlurred = evt => {
-    passwordRef.current.style.border = "1px solid grey";
-  }
-    const handleCPassword = evt => {
-        setCPassword(evt.target.value)
+    passwordRef.current.style.border = "1px solid #3940a7e0";
+    if (passwordError) {
+      passwordRef.current.style.border = error;
+      passwordRef.current.style.outline = errorOutline;
     }
+  }
+
+
+  const handleCPassword = evt => {
+    setCPassword(evt.target.value)
+  }
 
   const handleCPasswordFocused = (evt) => {
-    cpasswordRef.current.style.border = "2px solid black";
+    cpasswordRef.current.style.border = "2px solid #3940a7e0";
   };
   const handleCPasswordBlurred = (evt) => {
-    cpasswordRef.current.style.border = "1px solid grey";
+    cpasswordRef.current.style.border = "1px solid #3940a7e0";
+    if (cpasswordError) {
+      cpasswordRef.current.style.border = error;
+      cpassword.current.style.outline = errorOutline;
+    }
   };
+
+  const taken = async (username) => {
+    return false;
+  }
+
+
     const handleSubmit = evt => {
       evt.preventDefault();
       if (formType === 'signup') {
-        
+        if (firstName.length < 3) {
+          setFirstNameError('First name too short');
+        }
+        if (firstName.length > 16) {
+          setFirstNameError("First name too long");
+        }
+        if (lastName.length < 3) {
+          setLastNameError('Last name too short');
+        }
+        if (lastName.length > 16) {
+          setLastNameError('Last name too long');
+        }
+        if (username.length) {
+          setUsernameError('Username should be at least 6 characters long');
+        }
+        if (taken(username)) {
+          setUsernameError("Username is already in use");
+        }
+        if (password.length < 6) {
+          setPasswordError('Password is must be at least 6 characters long');
+        }
+        if (password.length > 50) {
+          setPasswordError("Password should not exceed 50 characters");
+        }
+        if (cpassword !== password) {
+          setCPasswordError('Passwords do not match');
+          setCanSubmit(true);
+        }
       } else {
-        
+        if (password.length < 6) {
+          setPasswordError("Password is must be at least 6 characters long");
+        }
+        if (password.length < 6) {
+          setPasswordError("Password is must be at least 6 characters long");
+        }
+        if (password.length > 50) {
+          setPasswordError("Password should not exceed 50 characters");
+        }
+        setCanSubmit(true);
       }
     }
 

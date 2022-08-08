@@ -30,6 +30,7 @@
 }
 .auth form input[type="text"]:focus {
     outline-width: 2px;
+    border: 2px solid var(--primary-light) !important;
 }
 .auth form input[type="submit"] {
     width: 100%;
@@ -52,6 +53,7 @@
 .auth form .input-group input {
     width: 90%;
     height: 28px;
+    border-radius: 5px;
     outline: none;
     border: none;
 }
