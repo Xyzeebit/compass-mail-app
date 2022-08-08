@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
+
+import '../styles/auth.css';
 
 export default function Auth() {
   const [firstName, setFirstName] = useState('');
@@ -16,6 +18,8 @@ export default function Auth() {
 
   const [cpassword, setCPassword] = useState('');
   const [cpasswordError, setCPasswordError] = useState('');
+
+  const [rememberMe, setRememberMe] = useState(false);
 
     const location = useLocation();
     const paths = location.pathname.split('/')
@@ -85,7 +89,7 @@ export default function Auth() {
             />
           </div>
 
-          {formType === "signup" && (
+          {formType === "signup" ? (
             <div className="stack">
               <label htmlFor="cpassword">Confirm password</label>
               <input
@@ -95,14 +99,33 @@ export default function Auth() {
                 onChange={handleCPassword}
               />
             </div>
+          ) : (
+            <div className="stack">
+              <input
+                  type="checkbox"
+                  id="remember-me"
+                value={rememberMe}
+                onChange={() => setRememberMe(!rememberMe)}
+              />
+              <label htmlFor="remember-me">Remember me</label>
+            </div>
           )}
-          <input
-            type="submit"
-            value={formType === "signin" ? "Sign in" : "Sign up"}
-          />
-          <p>
-            Don't have a? <a>sign up</a>
-          </p>
+          <div className="stack">
+            <input
+              type="submit"
+              value={formType === "signin" ? "Sign in" : "Sign up"}
+            />
+          </div>
+
+          {formType === "signin" ? (
+            <p>
+              Don't have an account? <Link to="/auth/signup">sign up</Link>
+            </p>
+          ) : (
+            <p>
+              Already have an account <Link to="/auth/signin">Sign in</Link>
+            </p>
+          )}
         </form>
       </div>
     );
