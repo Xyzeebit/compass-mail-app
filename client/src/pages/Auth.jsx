@@ -49,9 +49,9 @@ export default function Auth() {
   }
   const handleFirstNameBlurred = () => {
     if (firstName.length < 3) {
-      setFirstNameError("First name too short");
+      setFirstNameError("First name must be at least 3 characters long");
     } else if (firstName.length > 16) {
-      setFirstNameError("First name too long");
+      setFirstNameError("First name must not exceed 16 characters");
     } else {
       setFirstNameError('')
     }
@@ -61,9 +61,9 @@ export default function Auth() {
   }
   const handleLastNameBlurred = () => {
     if (lastName.length < 3) {
-      setLastNameError("Last name too short");
+      setLastNameError("Last name must be at least 3 characters long");
     } else if (lastName.length > 16) {
-      setLastNameError("Last name too long");
+      setLastNameError("Last name must not exceed 16 characters");
     } else {
       setLastNameError("");
     }
@@ -134,7 +134,12 @@ export default function Auth() {
           firstNameError ||
           usernameError ||
           passwordError ||
-          cpasswordError
+          cpasswordError ||
+          !firstName ||
+          !lastName ||
+          !password ||
+          !cpassword ||
+          !username
         ) {
           setCanSubmit(false);
         } else {
@@ -146,7 +151,7 @@ export default function Auth() {
           }
         }
       } else {
-        if (usernameError || passwordError) {
+        if (!username || usernameError || !password || passwordError) {
           setCanSubmit(false);
         } else {
           setCanSubmit(true);
@@ -301,7 +306,7 @@ export default function Auth() {
                   type="checkbox"
                   id="tac"
                   value={tac}
-                  onChange={() => setRememberMe(!tac)}
+                  onChange={() => setTac(!tac)}
                 />
                 <label htmlFor="tac" className="tac">
                   I agree to the{" "}
@@ -314,7 +319,7 @@ export default function Auth() {
                   </Link>
                 </label>
               </div>
-              {tacError && <p className="p-error-text">You must agree to the terms and conditions</p>}
+              {(tacError && (tac === false)) ? <p className="p-error-text">You must agree to the terms and conditions</p> : <span></span>}
             </div>
           )}
 
@@ -334,7 +339,26 @@ export default function Auth() {
               Already have an account <Link to="/auth/signin">sign in</Link>
             </p>
           )}
+
+          {canSubmit && <AuthLoading />}
+
         </form>
       </div>
     );
+}
+
+const AuthLoading = () => {
+  const loaderRef = useRef(null);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      loaderRef.current.classList.add("auth-spread");
+    }, 10);
+
+    return () => clearTimeout(timer);
+  }, []);
+  return (
+    <div className="auth-loading" ref={loaderRef}>
+
+    </div>
+  )
 }
