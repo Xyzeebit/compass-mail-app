@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useLocation, Link } from "react-router-dom";
 import { IoEye, IoEyeOff } from 'react-icons/io5';
+import Loader from '../components/Loader';
 
 import '../styles/auth.css';
 
@@ -357,8 +358,9 @@ const AuthLoading = () => {
     return () => clearTimeout(timer);
   }, []);
   return (
-    <div className="auth-loading" ref={loaderRef}>
-
+    <div className="auth-loading flex-center flex-column" ref={loaderRef}>
+      <Loader />
+      <p>Loading...</p>
     </div>
   )
 }
