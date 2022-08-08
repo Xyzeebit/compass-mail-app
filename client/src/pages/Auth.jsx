@@ -38,21 +38,53 @@ export default function Auth() {
     const paths = location.pathname.split('/')
     const formType = paths[paths.length - 1]
 
-    const handleName = (evt) => {
-        // setName(evt.target.value);
-    }
+    const taken = async (username) => {
+      return false;
+    };
 
   const handleFirstName = (evt) => {
     setFirstName(evt.target.value);
   }
+  const handleFirstNameBlurred = () => {
+    if (firstName.length < 3) {
+      setFirstNameError("First name too short");
+    } else if (firstName.length > 16) {
+      setFirstNameError("First name too long");
+    } else {
+      setFirstNameError('')
+    }
+  }
   const handleLastName = evt => {
     setLastName(evt.target.value);
   }
+  const handleLastNameBlurred = () => {
+    if (lastName.length < 3) {
+      setLastNameError("Last name too short");
+    } else if (lastName.length > 16) {
+      setLastNameError("Last name too long");
+    } else {
+      setLastNameError("");
+    }
+  }
     const handleUsername = evt => {
         setUsername(evt.target.value);
+  }
+  const handleUsernameBlurred = async () => {
+    if (username.length) {
+      setUsernameError("Username should be at least 6 characters long");
+    } else if(username > 16) {
+      setUsernameError("Username too long, should not exceed 16 characters");
+    } else {
+      const inUse = await taken(username);
+      if (inUse) {
+        setUsernameError("Username is already taken");
+      } else {
+      setUsernameError("");
+      }
     }
-    const handlePassword = evt => {
-        setPassword(evt.target.value)
+  }
+  const handlePassword = evt => {
+    setPassword(evt.target.value)
   }
   const handlePasswordFocused = evt => {
     passwordRef.current.style.border = "2px solid #3940a7e0";
@@ -62,6 +94,13 @@ export default function Auth() {
     if (passwordError) {
       passwordRef.current.style.border = error;
       passwordRef.current.style.outline = errorOutline;
+    }
+    if (password.length < 6) {
+      setPasswordError("Password is must be at least 6 characters long");
+    } else if (password.length > 50) {
+      setPasswordError("Password should not exceed 50 characters");
+    } else {
+      setPasswordError("");
     }
   }
 
@@ -79,55 +118,32 @@ export default function Auth() {
       cpasswordRef.current.style.border = error;
       cpassword.current.style.outline = errorOutline;
     }
+    if (cpassword !== password) {
+      setCPasswordError("Passwords do not match");
+    }
   };
 
-  const taken = async (username) => {
-    return false;
-  }
 
 
     const handleSubmit = evt => {
       evt.preventDefault();
       if (formType === 'signup') {
-        if (firstName.length < 3) {
-          setFirstNameError('First name too short');
-        }
-        if (firstName.length > 16) {
-          setFirstNameError("First name too long");
-        }
-        if (lastName.length < 3) {
-          setLastNameError('Last name too short');
-        }
-        if (lastName.length > 16) {
-          setLastNameError('Last name too long');
-        }
-        if (username.length) {
-          setUsernameError('Username should be at least 6 characters long');
-        }
-        if (taken(username)) {
-          setUsernameError("Username is already in use");
-        }
-        if (password.length < 6) {
-          setPasswordError('Password is must be at least 6 characters long');
-        }
-        if (password.length > 50) {
-          setPasswordError("Password should not exceed 50 characters");
-        }
-        if (cpassword !== password) {
-          setCPasswordError('Passwords do not match');
+        if (lastNameError || 
+          firstNameError ||
+          usernameError ||
+          passwordError ||
+          cpasswordError
+        ) {
+          setCanSubmit(false);
+        } else {
+          setCanSubmit(true);
+          }
+      } else {
+        if (usernameError || passwordError) {
+          setCanSubmit(false);
+        } else {
           setCanSubmit(true);
         }
-      } else {
-        if (password.length < 6) {
-          setPasswordError("Password is must be at least 6 characters long");
-        }
-        if (password.length < 6) {
-          setPasswordError("Password is must be at least 6 characters long");
-        }
-        if (password.length > 50) {
-          setPasswordError("Password should not exceed 50 characters");
-        }
-        setCanSubmit(true);
       }
     }
 
@@ -140,11 +156,15 @@ export default function Auth() {
             <>
               <div className="stack">
                 <label htmlFor="first-name">First name</label>
+                {firstNameError && (
+                  <p className="p-error-text">{firstNameError}</p>
+                )}
                 <input
                   type="text"
                   id="first-name"
                   value={firstName}
                   onChange={handleFirstName}
+                  onBlur={handleFirstNameBlurred}
                   style={{
                     border: firstNameError ? error : noError,
                     outline: firstNameError ? errorOutline : noErrorOutline,
@@ -153,11 +173,15 @@ export default function Auth() {
               </div>
               <div className="stack">
                 <label htmlFor="name">Last name</label>
+                {lastNameError && (
+                  <p className="p-error-text">{lastNameError}</p>
+                )}
                 <input
                   type="text"
                   id="name"
                   value={lastName}
                   onChange={handleLastName}
+                  onBlur={handleLastNameBlurred}
                   style={{
                     border: lastNameError ? error : noError,
                     outline: lastNameError ? errorOutline : noErrorOutline,
@@ -169,11 +193,13 @@ export default function Auth() {
 
           <div className="stack">
             <label htmlFor="username">Username</label>
+            {usernameError && <p className="p-error-text">{usernameError}</p>}
             <input
               type="text"
               id="username"
               value={username}
               onChange={handleUsername}
+              onBlur={handleUsernameBlurred}
               style={{
                 border: usernameError ? error : noError,
                 outline: usernameError ? errorOutline : noErrorOutline,
@@ -183,6 +209,7 @@ export default function Auth() {
 
           <div className="stack">
             <label htmlFor="password">Password</label>
+            {passwordError && <p className="p-error-text">{passwordError}</p>}
             <div
               className="input-group"
               ref={passwordRef}
@@ -210,6 +237,9 @@ export default function Auth() {
           {formType === "signup" ? (
             <div className="stack">
               <label htmlFor="cpassword">Confirm password</label>
+              {cpasswordError && (
+                <p className="p-error-text">{cpasswordError}</p>
+              )}
               <div
                 className="input-group"
                 ref={cpasswordRef}
@@ -254,11 +284,11 @@ export default function Auth() {
           </div>
 
           {formType === "signin" ? (
-            <p>
+            <p className="p-link-text">
               Don't have an account? <Link to="/auth/signup">sign up</Link>
             </p>
           ) : (
-            <p>
+            <p className="p-link-text">
               Already have an account <Link to="/auth/signin">sign in</Link>
             </p>
           )}

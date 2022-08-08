@@ -14,8 +14,8 @@
 .auth form label:not(.remember-me) {
     display: block;
 }
-.auth form p {
-    text-align: center;
+.p-link-text {
+    text-align: center !important;
 }
 .auth form p a {
     color: var(--primary);
@@ -56,4 +56,10 @@
     border-radius: 5px;
     outline: none;
     border: none;
+}
+.p-error-text {
+    color: #f44336;
+    margin-block-start: 0.2rem;
+    margin-block-end: 0.2rem;
+    font-size: 0.8rem;
 }
