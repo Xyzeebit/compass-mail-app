@@ -13,6 +13,8 @@
 }
 .auth form label:not(.remember-me) {
     display: block;
+    font-weight: 600;
+    margin-block-end: 0.1rem;
 }
 .p-link-text {
     text-align: center !important;
@@ -43,6 +45,7 @@
 }
 .auth form .input-group {
     width: 100%;
+    padding-right: 0.5rem;
     display: inline-flex;
     justify-content: space-between;
     align-items: center;
@@ -57,9 +60,26 @@
     outline: none;
     border: none;
 }
+.auth form input[type="checkbox"]:checked {
+    /* filter: invert(1) hue-rotate(18deg); */
+}
 .p-error-text {
     color: #f44336;
     margin-block-start: 0.2rem;
     margin-block-end: 0.2rem;
     font-size: 0.8rem;
+}
+.auth form .remember-forget a, label {
+    font-weight: 600;
+}
+.auth form .remember-forget a {
+    color: var(--primary);
+}
+.tac {
+    font-weight: 500;
+    font-size: 0.9rem;
+    width: 90%;
+}
+.tac a {
+    color: var(--primary);
 }

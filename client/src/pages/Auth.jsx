@@ -23,6 +23,8 @@ export default function Auth() {
   const [cpasswordError, setCPasswordError] = useState('');
 
   const [rememberMe, setRememberMe] = useState(false);
+  const [tac, setTac] = useState(false);
+  const [tacError, setTacError] = useState(false);
   const [canSubmit, setCanSubmit] = useState(false);
 
   const passwordRef = useRef(null);
@@ -70,9 +72,9 @@ export default function Auth() {
         setUsername(evt.target.value);
   }
   const handleUsernameBlurred = async () => {
-    if (username.length) {
+    if (username.length < 6) {
       setUsernameError("Username should be at least 6 characters long");
-    } else if(username > 16) {
+    } else if(username.length > 16) {
       setUsernameError("Username too long, should not exceed 16 characters");
     } else {
       const inUse = await taken(username);
@@ -96,7 +98,7 @@ export default function Auth() {
       passwordRef.current.style.outline = errorOutline;
     }
     if (password.length < 6) {
-      setPasswordError("Password is must be at least 6 characters long");
+      setPasswordError("Password must be at least 6 characters long");
     } else if (password.length > 50) {
       setPasswordError("Password should not exceed 50 characters");
     } else {
@@ -136,8 +138,13 @@ export default function Auth() {
         ) {
           setCanSubmit(false);
         } else {
-          setCanSubmit(true);
+          if (tac) {
+            setCanSubmit(true);
+          } else {
+            setTacError(true)
+            setCanSubmit(false);
           }
+        }
       } else {
         if (usernameError || passwordError) {
           setCanSubmit(false);
@@ -152,6 +159,7 @@ export default function Auth() {
     return (
       <div className="auth">
         <form onSubmit={handleSubmit}>
+          <h1>{formType === "signup" ? "Register" : "Login"}</h1>
           {formType === "signup" && (
             <>
               <div className="stack">
@@ -264,22 +272,56 @@ export default function Auth() {
               </div>
             </div>
           ) : (
-            <div className="stack">
-              <input
-                type="checkbox"
-                id="remember-me"
-                value={rememberMe}
-                onChange={() => setRememberMe(!rememberMe)}
-              />
-              <label htmlFor="remember-me" className="remember-me">
-                Remember me
-              </label>
+            <div className="stack flex-between remember-forget">
+              <div>
+                <input
+                  type="checkbox"
+                  id="remember-me"
+                  value={rememberMe}
+                  onChange={() => setRememberMe(!rememberMe)}
+                />
+                <label htmlFor="remember-me" className="remember-me">
+                  Remember me
+                </label>
+              </div>
+              <Link
+                to="/auth/recoverpassword"
+                className=""
+                onClick={(evt) => evt.preventDefault()}
+              >
+                Forget password
+              </Link>
             </div>
           )}
+
+          {formType === "signup" && (
+            <div className="stack">
+              <div className="flex-between">
+                <input
+                  type="checkbox"
+                  id="tac"
+                  value={tac}
+                  onChange={() => setRememberMe(!tac)}
+                />
+                <label htmlFor="tac" className="tac">
+                  I agree to the{" "}
+                  <Link to="/policies" onClick={(evt) => evt.preventDefault()}>
+                    Terms
+                  </Link>{" "}
+                  and{" "}
+                  <Link to="/policies" onClick={(evt) => evt.preventDefault()}>
+                    Conditions
+                  </Link>
+                </label>
+              </div>
+              {tacError && <p className="p-error-text">You must agree to the terms and conditions</p>}
+            </div>
+          )}
+
           <div className="stack">
             <input
               type="submit"
-              value={formType === "signin" ? "Sign in" : "Sign up"}
+              value={formType === "signin" ? "Sign in" : "Register"}
             />
           </div>
 
