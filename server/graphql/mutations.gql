@@ -15,15 +15,16 @@ input SignInInput {
 }
 type UserPayLoad {
     id: ID!
+    token: String!
     username: String!
 }
 type AuthErrorPayload {
     message: String
     name: String
+    
 }
 type AuthUserPayload {
     success: Boolean!
     error: AuthErrorPayload
-    token: String
     user: UserPayLoad
 }

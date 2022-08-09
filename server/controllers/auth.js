@@ -19,13 +19,14 @@ async function signUp(args, req) {
 
                 iss: 'compass',
                 iat: Date.now(),
-                exp: '24h'
             };
-            const token = await sign(payload);
-            signUpPayload.token = token;
+            const token = sign(payload);
+            console.log(token)
+            
             signUpPayload.success = true;
             signUpPayload.user = {
                 id: user._id,
+                token,
                 username
             }
             return signUpPayload;
@@ -63,13 +64,13 @@ async function signIn(args) {
 
                     iss: 'compass',
                     iat: Date.now(),
-                    exp: '24h'
                 };
                 const token = sign(payload);
-                signInPayload.token = token;
+                
                 signInPayload.success = true;
                 signInPayload.user = {
                     id: user._id,
+                    token,
                     username
                 }
                 return signInPayload;
@@ -102,12 +103,8 @@ async function signIn(args) {
 
 function sign(payload) {
     const secret = fs.readFileSync(path.join(__dirname, 'secret.txt'), { encoding: 'utf-8' });
-    
-    jwt.sign(payload, secret, { algorithm: 'RS256' }, (err, token) => {
-        if (err) throw new Error('Cannot generate token for this account');
-        console.log(token)
-        return token;
-    });
+    const token = jwt.sign(payload, secret, { expiresIn: '1h' }, { algorithm: 'RS256' });
+    return token;
 }
 
 /**
