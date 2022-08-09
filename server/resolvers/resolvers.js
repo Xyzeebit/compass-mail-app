@@ -16,12 +16,37 @@ const queries = {
 const mutations = {
     Mutation: {
         async signUp(parent, args) {
-            return await auth.signUp(args);
+            console.log(args)
+            const payload = {};
+            const response = await auth.signUp(args);
+            if (response.error) {
+              payload.error = response.error;
+              payload.success = response.success;
+            } else {
+              payload.token = token;
+              payload.success = response.success;
+              payload.user = {
+                id: response.id,
+                username: response.username,
+              };
+            }
+            return payload;
         },
         async signIn(parent, args) {
             const payload = {};
             const response = await auth.signIn(args);
-            return { success: true }
+            if (response.error) {
+                payload.error = response.error;
+                payload.success = response.success;
+            } else {
+                payload.token = token;
+                payload.success = response.success;
+                payload.user = {
+                    id: response.id,
+                    username: response.username
+                }
+            }
+            return payload;
         },
 
         // DateTime: new GraphQLScalarType({

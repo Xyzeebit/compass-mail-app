@@ -6,8 +6,8 @@ async function signUp(args, req) {
     const signUpPayload = {};
     try {
         const { firstName, lastName, username, password } = args.input;
-        const exist = await userExit(username);
-        if (!exist) {
+        const exist = await userExist(username);
+        if (exist !== true) {
             const user = new User({ firstName, lastName, username });
             user.setPassword(password);
             await user.save();
@@ -23,6 +23,10 @@ async function signUp(args, req) {
             const token = sign(payload);
             signUpPayload.token = token;
             signUpPayload.success = true;
+            signUpPayload.user = {
+                id: user._id,
+                username
+            }
             return signUpPayload;
         } else {
             signUpPayload.error = {
@@ -33,7 +37,8 @@ async function signUp(args, req) {
         }
     } catch (error) {
         signUpPayload.error = {
-            message: error.message
+            message: error.message,
+            name: error.code
         }
         return signUpPayload;
 
@@ -47,7 +52,7 @@ async function signIn(args) {
         const { username, password } = args.input;
         const user = await User.find({ username });
         if (user) {
-            const checkPassword = user.validatePassword(password);
+            const checkPassword = user.validPassword(password);
             if (checkPassword) {
                 const payload = {
                     id: user._id,
@@ -60,6 +65,10 @@ async function signIn(args) {
                 const token = sign(payload);
                 signInPayload.token = token;
                 signInPayload.success = true;
+                signInPayload.user = {
+                    id: user._id,
+                    username
+                }
                 return signInPayload;
             } else {
                 signInPayload.error  = {

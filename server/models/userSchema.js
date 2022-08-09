@@ -35,13 +35,7 @@ const userSchema = new mongoose.Schema({
     required: true,
     trim: true,
   },
-  email: {
-    type: String,
-    required: [true, "Email is required"],
-    unique: true,
-    lowercase: true,
-    trim: true,
-  },
+
   salt: {
     type: String,
   },
