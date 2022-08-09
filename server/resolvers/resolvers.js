@@ -16,7 +16,7 @@ const queries = {
 const mutations = {
     Mutation: {
         async signUp(parent, args) {
-            console.log(args)
+            
             const payload = {};
             const response = await auth.signUp(args);
             if (response.error) {

@@ -1,6 +1,7 @@
 const User = require('../models/userSchema');
 const jwt = require('jsonwebtoken');
 const fs = require('fs');
+const path = require('path');
 
 async function signUp(args, req) {
     const signUpPayload = {};
@@ -20,7 +21,7 @@ async function signUp(args, req) {
                 iat: Date.now(),
                 exp: '24h'
             };
-            const token = sign(payload);
+            const token = await sign(payload);
             signUpPayload.token = token;
             signUpPayload.success = true;
             signUpPayload.user = {
@@ -100,9 +101,11 @@ async function signIn(args) {
 }
 
 function sign(payload) {
-    const secret = fs.readFileSync('./secret.txt');
-    jwt.sign(payload, Buffer.from(secret, 'base64'), { algorithm: 'RS256' }, (err, token) => {
+    const secret = fs.readFileSync(path.join(__dirname, 'secret.txt'), { encoding: 'utf-8' });
+    
+    jwt.sign(payload, secret, { algorithm: 'RS256' }, (err, token) => {
         if (err) throw new Error('Cannot generate token for this account');
+        console.log(token)
         return token;
     });
 }
@@ -113,8 +116,10 @@ function sign(payload) {
  * @returns boolean
  */
 function verify(token) {
-    const secret = fs.readFileSync('./secret.txt');
-    jwt.verify(token, Buffer.from(secret, 'base64'), (err, decoded) => {
+    const secret = fs.readFileSync(path.join(__dirname, "secret.txt"), {
+      encoding: "utf-8",
+    });
+    jwt.verify(token, secret, (err, decoded) => {
         if (err) throw new Error({ name: 'JsonWebTokenError', message: 'jwt malformed' });
         return { username: decoded.username, id: decoded.id }
     })

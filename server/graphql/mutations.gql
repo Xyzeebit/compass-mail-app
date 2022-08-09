@@ -24,6 +24,6 @@ type AuthErrorPayload {
 type AuthUserPayload {
     success: Boolean!
     error: AuthErrorPayload
-    token: String!
-    user: UserPayLoad!
+    token: String
+    user: UserPayLoad
 }
