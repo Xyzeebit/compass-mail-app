@@ -10,26 +10,24 @@ async function signUp(args, req) {
         const { firstName, lastName, username, password } = args.input;
         const exist = await userExist(username);
         if (exist !== true) {
-            // const user = new User({ firstName, lastName, username });
-            // user.setPassword(password);
-            // await user.save();
+            const user = new User({ firstName, lastName, username });
+            user.setPassword(password);
+            await user.save();
             
             const payload = {
-                id: 'msjslioiqpindhkmmdjjks', //user._id,
+                id: user._id,
                 username,
 
                 iss: 'compass',
                 iat: Date.now(),
             };
-            const token = sign(payload);
-            token.then((tok) => {
-                console.log(tok)
-            }).catch(err => console.log(err))
-            console.log(token)
+            const getToken = promisify(sign);
+            const token = await getToken(payload);
+            
             
             signUpPayload.success = true;
             signUpPayload.user = {
-                id: 'shksiiwpopowjjckj', //user._id,
+                id: user._id,
                 token,
                 username
             }
@@ -69,7 +67,7 @@ async function signIn(args) {
                     iss: 'compass',
                     iat: Date.now(),
                 };
-                const token = await sign(payload);
+                const token = sign(payload);
                 
                 signInPayload.success = true;
                 signInPayload.user = {
@@ -106,27 +104,29 @@ async function signIn(args) {
 }
 
 function getSecret() {
-    const secret = fs.readFileSync(path.join(__dirname, "secret.txt"), {
-      encoding: "utf-8",
-    });
-    return secret;
+    try {
+        const secret = fs.readFileSync(path.join(__dirname, "secret.txt"), {
+            encoding: "utf-8",
+        });
+        return secret;
+    } catch (error) {
+        return undefined;
+    }
 }
 
-function sign(payload) {
-    return new Promise((resolve, reject) => {
-        
-        jwt.sign(
+function sign(payload, cb) {
+    try {
+        const secret = getSecret();
+        const token = jwt.sign(
             payload,
-            getSecret(),
+            secret,
             { expiresIn: "1h" },
             { algorithm: "RS256" },
-            function (err, token) {
-                if (err) reject(new Error("Cannot generate token for this account"));
-                console.log(token)
-                resolve(token)
-            }
         );
-    })
+        cb(null, token);
+    } catch(error) {
+        cb(new Error('cannot generate token'), null);
+    }
 }
 
 /**

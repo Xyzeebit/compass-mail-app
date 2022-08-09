@@ -14,9 +14,9 @@ input SignInInput {
     password: String!
 }
 type UserPayLoad {
-    id: ID!
-    token: String!
-    username: String!
+    id: ID
+    token: String
+    username: String
 }
 type AuthErrorPayload {
     message: String

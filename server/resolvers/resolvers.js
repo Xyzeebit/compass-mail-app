@@ -19,19 +19,7 @@ const mutations = {
             
             const payload = {};
             const response = await auth.signUp(args);
-            if (response.error) {
-              payload.error = response.error;
-              payload.success = response.success;
-            } else {
-              payload.token = token;
-              payload.success = response.success;
-              payload.user = {
-                id: response.id,
-                username: response.username,
-              };
-            }
-            return payload;
-            
+            return response;
         },
         async signIn(parent, args) {
             const payload = {};
