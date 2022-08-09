@@ -22,19 +22,7 @@ const mutations = {
             return response;
         },
         async signIn(parent, args) {
-            const payload = {};
-            const response = await auth.signIn(args);
-            if (response.error) {
-                payload.error = response.error;
-                payload.success = response.success;
-            } else {
-                payload.token = token;
-                payload.success = response.success;
-                payload.user = {
-                    id: response.id,
-                    username: response.username
-                }
-            }
+            const payload = await auth.signIn(args);
             return payload;
         },
 

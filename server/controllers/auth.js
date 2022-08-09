@@ -56,10 +56,9 @@ async function signIn(args) {
     const signInPayload = {};
     try {
         const { username, password } = args.input;
-        const user = await User.find({ username });
+        const user = await User.findOne({ username });
         if (user) {
-            const valid = await user.checkPassword(password);
-            console.log(user)
+            const valid = user.checkPassword(password);
             if (valid) {
               const payload = {
                 id: user._id,
