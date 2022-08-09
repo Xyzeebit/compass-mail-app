@@ -2,6 +2,7 @@ const User = require('../models/userSchema');
 const jwt = require('jsonwebtoken');
 const fs = require('fs');
 const path = require('path');
+const { promisify } = require('util');
 
 async function signUp(args, req) {
     const signUpPayload = {};
@@ -9,23 +10,26 @@ async function signUp(args, req) {
         const { firstName, lastName, username, password } = args.input;
         const exist = await userExist(username);
         if (exist !== true) {
-            const user = new User({ firstName, lastName, username });
-            user.setPassword(password);
-            await user.save();
+            // const user = new User({ firstName, lastName, username });
+            // user.setPassword(password);
+            // await user.save();
             
             const payload = {
-                id: user._id,
+                id: 'msjslioiqpindhkmmdjjks', //user._id,
                 username,
 
                 iss: 'compass',
                 iat: Date.now(),
             };
             const token = sign(payload);
+            token.then((tok) => {
+                console.log(tok)
+            }).catch(err => console.log(err))
             console.log(token)
             
             signUpPayload.success = true;
             signUpPayload.user = {
-                id: user._id,
+                id: 'shksiiwpopowjjckj', //user._id,
                 token,
                 username
             }
@@ -65,7 +69,7 @@ async function signIn(args) {
                     iss: 'compass',
                     iat: Date.now(),
                 };
-                const token = sign(payload);
+                const token = await sign(payload);
                 
                 signInPayload.success = true;
                 signInPayload.user = {
@@ -101,10 +105,28 @@ async function signIn(args) {
     }
 }
 
+function getSecret() {
+    const secret = fs.readFileSync(path.join(__dirname, "secret.txt"), {
+      encoding: "utf-8",
+    });
+    return secret;
+}
+
 function sign(payload) {
-    const secret = fs.readFileSync(path.join(__dirname, 'secret.txt'), { encoding: 'utf-8' });
-    const token = jwt.sign(payload, secret, { expiresIn: '1h' }, { algorithm: 'RS256' });
-    return token;
+    return new Promise((resolve, reject) => {
+        
+        jwt.sign(
+            payload,
+            getSecret(),
+            { expiresIn: "1h" },
+            { algorithm: "RS256" },
+            function (err, token) {
+                if (err) reject(new Error("Cannot generate token for this account"));
+                console.log(token)
+                resolve(token)
+            }
+        );
+    })
 }
 
 /**
