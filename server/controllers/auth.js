@@ -58,31 +58,33 @@ async function signIn(args) {
         const { username, password } = args.input;
         const user = await User.find({ username });
         if (user) {
-            const checkPassword = user.validPassword(password);
-            if (checkPassword) {
-                const payload = {
-                    id: user._id,
-                    username,
+            const valid = await user.checkPassword(password);
+            console.log(user)
+            if (valid) {
+              const payload = {
+                id: user._id,
+                username,
 
-                    iss: 'compass',
-                    iat: Date.now(),
-                };
-                const token = sign(payload);
-                
-                signInPayload.success = true;
-                signInPayload.user = {
-                    id: user._id,
-                    token,
-                    username
-                }
-                return signInPayload;
+                iss: "compass",
+                iat: Date.now(),
+              };
+              const getToken = promisify(sign);
+              const token = await getToken(payload);
+
+              signInPayload.success = true;
+              signInPayload.user = {
+                id: user._id,
+                token,
+                username,
+              };
+              return signInPayload;
             } else {
-                signInPayload.error  = {
-                    message: 'invalid password',
-                    name: 'PassswordError'
-                }
-                signInPayload.success = false;
-                return signInPayload;
+              signInPayload.error = {
+                message: "invalid password",
+                name: "PassswordError",
+              };
+              signInPayload.success = false;
+              return signInPayload;
             }
 
         } else {
