@@ -33,6 +33,7 @@ async function signUp(args, req) {
                 message: 'username name already in use',
                 name: 'NameExist'
             };
+            signUpPayload.success = false;
             return signUpPayload;
         }
     } catch (error) {
@@ -40,6 +41,7 @@ async function signUp(args, req) {
             message: error.message,
             name: error.code
         }
+        signUpPayload.success = false;
         return signUpPayload;
 
     }

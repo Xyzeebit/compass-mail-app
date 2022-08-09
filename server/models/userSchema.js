@@ -15,11 +15,6 @@ const contactSchema = new mongoose.Schema({
 })
 
 const userSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-    trim: true,
-  },
   firstName: {
     type: String,
     required: true,

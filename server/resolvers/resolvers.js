@@ -31,6 +31,7 @@ const mutations = {
               };
             }
             return payload;
+            
         },
         async signIn(parent, args) {
             const payload = {};
