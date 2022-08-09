@@ -160,6 +160,13 @@ export default function Auth() {
       }
     }
 
+    useEffect(() => {
+      if(formType === 'signup') {
+        document.title = 'Compass | Register account';
+      } else {
+        document.title = 'Compass | Log in to your account';
+      }
+    }, [])
   
 
     return (
@@ -364,7 +371,8 @@ const AuthLoading = () => {
       navigate('/inbox');
     }, 5000);
     return () => clearTimeout(timer);
-  })
+  }, []);
+
   return (
     <div className="auth-loading flex-center flex-column" ref={loaderRef}>
       <Loader />

@@ -22,7 +22,7 @@ async function signUp(args, req) {
             };
             const token = sign(payload);
             signUpPayload.token = token;
-            signUpPayload.successful = true;
+            signUpPayload.success = true;
             return signUpPayload;
         } else {
             signUpPayload.error = {
@@ -59,26 +59,31 @@ async function signIn(args) {
                 };
                 const token = sign(payload);
                 signInPayload.token = token;
-                signInPayload.successful = true;
+                signInPayload.success = true;
                 return signInPayload;
             } else {
                 signInPayload.error  = {
                     message: 'invalid password',
                     name: 'PassswordError'
                 }
+                signInPayload.success = false;
                 return signInPayload;
             }
 
         } else {
             signInPayload.error = {
-                message: 'Cannot fine use with ' + username
+                message: 'Cannot fine use with ' + username,
+                name: 'UnknownUser'
             }
+            signInPayload.success = false;
             return signInPayload;
         }
     } catch (error) {
         signInPayload.error = {
-            message: error.message
+            message: error.message,
+            name: error.code
         }
+        signInPayload.success = false;
         return signInPayload;
     }
 }

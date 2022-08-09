@@ -15,5 +15,5 @@ input SignInInput {
 }
 
 type AuthUserPayload {
-    successful: Boolean!
+    success: Boolean!
 }

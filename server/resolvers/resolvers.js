@@ -19,7 +19,9 @@ const mutations = {
             return await auth.signUp(args);
         },
         async signIn(parent, args) {
-            return await auth.signIn(args);
+            const payload = {};
+            const response = await auth.signIn(args);
+            return { success: true }
         },
 
         // DateTime: new GraphQLScalarType({
