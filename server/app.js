@@ -11,8 +11,8 @@ const { graphqlHTTP } = require('express-graphql');
 const mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise;
-const mongoDB = 'mongodb://localhost:27017/mailbox_db';
-mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
+const mongoURI = 'mongodb://localhost:27017/mailbox_db';
+mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
@@ -28,7 +28,7 @@ const schema = loadSchemaSync(path.join(__dirname, './graphql/schema.gql'), {
 // Add resolvers to the schema
 const schemaWithResolvers = addResolversToSchema({
     schema,
-    resolvers
+    resolvers,
 });
 
 var indexRouter = require('./routes/index');

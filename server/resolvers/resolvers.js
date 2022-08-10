@@ -17,9 +17,8 @@ const mutations = {
     Mutation: {
         async signUp(parent, args) {
             
-            const payload = {};
-            const response = await auth.signUp(args);
-            return response;
+            const payload = await auth.signUp(args);
+            return payload;
         },
         async signIn(parent, args) {
             const payload = await auth.signIn(args);
