@@ -3,6 +3,8 @@ import { useLocation, Link, useNavigate } from "react-router-dom";
 import { IoEye, IoEyeOff } from 'react-icons/io5';
 import Loader from '../components/Loader';
 
+import { useQuery, gql } from '@apollo/client';
+
 import '../styles/auth.css';
 
 export default function Auth() {
@@ -355,9 +357,17 @@ export default function Auth() {
     );
 }
 
+const GET_USERNAME = gql`
+    query getName {
+      username
+    }
+  `;
+
 const AuthLoading = () => {
   const loaderRef = useRef(null);
   const navigate = useNavigate();
+  const { loading, error, data } = useQuery(GET_USERNAME);
+
   useEffect(() => {
     const timer = setTimeout(() => {
       loaderRef.current.classList.add("auth-spread");
@@ -366,16 +376,19 @@ const AuthLoading = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      navigate('/inbox');
-    }, 5000);
-    return () => clearTimeout(timer);
-  }, []);
+  // useEffect(() => {
+  //   const timer = setTimeout(() => {
+  //     // navigate('/inbox');
+  //   }, 5000);
+  //   return () => clearTimeout(timer);
+  // }, [navigate]);
 
   return (
     <div className="auth-loading flex-center flex-column" ref={loaderRef}>
       <Loader />
+      {loading && <p>Loading...</p>}
+      {error && <p>{error.message}</p>}
+      {data && <p>Username: { data.username }</p>}
     </div>
   )
 }
