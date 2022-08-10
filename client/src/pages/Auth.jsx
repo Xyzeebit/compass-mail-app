@@ -434,12 +434,14 @@ const AuthSignIn = ({ username, password }) => {
     });
   }, [username, password, login]);
 
+
   return (
     <div className="auth-loading flex-center flex-column" ref={loaderRef}>
       <Loader />
       {loading && <p>Loading...</p>}
       {error && <p>{error.message}</p>}
-      {data && data.error ? <p>{data.error.message}</p> : <p>{data.user.token}</p>}
+      {(data && data.success === false) && <p>{data.error.message}</p>}
+      {(data && data.success) && <p>{data.user.token}</p>}
     </div>
   );
 }
