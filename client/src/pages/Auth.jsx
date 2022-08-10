@@ -413,15 +413,24 @@ const AuthSignUp = ({ firstName, lastName, username, password }) => {
 const AuthSignIn = ({ username, password }) => {
    const loaderRef = useRef(null);
    const navigate = useNavigate();
-  const [signIn, { loading, error, data }] = useMutation(SIGN_IN);
+  const [login, { loading, error, data }] = useMutation(SIGN_IN);
 
   useEffect(() => {
+    
     const timer = setTimeout(() => {
       loaderRef.current.classList.add("auth-spread");
     }, 10);
 
     return () => clearTimeout(timer);
   }, []);
+
+  useEffect(() => {
+    login({
+      variables: {
+        input: { username, password }
+      }
+    });
+  }, [username, password, login]);
 
   return (
     <div className="auth-loading flex-center flex-column" ref={loaderRef}>

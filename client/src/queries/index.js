@@ -7,7 +7,7 @@ export const GET_USERNAME = gql`
 `;
 
 export const SIGN_IN = gql`
-    mutation signin($input: SignInInput!) {
+    mutation signIn($input: SignInInput!) {
         signIn(input: $input) {
             success
             error {
