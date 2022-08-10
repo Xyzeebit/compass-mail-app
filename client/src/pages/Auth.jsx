@@ -447,8 +447,8 @@ const AuthSignIn = ({ username, password }) => {
 
   return (
     <div className="auth-loading flex-center flex-column" ref={loaderRef}>
-      <Loader />
-      {loading && <p>Loading...</p>}
+      {loading && <Loader />}
+      
       {error && <p>{error.message}</p>}
       {user.token &&
         (<>
