@@ -3,7 +3,8 @@ import { useLocation, Link, useNavigate } from "react-router-dom";
 import { IoEye, IoEyeOff } from 'react-icons/io5';
 import Loader from '../components/Loader';
 
-import { useQuery, gql } from '@apollo/client';
+import { useQuery, useMutation } from '@apollo/client';
+import { GET_USERNAME, SIGN_IN } from "../queries";
 
 import '../styles/auth.css';
 
@@ -29,6 +30,8 @@ export default function Auth() {
   const [tac, setTac] = useState(false);
   const [tacError, setTacError] = useState(false);
   const [canSubmit, setCanSubmit] = useState(false);
+
+  const [authData, setAuthData] = useState({});
 
   const passwordRef = useRef(null);
   const cpasswordRef = useRef(null);
@@ -147,6 +150,13 @@ export default function Auth() {
           setCanSubmit(false);
         } else {
           if (tac) {
+            setAuthData({
+              firstName,
+              lastName,
+              username,
+              password,
+              type: 'signup'
+            });
             setCanSubmit(true);
           } else {
             setTacError(true)
@@ -157,6 +167,11 @@ export default function Auth() {
         if (!username || usernameError || !password || passwordError) {
           setCanSubmit(false);
         } else {
+          setAuthData({
+            username,
+            password,
+            type: 'signin'
+          });
           setCanSubmit(true);
         }
       }
@@ -350,23 +365,25 @@ export default function Auth() {
             </p>
           )}
 
-          {canSubmit && <AuthLoading />}
+          {canSubmit &&
+            (<>
+            {authData.type === "signin" ?
+              (<AuthSignIn {...authData} />) :
+              (<AuthSignUp {...authData} />)
+            }
+            </>)
+          }
 
         </form>
       </div>
     );
 }
 
-const GET_USERNAME = gql`
-    query getName {
-      username
-    }
-  `;
-
-const AuthLoading = () => {
+const AuthSignUp = ({ firstName, lastName, username, password }) => {
   const loaderRef = useRef(null);
   const navigate = useNavigate();
-  const { loading, error, data } = useQuery(GET_USERNAME);
+  // const { type, username, password, firstName, lastName } = authData;
+  
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -385,10 +402,35 @@ const AuthLoading = () => {
 
   return (
     <div className="auth-loading flex-center flex-column" ref={loaderRef}>
+        <Loader />
+        {/* {loading && <p>Loading...</p>}
+        {error && <p>{error.message}</p>}
+        {data && <p>Username: {data.username}</p>} */}
+      </div>
+    );
+}
+
+const AuthSignIn = ({ username, password }) => {
+   const loaderRef = useRef(null);
+   const navigate = useNavigate();
+  const [signIn, { loading, error, data }] = useMutation(SIGN_IN);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      loaderRef.current.classList.add("auth-spread");
+    }, 10);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  return (
+    <div className="auth-loading flex-center flex-column" ref={loaderRef}>
       <Loader />
       {loading && <p>Loading...</p>}
       {error && <p>{error.message}</p>}
-      {data && <p>Username: { data.username }</p>}
+      {data && <p>ID: { data.id }</p>}
+      {data && <p>Username: {data.username }</p>}
+      {data && <p>Token: <code>{ data.token }</code></p>}
     </div>
-  )
+  );
 }

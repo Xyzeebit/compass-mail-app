@@ -64,8 +64,8 @@
     outline: none;
     border: none;
 }
-.auth form input[type="checkbox"]:checked {
-    /* filter: invert(1) hue-rotate(18deg); */
+.auth form input[type="checkbox"] {
+    accent-color: var(--primary);
 }
 .p-error-text {
     color: #f44336;
