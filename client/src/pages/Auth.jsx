@@ -415,6 +415,8 @@ const AuthSignIn = ({ username, password }) => {
    const navigate = useNavigate();
   const [login, { loading, error, data }] = useMutation(SIGN_IN);
 
+  console.log(data)
+
   useEffect(() => {
     
     const timer = setTimeout(() => {
@@ -437,9 +439,7 @@ const AuthSignIn = ({ username, password }) => {
       <Loader />
       {loading && <p>Loading...</p>}
       {error && <p>{error.message}</p>}
-      {data && <p>ID: { data.id }</p>}
-      {data && <p>Username: {data.username }</p>}
-      {data && <p>Token: <code>{ data.token }</code></p>}
+      {data && data.error ? <p>{data.error.message}</p> : <p>{data.user.token}</p>}
     </div>
   );
 }
