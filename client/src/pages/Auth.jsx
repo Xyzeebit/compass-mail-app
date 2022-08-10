@@ -414,8 +414,7 @@ const AuthSignIn = ({ username, password }) => {
    const loaderRef = useRef(null);
    const navigate = useNavigate();
   const [login, { loading, error, data }] = useMutation(SIGN_IN);
-
-  console.log(data)
+  const [user, setUser] = useState({ token: '' });
 
   useEffect(() => {
     
@@ -434,14 +433,31 @@ const AuthSignIn = ({ username, password }) => {
     });
   }, [username, password, login]);
 
+  useEffect(() => {
+    if (data) {
+      if(data.signIn.success) {
+        setUser({
+          token: data.signIn.user.token,
+          id: data.signIn.user.id
+        })
+      }
+    }
+  }, [data]);
+
 
   return (
     <div className="auth-loading flex-center flex-column" ref={loaderRef}>
       <Loader />
       {loading && <p>Loading...</p>}
       {error && <p>{error.message}</p>}
-      {(data && data.success === false) && <p>{data.error.message}</p>}
-      {(data && data.success) && <p>{data.user.token}</p>}
+      {user.token &&
+        (<>
+          <p>{username}</p>
+          <p>{user.id}</p>
+          <p>{user.token}</p>
+        </>)
+      }
+      
     </div>
   );
 }
