@@ -1,10 +1,10 @@
 import { useState, useEffect, useRef } from "react";
 import { useLocation, Link, useNavigate } from "react-router-dom";
-import { IoCheckmark, IoEye, IoEyeOff, IoWarningOutline, IoWarningSharp } from 'react-icons/io5';
+import { IoEye, IoEyeOff } from 'react-icons/io5';
 import Loader from '../components/Loader';
 
-import { useQuery, useMutation } from '@apollo/client';
-import { GET_USERNAME, SIGN_IN } from "../queries";
+import { useMutation } from '@apollo/client';
+import { SIGN_IN, SIGN_UP } from "../queries";
 
 import '../styles/auth.css';
 
@@ -158,6 +158,7 @@ export default function Auth() {
               password,
               type: 'signup'
             });
+            setAuthError({ error: false, message: "" });
             setCanSubmit(true);
           } else {
             setTacError(true)
@@ -173,18 +174,29 @@ export default function Auth() {
             password,
             type: 'signin'
           });
+          setAuthError({ error: false, message: '' });
           setCanSubmit(true);
         }
       }
     }
 
-    useEffect(() => {
-      if(formType === 'signup') {
-        document.title = 'Compass | Register account';
-      } else {
-        document.title = 'Compass | Log in to your account';
-      }
-    }, [])
+  useEffect(() => {
+    if (formType === 'signup') {
+      document.title = 'Compass | Register account';
+    } else {
+      document.title = 'Compass | Log in to your account';
+    }
+  }, [formType]);
+
+  useEffect(() => {
+    if (authError.error) {
+      var timerError = setTimeout(() => {
+        setCanSubmit(false);
+        // setAuthError({ error: false, message: '' });
+      }, 1000);
+    }
+    return () => clearTimeout(timerError);
+  }, [authError.error]);
   
 
     return (
@@ -345,7 +357,13 @@ export default function Auth() {
                   </Link>
                 </label>
               </div>
-              {(tacError && (tac === false)) ? <p className="p-error-text">You must agree to the terms and conditions</p> : <span></span>}
+              {tacError && tac === false ? (
+                <p className="p-error-text">
+                  You must agree to the terms and conditions
+                </p>
+              ) : (
+                <span></span>
+              )}
             </div>
           )}
 
@@ -366,26 +384,32 @@ export default function Auth() {
             </p>
           )}
 
-          {canSubmit &&
-            (<>
-            {authData.type === "signin" ?
-              (<AuthSignIn {...authData} />) :
-              (<AuthSignUp {...authData} />)
-            }
-            </>)
-          }
+          {canSubmit && (
+            <>
+              {authData.type === "signin" ? (
+                <AuthSignIn {...authData} setAuthError={setAuthError} />
+              ) : (
+                <AuthSignUp {...authData} setAuthError={setAuthError} />
+              )}
+            </>
+          )}
 
-          {authError.error && <NotificationBubble isError={authError.error} message={authError.message} />}
-
+          {authError.error && (
+            <NotificationBubble
+              isError={authError.error}
+              message={authError.message}
+            />
+          )}
         </form>
       </div>
     );
 }
 
-const AuthSignUp = ({ firstName, lastName, username, password }) => {
+const AuthSignUp = ({ firstName, lastName, username, password, setAuthError }) => {
   const loaderRef = useRef(null);
   const navigate = useNavigate();
-  // const { type, username, password, firstName, lastName } = authData;
+  const [signup, { loading, error, data }] = useMutation(SIGN_UP);
+  const [user, setUser] = useState({ token: "" });
   
 
   useEffect(() => {
@@ -396,19 +420,39 @@ const AuthSignUp = ({ firstName, lastName, username, password }) => {
     return () => clearTimeout(timer);
   }, []);
 
-  // useEffect(() => {
-  //   const timer = setTimeout(() => {
-  //     // navigate('/inbox');
-  //   }, 5000);
-  //   return () => clearTimeout(timer);
-  // }, [navigate]);
+  useEffect(() => {
+    signup({
+      variables: {
+        input: { username, password, firstName, lastName },
+      },
+    });
+  }, [username, password, firstName, lastName, signup]);
+
+  useEffect(() => {
+    if (data) {
+      if (data.signUp.success) {
+        setUser({
+          token: data.signUp.user.token,
+          id: data.signUp.user.id,
+        });
+        setupLocalStorage(data.signUp.user.token);
+        navigate('/inbox');
+      } else {
+        setAuthError({ error: true, message: data.signUp.error.message });
+      }
+    }
+  }, [data, setAuthError, navigate]);
+
+  useEffect(() => {
+    if (error) {
+      setAuthError({ error: true, message: error.message });
+    }
+  }, [error, setAuthError]);
 
   return (
     <div className="auth-loading flex-center flex-column" ref={loaderRef}>
-        <Loader />
-        {/* {loading && <p>Loading...</p>}
-        {error && <p>{error.message}</p>}
-        {data && <p>Username: {data.username}</p>} */}
+        {loading && <Loader />}
+        
       </div>
     );
 }
@@ -442,12 +486,14 @@ const AuthSignIn = ({ username, password, setAuthError }) => {
         setUser({
           token: data.signIn.user.token,
           id: data.signIn.user.id
-        })
+        });
+        setupLocalStorage(data.signIn.user.token);
+        navigate("/inbox");
       } else {
-        setAuthError({ error: true, message: data.error.message });
+        setAuthError({ error: true, message: data.signIn.error.message });
       }
     }
-  }, [data, setAuthError]);
+  }, [data, setAuthError, navigate]);
 
   useEffect(() => {
     if (error) {
@@ -460,14 +506,14 @@ const AuthSignIn = ({ username, password, setAuthError }) => {
     <div className="auth-loading flex-center flex-column" ref={loaderRef}>
       {loading && <Loader />}
       
-      {error && <p>{error.message}</p>}
+      {/* {error && <p>{error.message}</p>}
       {user.token &&
         (<>
           <p>{username}</p>
           <p>{user.id}</p>
           <p>{user.token}</p>
         </>)
-      }
+      } */}
       
     </div>
   );
@@ -492,4 +538,8 @@ function NotificationBubble({ isError, message }) {
       {message}
     </div>
   );
+}
+
+function setupLocalStorage(token) {
+  localStorage.setItem('compass', JSON.stringify({ token }));
 }
