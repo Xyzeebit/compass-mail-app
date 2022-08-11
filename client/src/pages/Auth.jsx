@@ -32,6 +32,7 @@ export default function Auth() {
   const [canSubmit, setCanSubmit] = useState(false);
 
   const [authData, setAuthData] = useState({});
+  const [authError, setAuthError] = useState({ error: false, message: '' });
 
   const passwordRef = useRef(null);
   const cpasswordRef = useRef(null);
@@ -374,6 +375,8 @@ export default function Auth() {
             </>)
           }
 
+          {<NotificationBubble isError={true} message="Invalid username or password" />}
+
         </form>
       </div>
     );
@@ -458,6 +461,27 @@ const AuthSignIn = ({ username, password }) => {
         </>)
       }
       
+    </div>
+  );
+}
+
+function NotificationBubble({ isError, message }) {
+  const notification = useRef(null);
+  useEffect(() => {
+    const timeIn = setTimeout(() => {
+      notification.current.classList.add('show-notification')
+    }, 50);
+    const timeOut = setTimeout(() => {
+      notification.current.classList.remove('show-notification')
+    }, 5000);
+    return () => {
+      clearTimeout(timeIn);
+      clearTimeout(timeOut);
+    }
+  }, []);
+  return (
+    <div className={`${isError ? 'error-bubble' : ''} notification-bubble`} ref={notification}>
+      {message}
     </div>
   );
 }

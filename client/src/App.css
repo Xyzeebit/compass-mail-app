@@ -1,3 +1,10 @@
+:root {
+  --secondary: #f44336;
+  --gray: #e3e2e7;
+  --primary: #0e1ac1;
+  --primary-light: #3940a7e0;
+}
+
 * {
   box-sizing: border-box;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
