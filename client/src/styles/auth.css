@@ -143,3 +143,9 @@
     background-color: var(--secondary-light);
     color: #ffffff;
 }
+
+.auth-logo {
+    position: absolute;
+    left: 20px;
+    top: 20px;
+}

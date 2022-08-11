@@ -7,6 +7,7 @@ import { useMutation } from '@apollo/client';
 import { SIGN_IN, SIGN_UP } from "../queries";
 
 import '../styles/auth.css';
+import logo from '../images/logo-w.png';
 
 export default function Auth() {
   const [firstName, setFirstName] = useState('');
@@ -400,6 +401,14 @@ export default function Auth() {
               message={authError.message}
             />
           )}
+
+          {<img
+            src={logo}
+            alt="Logo on authentication page"
+            width={40}
+            height={40}
+            className="spin auth-logo"
+          />}
         </form>
       </div>
     );
@@ -435,13 +444,13 @@ const AuthSignUp = ({ firstName, lastName, username, password, setAuthError }) =
           token: data.signUp.user.token,
           id: data.signUp.user.id,
         });
-        setupLocalStorage(data.signUp.user.token);
+        setupLocalStorage(data.signUp.user.token, username);
         navigate('/inbox');
       } else {
         setAuthError({ error: true, message: data.signUp.error.message });
       }
     }
-  }, [data, setAuthError, navigate]);
+  }, [data, username, setAuthError, navigate]);
 
   useEffect(() => {
     if (error) {
@@ -487,13 +496,13 @@ const AuthSignIn = ({ username, password, setAuthError }) => {
           token: data.signIn.user.token,
           id: data.signIn.user.id
         });
-        setupLocalStorage(data.signIn.user.token);
+        setupLocalStorage(data.signIn.user.token, username);
         navigate("/inbox");
       } else {
         setAuthError({ error: true, message: data.signIn.error.message });
       }
     }
-  }, [data, setAuthError, navigate]);
+  }, [data, username,  setAuthError, navigate]);
 
   useEffect(() => {
     if (error) {
@@ -540,6 +549,6 @@ function NotificationBubble({ isError, message }) {
   );
 }
 
-function setupLocalStorage(token) {
-  localStorage.setItem('compass', JSON.stringify({ token }));
+function setupLocalStorage(token, username) {
+  localStorage.setItem('compass', JSON.stringify({ token, username }));
 }
