@@ -1,6 +1,6 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 import './App.css';
-import './styles/list.css';
+// import './styles/list.css';
 // import {useQuery, gql} from '@apollo/client';
 
 
