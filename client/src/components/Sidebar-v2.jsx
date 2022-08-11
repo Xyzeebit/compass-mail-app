@@ -37,7 +37,7 @@ export default function Sidebar({ sidebar, dispatch }) {
           height="50"
           className="spin sidebar-logo"
         />
-        <nav className={open ? "expand" : ""} onClick={closeSidebar}>
+        <nav className={`${open ? "expand" : ""} flex-center flex-column`} onClick={closeSidebar}>
           <NavLink
             to="/inbox"
             title="Inbox mail"
@@ -103,7 +103,7 @@ export default function Sidebar({ sidebar, dispatch }) {
             </div>
             <p>Trash</p>
           </NavLink>
-          <hr />
+          
           <button className="contact-button" onClick={showContacts}>
             <IoMdContacts size={20} />
             <span>Contacts</span>

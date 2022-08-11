@@ -2,4 +2,14 @@
 aside.sidebar {
     background-color: var(--primary-dark);
     color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+}
+
+@media screen and (min-width: 761px) {
+    aside.sidebar {
+        height: 100vh;
+    }
 }
