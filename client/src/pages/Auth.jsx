@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { useLocation, Link, useNavigate } from "react-router-dom";
-import { IoEye, IoEyeOff } from 'react-icons/io5';
+import { IoCheckmark, IoEye, IoEyeOff, IoWarningOutline, IoWarningSharp } from 'react-icons/io5';
 import Loader from '../components/Loader';
 
 import { useQuery, useMutation } from '@apollo/client';
@@ -375,7 +375,7 @@ export default function Auth() {
             </>)
           }
 
-          {<NotificationBubble isError={true} message="Invalid username or password" />}
+          {authError.error && <NotificationBubble isError={authError.error} message={authError.message} />}
 
         </form>
       </div>
@@ -413,7 +413,7 @@ const AuthSignUp = ({ firstName, lastName, username, password }) => {
     );
 }
 
-const AuthSignIn = ({ username, password }) => {
+const AuthSignIn = ({ username, password, setAuthError }) => {
    const loaderRef = useRef(null);
    const navigate = useNavigate();
   const [login, { loading, error, data }] = useMutation(SIGN_IN);
@@ -443,9 +443,17 @@ const AuthSignIn = ({ username, password }) => {
           token: data.signIn.user.token,
           id: data.signIn.user.id
         })
+      } else {
+        setAuthError({ error: true, message: data.error.message });
       }
     }
-  }, [data]);
+  }, [data, setAuthError]);
+
+  useEffect(() => {
+    if (error) {
+      setAuthError({ error: true, message: error.message })
+    }
+  }, [error, setAuthError]);
 
 
   return (
