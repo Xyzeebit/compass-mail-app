@@ -17,16 +17,16 @@ aside.sidebar {
 @media screen and (max-width: 746px) {
     aside.sidebar {
         right: 0;
-        bottom: 300px;
+        bottom: 200px;
         align-items: flex-start;
-        justify-content: space-between;
+        justify-content: flex-start;
 
     }
     nav {
-        margin-block-start: 1rem;
+        margin-block-start: 1.5rem;
     }
     nav a {
-        width: 9rem;
+        width: 9rem !important;
     }
 }
 

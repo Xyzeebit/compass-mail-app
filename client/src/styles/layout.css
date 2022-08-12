@@ -3,4 +3,14 @@
   width: 100vw;
   height: 100vh;
   overflow: hidden;
+  background-color: var(--primary-dark);
+}
+.container {
+    background-color: #ffffff;
+    position: relative;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
