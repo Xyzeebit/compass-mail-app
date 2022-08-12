@@ -9,6 +9,7 @@ import { IoSend, IoStar } from "react-icons/io5";
 
 // IoMdContact
 import { RiDraftFill, RiSpam2Fill } from "react-icons/ri";
+import NavButton from './NavButton';
 
 
 
@@ -38,7 +39,11 @@ export default function Sidebar({ sidebar, dispatch }) {
           className="spin sidebar-logo"
         />
         <nav className={`${open ? "expand" : ""} flex-center flex-column`} onClick={closeSidebar}>
-          <NavLink
+
+          <NavButton link="/inbox" label={"inbox"} title="Inbox mail">
+            <GoInbox size={20} />
+          </NavButton>
+          {/* <NavLink
             to="/inbox"
             title="Inbox mail"
             className={({ isActive }) => (isActive ? "active" : "")}
@@ -107,7 +112,7 @@ export default function Sidebar({ sidebar, dispatch }) {
           <button className="contact-button" onClick={showContacts}>
             <IoMdContacts size={20} />
             <span>Contacts</span>
-          </button>
+          </button> */}
         </nav>
       </aside>
     );
