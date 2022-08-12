@@ -15,8 +15,8 @@ import NavButton from './NavButton';
 
 export default function Sidebar({ sidebar, dispatch }) {
     const navigate = useNavigate();
-  const [expand, setExpand] = useState(false);
-    const { open } = sidebar;
+  // const [expand, setExpand] = useState(false);
+    const { open, expand, dropdown } = sidebar;
 
     const handleCompose = () => {
       navigate("/compose");
@@ -30,7 +30,7 @@ export default function Sidebar({ sidebar, dispatch }) {
       dispatch({ type: "SHOW_CONTACTS" });
     };
     return (
-      <aside className="sidebar">
+      <aside className="sidebar" style={{ }}>
         <img
           src={logo}
           alt="Compass Logo"
@@ -42,12 +42,12 @@ export default function Sidebar({ sidebar, dispatch }) {
         <button
           className='expand-button flex-center'
           title={expand ? 'Collapse menu' : 'Expand menu'}
-          onClick={() => setExpand(!expand)}>
+          onClick={() => dispatch({ type: 'EXPAND' })}>
           <IoMdExpand size={20} />
         </button>
 
-        <button className={`mb-sideber-button`}>
-          <IoMdMenu size={20} />
+        <button className={`mb-sideber-button`} onClick={() => dispatch({ type: 'EXPAND'})}>
+          <IoMdMenu size={25} />
         </button>
 
         <nav
