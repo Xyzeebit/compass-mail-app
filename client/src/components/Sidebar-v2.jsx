@@ -1,11 +1,11 @@
 import logo from '../images/logo-w.png';
-
+import { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import style from "../styles/sidebar.css";
 import compose_image from "../compose-icon.png";
 import { GoInbox } from "react-icons/go";
-import { IoMdContact, IoMdContacts, IoMdTrash } from "react-icons/io";
-import { IoSend, IoStar } from "react-icons/io5";
+import { IoMdContact, IoMdContacts, IoMdExpand, IoMdMenu, IoMdTrash } from "react-icons/io";
+import { IoExpand, IoExpandSharp, IoMenu, IoSend, IoStar } from "react-icons/io5";
 
 // IoMdContact
 import { RiDraftFill, RiSpam2Fill } from "react-icons/ri";
@@ -15,7 +15,7 @@ import NavButton from './NavButton';
 
 export default function Sidebar({ sidebar, dispatch }) {
     const navigate = useNavigate();
-
+  const [expand, setExpand] = useState(false);
     const { open } = sidebar;
 
     const handleCompose = () => {
@@ -38,6 +38,18 @@ export default function Sidebar({ sidebar, dispatch }) {
           height="50"
           className="spin sidebar-logo"
         />
+
+        <button
+          className='expand-button flex-center'
+          title={expand ? 'Collapse menu' : 'Expand menu'}
+          onClick={() => setExpand(!expand)}>
+          <IoMdExpand size={20} />
+        </button>
+
+        <button>
+          <IoMdMenu />
+        </button>
+
         <nav
           className={`${open ? "expand" : ""} flex-center flex-column`}
           onClick={closeSidebar}
@@ -46,7 +58,7 @@ export default function Sidebar({ sidebar, dispatch }) {
             link="/inbox"
             label={"Inbox"}
             title="Inbox mail"
-            expand={false}
+            expand={expand}
           >
             <GoInbox size={20} />
           </NavButton>
@@ -55,7 +67,7 @@ export default function Sidebar({ sidebar, dispatch }) {
             link="/starred"
             label={"Starred"}
             title="Starred mail"
-            expand={false}
+            expand={expand}
           >
             <IoStar size={20} />
           </NavButton>
@@ -64,7 +76,7 @@ export default function Sidebar({ sidebar, dispatch }) {
             link="/outbox"
             label={"Outbox"}
             title="Outbox"
-            expand={false}
+            expand={expand}
           >
             <IoSend size={20} />
           </NavButton>
@@ -73,7 +85,7 @@ export default function Sidebar({ sidebar, dispatch }) {
             link="/drafts"
             label={"Drafts"}
             title="Drafts"
-            expand={false}
+            expand={expand}
           >
             <RiDraftFill size={20} />
           </NavButton>
@@ -82,7 +94,7 @@ export default function Sidebar({ sidebar, dispatch }) {
             link="/spam"
             label={"Spam"}
             title="Spam mail"
-            expand={false}
+            expand={expand}
           >
             <RiSpam2Fill size={20} />
           </NavButton>
@@ -91,7 +103,7 @@ export default function Sidebar({ sidebar, dispatch }) {
             link="/trash"
             label={"Trash"}
             title="Trash"
-            expand={false}
+            expand={expand}
           >
             <IoMdTrash size={20} />
           </NavButton>

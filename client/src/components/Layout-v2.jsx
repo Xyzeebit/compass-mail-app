@@ -5,7 +5,7 @@ import Mail from './Mail';
 
 export default function Layout({ sidebar, dispatch }) {
     return (
-        <div className="layout flex-center flex-column">
+        <div className="layout">
             <Sidebar sidebar={sidebar} dispatch={dispatch} />
             <Mail />
         </div>
