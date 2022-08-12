@@ -32,6 +32,9 @@ a {
   justify-content: space-between;
   /* height: 100vh; */
   /* overflow-y: auto; */ 
+  /* height: 100vh;
+  overflow: hidden; */
+  
 }
 .spin {
   -webkit-animation: spin 60000ms linear infinite;

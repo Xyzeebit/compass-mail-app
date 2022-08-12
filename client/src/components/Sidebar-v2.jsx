@@ -46,7 +46,7 @@ export default function Sidebar({ sidebar, dispatch }) {
             link="/inbox"
             label={"Inbox"}
             title="Inbox mail"
-            expand={true}
+            expand={false}
           >
             <GoInbox size={20} />
           </NavButton>
@@ -55,7 +55,7 @@ export default function Sidebar({ sidebar, dispatch }) {
             link="/starred"
             label={"Starred"}
             title="Starred mail"
-            expand={true}
+            expand={false}
           >
             <IoStar size={20} />
           </NavButton>
@@ -64,7 +64,7 @@ export default function Sidebar({ sidebar, dispatch }) {
             link="/outbox"
             label={"Outbox"}
             title="Outbox"
-            expand={true}
+            expand={false}
           >
             <IoSend size={20} />
           </NavButton>
@@ -73,7 +73,7 @@ export default function Sidebar({ sidebar, dispatch }) {
             link="/drafts"
             label={"Drafts"}
             title="Drafts"
-            expand={true}
+            expand={false}
           >
             <RiDraftFill size={20} />
           </NavButton>
@@ -82,7 +82,7 @@ export default function Sidebar({ sidebar, dispatch }) {
             link="/spam"
             label={"Spam"}
             title="Spam mail"
-            expand={true}
+            expand={false}
           >
             <RiSpam2Fill size={20} />
           </NavButton>
@@ -91,7 +91,7 @@ export default function Sidebar({ sidebar, dispatch }) {
             link="/trash"
             label={"Trash"}
             title="Trash"
-            expand={true}
+            expand={false}
           >
             <IoMdTrash size={20} />
           </NavButton>
