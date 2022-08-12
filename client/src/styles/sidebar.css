@@ -31,6 +31,16 @@ aside.sidebar {
     .expand-button {
         display: none;
     }
+    .mb-sideber-button {
+        position: fixed;
+        top: 25px;
+        right: 20px;
+        background: none;
+        padding: 5px;
+        outline: #ffffff;
+        border: none;
+        color: #fff;
+    }
 }
 
 @media screen and (min-width: 761px) {
@@ -48,6 +58,9 @@ aside.sidebar {
     }
     .expand-button:hover {
         background-color: var(--primary-light);
+    }
+    .mb-sideber-button {
+        display: none;
     }
 }
 

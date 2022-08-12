@@ -46,8 +46,8 @@ export default function Sidebar({ sidebar, dispatch }) {
           <IoMdExpand size={20} />
         </button>
 
-        <button>
-          <IoMdMenu />
+        <button className={`mb-sideber-button`}>
+          <IoMdMenu size={20} />
         </button>
 
         <nav
