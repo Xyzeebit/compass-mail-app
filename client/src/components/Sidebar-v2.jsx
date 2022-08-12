@@ -39,6 +39,8 @@ export default function Sidebar({ sidebar, dispatch }) {
           className="spin sidebar-logo"
         />
 
+        <h1 className='app-title'>Compass</h1>
+
         <button
           className='expand-button flex-center'
           title={expand ? 'Collapse menu' : 'Expand menu'}

@@ -43,6 +43,7 @@ aside.sidebar {
     }
 }
 
+
 @media screen and (min-width: 761px) {
     aside.sidebar {
         height: 100vh;
