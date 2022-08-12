@@ -38,78 +38,66 @@ export default function Sidebar({ sidebar, dispatch }) {
           height="50"
           className="spin sidebar-logo"
         />
-        <nav className={`${open ? "expand" : ""} flex-center flex-column`} onClick={closeSidebar}>
-
-          <NavButton link="/inbox" label={"inbox"} title="Inbox mail">
+        <nav
+          className={`${open ? "expand" : ""} flex-center flex-column`}
+          onClick={closeSidebar}
+        >
+          <NavButton
+            link="/inbox"
+            label={"Inbox"}
+            title="Inbox mail"
+            expand={true}
+          >
             <GoInbox size={20} />
           </NavButton>
-          {/* <NavLink
-            to="/inbox"
-            title="Inbox mail"
-            className={({ isActive }) => (isActive ? "active" : "")}
-          >
-            <div title="Inbox">
-              <GoInbox size={20} />
-            </div>
-            <p>Inbox</p>
-          </NavLink>
 
-          <NavLink
-            to="/starred"
+          <NavButton
+            link="/starred"
+            label={"Starred"}
             title="Starred mail"
-            className={({ isActive }) => (isActive ? "active" : "")}
+            expand={true}
           >
-            <div title="Starred">
-              <IoStar size={20} />
-            </div>
-            <p>Starred</p>
-          </NavLink>
+            <IoStar size={20} />
+          </NavButton>
 
-          <NavLink
-            to="/outbox"
+          <NavButton
+            link="/outbox"
+            label={"Outbox"}
             title="Outbox"
-            className={({ isActive }) => (isActive ? "active" : "")}
+            expand={true}
           >
-            <div title="Outbox">
-              <IoSend size={20} />
-            </div>
-            <p>Outbox</p>
-          </NavLink>
+            <IoSend size={20} />
+          </NavButton>
 
-          <NavLink
-            to="/drafts"
+          <NavButton
+            link="/drafts"
+            label={"Drafts"}
             title="Drafts"
-            className={({ isActive }) => (isActive ? "active" : "")}
+            expand={true}
           >
-            <div title="Drafts">
-              <RiDraftFill size={20} />
-            </div>
-            <p>Drafts</p>
-          </NavLink>
+            <RiDraftFill size={20} />
+          </NavButton>
 
-          <NavLink
-            to="/spam"
+          <NavButton
+            link="/spam"
+            label={"Spam"}
             title="Spam mail"
-            className={({ isActive }) => (isActive ? "active" : "")}
+            expand={true}
           >
-            <div title="Spam mails">
-              <RiSpam2Fill size={20} />
-            </div>
-            <p>Spam</p>
-          </NavLink>
+            <RiSpam2Fill size={20} />
+          </NavButton>
 
-          <NavLink
-            to="/trash"
+          <NavButton
+            link="/trash"
+            label={"Trash"}
             title="Trash"
-            className={({ isActive }) => (isActive ? "active" : "")}
+            expand={true}
           >
-            <div title="Trash">
-              <IoMdTrash size={20} />
-            </div>
-            <p>Trash</p>
-          </NavLink>
+            <IoMdTrash size={20} />
+          </NavButton>
           
-          <button className="contact-button" onClick={showContacts}>
+          
+          {/* <button className="contact-button" onClick={showContacts}>
             <IoMdContacts size={20} />
             <span>Contacts</span>
           </button> */}
