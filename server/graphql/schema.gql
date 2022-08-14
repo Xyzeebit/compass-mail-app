@@ -1,7 +1,9 @@
 # import SignUpInput, SignInInput, AuthUserPayload from "mutations.gql"
+# import UserPayload from "queries-payload.gql"
 
 type Query {
     username: String!
+    user(username: String!, token: String!): UserPayload!
 }
 
 type Mutation {
