@@ -135,13 +135,17 @@ function sign(payload, cb) {
  * @param token - token to verify
  * @returns boolean
  */
-function verify(token) {
-    const secret = getSecret();
-    jwt.verify(token, secret, (err, decoded) => {
-        if (err) throw new Error({ name: 'JsonWebTokenError', message: 'jwt malformed' });
-        return { username: decoded.username, id: decoded.id }
-    })
+function verifyToken(token, cb) {
+    try {
+        const secret = getSecret();
+        decoded = jwt.verify(token, secret);
+        cb(null, { username: decoded.username, id: decoded.id });
+    } catch (error) {
+        cb(new Error({ name: "JsonWebTokenError", message: "jwt malformed" }));
+    }
 }
+
+const verify = promisify(verifyToken);
 
 async function userExist(username) {
     const user = await User.findOne({ username });

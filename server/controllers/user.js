@@ -8,6 +8,7 @@ async function getUser(args) {
     let decoded;
     try { 
         decoded = await verify(token);
+        console.log(token)
     } catch (error) {
         payload.error = { name: 'JsonWebTokenError', message: 'jwt malformed' }
         payload.success = false;
