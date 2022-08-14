@@ -136,9 +136,7 @@ function sign(payload, cb) {
  * @returns boolean
  */
 function verify(token) {
-    const secret = fs.readFileSync(path.join(__dirname, "secret.txt"), {
-      encoding: "utf-8",
-    });
+    const secret = getSecret();
     jwt.verify(token, secret, (err, decoded) => {
         if (err) throw new Error({ name: 'JsonWebTokenError', message: 'jwt malformed' });
         return { username: decoded.username, id: decoded.id }
