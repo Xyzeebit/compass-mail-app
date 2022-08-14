@@ -33,7 +33,7 @@ const mailboxSchema = new mongoose.Schema({
     },
     time: {
         type: Date,
-        default: Data.now(),
+        default: Date.now(),
     },
 });
 

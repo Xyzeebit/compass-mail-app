@@ -9,7 +9,7 @@ async function getUser(args) {
     try { 
         decoded = await verify(token);
     } catch (error) {
-        payload.error{ name: 'JsonWebTokenError', message: 'jwt malformed' }
+        payload.error = { name: 'JsonWebTokenError', message: 'jwt malformed' }
         payload.success = false;
         return payload
     }
