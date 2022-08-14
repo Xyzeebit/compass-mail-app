@@ -21,6 +21,7 @@ async function getUser(args) {
             payload.user = {
                 id: user._id,
                 username,
+                email: `${username}@compass.com`,
                 created: user.created,
                 firstName: user.firstName,
                 lastName: user.lastName,
