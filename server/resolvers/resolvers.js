@@ -1,4 +1,5 @@
 const auth = require('../controllers/auth');
+const user = require('../controllers/user');
 const { GraphQLScalarType } = require("graphql");
 
 
@@ -6,6 +7,10 @@ const queries = {
     Query: {
         username(parent, args) {
             return 'donald'
+        },
+        async user(parent, args) {
+            const payload = await user.getUser(args);
+            return payload;
         }
 
 

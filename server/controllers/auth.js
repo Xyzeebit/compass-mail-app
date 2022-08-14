@@ -88,7 +88,7 @@ async function signIn(args) {
 
         } else {
             signInPayload.error = {
-                message: 'Cannot fine use with ' + username,
+                message: 'Cannot find user with ' + username,
                 name: 'UnknownUser'
             }
             signInPayload.success = false;

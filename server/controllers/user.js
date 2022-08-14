@@ -19,8 +19,12 @@ async function getUser(args) {
         if (user) {
             payload.success = true;
             payload.user = {
+                id: user._id,
                 username,
-
+                created: user.created,
+                firstName: user.firstName,
+                lastName: user.lastName,
+                contacts: user.contacts
             }
             return payload;
         }
@@ -33,6 +37,10 @@ async function getUser(args) {
         }
         return payload;
     }
-    
+
+}
+
+module.exports = {
+    getUser,
 }
 
