@@ -7,10 +7,6 @@ const messageSchema = new mongoose.Schema({
     },
     to: String,
     forwardedBy: String,
-    created: {
-        type: Date,
-        default: Date.now()
-    },
     subject: {
         type: String,
         required: true
@@ -23,20 +19,49 @@ const messageSchema = new mongoose.Schema({
     read: {
         type: Boolean,
         default: false
-    }
+    },
+    time: {
+        type: Date,
+        default: Data.now()
+    },
 });
 
 const mailboxSchema = new mongoose.Schema({
-    inbox: [messageSchema],
-    outbox: [messageSchema],
-    drafts: [messageSchema],
-    starred: [messageSchema],
-    spam: [messageSchema],
-    trash: [messageSchema],
-    created: {
+    from: {
+        type: String,
+        required: true,
+    },
+    to: String,
+    forwardedBy: String,
+    subject: {
+        type: String,
+        required: true,
+    },
+    body: String,
+    starred: {
+        type: Boolean,
+        default: false,
+    },
+    draft: {
+        type: Boolean,
+        default: false,
+    },
+    spam: {
+        type: Boolean,
+        default: false,
+    },
+    trash: {
+        type: Boolean,
+        default: false,
+    },
+    read: {
+        type: Boolean,
+        default: false,
+    },
+    time: {
         type: Date,
-        default: Date.now()
-    }
+        default: Data.now(),
+    },
 });
 
 module.exports = mongoose.model('MailBox', mailboxSchema);
