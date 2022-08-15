@@ -21,7 +21,7 @@ export default function Userbar({ user, dispatch }) {
               <div className="btn-photo">
                 <IoPerson size={25} color="gray" />
               </div>
-              <span className="btn-name">{user.firstName}</span>
+              {/* <span className="btn-name">{user.firstName}</span> */}
             </button>
           )}
         </div>

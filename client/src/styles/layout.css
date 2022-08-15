@@ -85,11 +85,13 @@
     justify-content: space-between;
     align-items: center;
     border-radius: 20px;
-    background-color: var(--gray);
+    /* background-color: var(--gray); */
     border: none;
+    transition: all 200ms ease;
 }
 .btn-user:hover {
-    background-color: #fff;
+    transform: scale(0.9);
+
 }
 .btn-photo {
     border: 2px solid gray;
