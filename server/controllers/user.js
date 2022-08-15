@@ -46,8 +46,12 @@ async function getUser(args) {
 async function inbox(args) {
     const payload = {};
     try {
-        const { mailId, page } = args;
-        const box = await MailBox.findById(mailId);
+        const { from, page } = args;
+        const box = await MailBox.find({})
+            .where('from').eq(false)
+            .where('isDraft').eq(false)
+            .where('isSpam').eq(false)
+            .select('from to subject body time read');
     } catch (error) {
         payload.success = false;
         payload.error = {

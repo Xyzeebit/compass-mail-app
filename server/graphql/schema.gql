@@ -3,7 +3,7 @@
 
 type Query {
     user(username: String!, token: String!): UserPayload!
-    inbox(mailId: ID!, page: Int!): InboxPayload!
+    inbox(from: String!, page: Int!): InboxPayload!
 }
 
 type Mutation {
