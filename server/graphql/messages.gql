@@ -4,7 +4,6 @@ type Message {
   id: ID!
   to: String
   from: String!
-  forwardedBy: String
   subject: String!
   body: String
   read: Boolean!

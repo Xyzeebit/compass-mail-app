@@ -46,12 +46,27 @@ async function getUser(args) {
 async function inbox(args) {
     const payload = {};
     try {
-        const { from, page } = args;
-        const box = await MailBox.find({})
-            .where('from').eq(false)
-            .where('isDraft').eq(false)
-            .where('isSpam').eq(false)
-            .select('from to subject body time read');
+        const { me, page } = args;
+        const box = await MailBox.find({ to: me })
+            .where('trash').equals(false)
+            .where('draft').equals(false)
+            .where('spam').equals(false)
+            .select('_id from to subject body time read');
+        if (box) {
+            payload.success = true;
+            payload.messages = box.map(i => {
+                return {
+                    id: i._id,
+                    from: i.from,
+                    to: i.to,
+                    subject: i.subject,
+                    body: i.body,
+                    read: i.read,
+                    time: i.time
+                }
+            });
+            return payload;
+        }
     } catch (error) {
         payload.success = false;
         payload.error = {
