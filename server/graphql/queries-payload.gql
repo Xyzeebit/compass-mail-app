@@ -1,4 +1,5 @@
 # import User from "user.gql"
+# import Message from "messages.gql"
 
 type UserPayload {
   success: Boolean!
@@ -7,6 +8,35 @@ type UserPayload {
 }
 
 type ErrorPayload {
-    name: String
-    message: String
+  name: String
+  message: String
+}
+
+type InboxPayload {
+  success: Boolean!
+  error: ErrorPayload
+  messages: [Message!]!
+}
+
+type OutboxPayload {
+  success: Boolean!
+  error: ErrorPayload
+  messages: [Message!]!
+}
+
+type DraftsPayload {
+  success: Boolean!
+  error: ErrorPayload
+  messages: [Message!]!
+}
+type SpamPayload {
+  success: Boolean!
+  error: ErrorPayload
+  messages: [Message!]!
+}
+
+type TrashPayload {
+  success: Boolean!
+  error: ErrorPayload
+  messages: [Message!]!
 }

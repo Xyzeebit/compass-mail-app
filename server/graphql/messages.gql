@@ -1,21 +1,13 @@
 scalar DateTime
 
-interface Message {
-  _id: ID!
-  to: String!
-  from: String!
-  forwardedBy: String
-  subject: String!
-  body: String
-  created: DateTime!
-}
-
-interface DraftsMessage {
-  _id: ID!
+type Message {
+  id: ID!
   to: String
   from: String!
   forwardedBy: String
   subject: String!
   body: String
+  read: Boolean!
   created: DateTime!
 }
+
