@@ -63,7 +63,7 @@
 
 .userbar-header {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
 }
 
@@ -72,17 +72,38 @@
 }
 .search-bar form input {
     width: 100%;
-    height: 2rem;
+    height: 2.8rem;
     border-radius: 5px;
     outline: none;
     background-color: var(--gray);
     border: 1px solid var(--gray);
+    padding-left: 15px;
+}
+
+.btn-user {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 20px;
+    background-color: var(--gray);
+    border: none;
+}
+.btn-user:hover {
+    background-color: #fff;
 }
 .btn-photo {
     border: 2px solid gray;
-    padding: 5px;
+    /* padding: 5px; */
     border-radius: 100px;
-    width: 50px;
-    height: 50px;
-    /* float: right; */
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.btn-name {
+    padding-left: 10px;
+    padding-right: 10px;
+    font-weight: 500;
 }
