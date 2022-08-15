@@ -26,7 +26,8 @@ async function getUser(args) {
                 created: user.created,
                 firstName: user.firstName,
                 lastName: user.lastName,
-                contacts: user.contacts
+                contacts: user.contacts,
+                mailId: user.mailbox
             }
             return payload;
         }
@@ -40,6 +41,20 @@ async function getUser(args) {
         return payload;
     }
 
+}
+
+async function inbox(args) {
+    const payload = {};
+    try {
+        const { mailId, page } = args;
+        const box = await MailBox.findById(mailId);
+    } catch (error) {
+        payload.success = false;
+        payload.error = {
+            name: error.code,
+            message: error.message
+        }
+    }
 }
 
 module.exports = {

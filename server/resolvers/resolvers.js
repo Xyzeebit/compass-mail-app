@@ -5,14 +5,13 @@ const { GraphQLScalarType } = require("graphql");
 
 const queries = {
     Query: {
-        username(parent, args) {
-            return 'donald'
-        },
         async user(parent, args) {
             const payload = await user.getUser(args);
             return payload;
+        },
+        async inbox(parent, args) {
+            return null;
         }
-
 
     }
 }

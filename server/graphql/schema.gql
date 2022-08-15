@@ -1,9 +1,9 @@
 # import SignUpInput, SignInInput, AuthUserPayload from "mutations.gql"
-# import UserPayload from "queries-payload.gql"
+# import UserPayload, InboxPayload, OutboxPayload from "queries-payload.gql"
 
 type Query {
-    username: String!
     user(username: String!, token: String!): UserPayload!
+    inbox(mailId: ID!, page: Int!): InboxPayload!
 }
 
 type Mutation {

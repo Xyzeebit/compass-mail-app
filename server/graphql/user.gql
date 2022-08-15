@@ -4,9 +4,10 @@ scalar DateTime
 
 type User {
     id: ID!
-    firstName: String!,
+    firstName: String!
     lastName: String!
     email: String!
+    mailId: ID!
     username: String!
     contacts: [Contact!]!
     created: DateTime!

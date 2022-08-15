@@ -8,6 +8,6 @@ type Message {
   subject: String!
   body: String
   read: Boolean!
-  created: DateTime!
+  time: DateTime!
 }
 
