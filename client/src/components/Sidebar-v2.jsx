@@ -6,6 +6,8 @@ import compose_image from "../compose-icon.png";
 import { GoInbox } from "react-icons/go";
 import { IoMdContact, IoMdContacts, IoMdExpand, IoMdMenu, IoMdTrash } from "react-icons/io";
 import { IoExpand, IoExpandSharp, IoMenu, IoSend, IoStar } from "react-icons/io5";
+import { IoLogOut } from 'react-icons/io5';
+import { RiLogoutBoxLine } from 'react-icons/ri';
 
 // IoMdContact
 import { RiDraftFill, RiSpam2Fill } from "react-icons/ri";
@@ -30,7 +32,7 @@ export default function Sidebar({ sidebar, dispatch }) {
       dispatch({ type: "SHOW_CONTACTS" });
     };
     return (
-      <aside className="sidebar" style={{ }}>
+      <aside className="sidebar" style={{}}>
         <img
           src={logo}
           alt="Compass Logo"
@@ -39,16 +41,20 @@ export default function Sidebar({ sidebar, dispatch }) {
           className="spin sidebar-logo"
         />
 
-        <h1 className='app-title'>Compass</h1>
+        <h1 className="app-title">Compass</h1>
 
         <button
-          className='expand-button flex-center'
-          title={expand ? 'Collapse menu' : 'Expand menu'}
-          onClick={() => dispatch({ type: 'EXPAND' })}>
+          className="expand-button flex-center"
+          title={expand ? "Collapse menu" : "Expand menu"}
+          onClick={() => dispatch({ type: "EXPAND" })}
+        >
           <IoMdExpand size={20} />
         </button>
 
-        <button className={`mb-sideber-button`} onClick={() => dispatch({ type: 'EXPAND'})}>
+        <button
+          className={`mb-sideber-button`}
+          onClick={() => dispatch({ type: "EXPAND" })}
+        >
           <IoMdMenu size={25} />
         </button>
 
@@ -109,8 +115,12 @@ export default function Sidebar({ sidebar, dispatch }) {
           >
             <IoMdTrash size={20} />
           </NavButton>
-          
-          
+
+          <div>
+            <button>
+              <RiLogoutBoxLine />
+            </button>
+          </div>
           {/* <button className="contact-button" onClick={showContacts}>
             <IoMdContacts size={20} />
             <span>Contacts</span>

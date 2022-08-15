@@ -29,7 +29,12 @@
 
 @media screen and (min-width: 761px) {
     .app-title {
-
+        position: fixed;
+        top: -10px;
+        left: 6rem;
+        z-index: 3;
+        color: var(--primary);
+        font-size: 2rem;
     }
 }
 
