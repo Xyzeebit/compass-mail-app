@@ -8,10 +8,10 @@ import Mail from '../components/Mail';
 
 export default function Inbox() {
     const [state, dispatch] = useReducer(combineReducers, initState);
-  const { sidebar } = state;
+  const { sidebar, user } = state;
   return (
     <Layout sidebar={sidebar} dispatch={dispatch}>
-      <Mail expand={sidebar.expand} />
+      <Mail expand={sidebar.expand} user={user} dispatch={dispatch} />
     </Layout>
   );
 }

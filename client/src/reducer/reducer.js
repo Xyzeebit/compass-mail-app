@@ -7,7 +7,9 @@ export const initState = {
             name: 'Peters',
             email: 'Peters@pt.com'
         },
-        to : ''
+        to: '',
+        firstName: 'John',
+        lastName: 'Smith'
     },
     sidebar: {
         open: true,

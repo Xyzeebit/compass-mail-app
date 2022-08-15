@@ -7,15 +7,15 @@
 }
 .container {
     background-color: #ffffff;
-    position: relative;
-    width: 100%;
+    position: absolute;
+    padding: 0 20px 20px 20px;
     height: 100vh;
     z-index: 2;
     top: 0;
     bottom: 0;
     right: 0px;
     overflow-y: auto;
-    overflow-x: hidden;
+    overflow-x: auto;
     transition: all 300ms linear;
 }
 
@@ -29,11 +29,10 @@
 
 @media screen and (min-width: 761px) {
     .app-title {
-        position: fixed;
-        top: -10px;
-        left: 6rem;
-        z-index: 3;
-        color: var(--primary);
+        display: none;
+    }
+    .u-app-title {
+        color: var(--primary-dark);
         font-size: 2rem;
     }
 }
@@ -57,4 +56,33 @@
         top: 5px;
         left: 5rem;
     }
+    .u-app-title {
+        display: none;
+    }
+}
+
+.userbar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.search-bar {
+    width: 60%;
+}
+.search-bar form input {
+    width: 100%;
+    height: 2rem;
+    border-radius: 5px;
+    outline: none;
+    background-color: var(--gray);
+    border: 1px solid var(--gray);
+}
+.btn-photo {
+    border: 2px solid gray;
+    padding: 5px;
+    border-radius: 100px;
+    width: 50px;
+    height: 50px;
+    /* float: right; */
 }
