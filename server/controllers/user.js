@@ -45,13 +45,15 @@ async function getUser(args) {
 
 async function inbox(args) {
     const payload = {};
+    const LIMIT = 20;
     try {
         const { me, page } = args;
         const box = await MailBox.find({ to: me })
             .where('trash').equals(false)
             .where('draft').equals(false)
             .where('spam').equals(false)
-            .select('_id from to subject body time read');
+            .select('_id from to subject body time read')
+            .limit(LIMIT).skip(LIMIT * page).sort({ time: 'asc' });
         if (box) {
             payload.success = true;
             payload.messages = box.map(i => {
@@ -78,5 +80,6 @@ async function inbox(args) {
 
 module.exports = {
     getUser,
+    inbox
 }
 

@@ -10,7 +10,8 @@ const queries = {
             return payload;
         },
         async inbox(parent, args) {
-            return null;
+            const payload = await user.inbox(args);
+            return payload;
         }
 
     }

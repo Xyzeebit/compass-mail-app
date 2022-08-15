@@ -15,7 +15,7 @@ type ErrorPayload {
 type InboxPayload {
   success: Boolean!
   error: ErrorPayload
-  messages: [Message!]!
+  messages: [Message]
 }
 
 type OutboxPayload {
