@@ -140,13 +140,15 @@ function verifyToken(token, cb) {
         const secret = getSecret();
         decoded = jwt.verify(token, secret);
         const { exp } = decoded;
+        
         if (Date.now() >= exp * 1000) {
-            cb(new Error({ name: 'JwtExpired', message: 'Expired json token' }));
-            return;
+            cb(null, { username: decoded.username, id: decoded.id });
+        } else {
+            cb(new Error("Expired json token" ));
+            console.log(decoded);
         }
-        cb(null, { username: decoded.username, id: decoded.id });
     } catch (error) {
-        cb(new Error({ name: "JsonWebTokenError", message: "jwt malformed" }));
+        cb(new Error("jwt malformed"));
     }
 }
 

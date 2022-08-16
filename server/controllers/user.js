@@ -6,16 +6,19 @@ async function getUser(args) {
     const payload = {};
     const { username, token } = args
     let decoded;
-    try { 
-        decoded = await verify(token);
-        console.log(token)
-    } catch (error) {
-        payload.error = { name: 'JsonWebTokenError', message: 'jwt malformed' }
-        payload.success = false;
-        return payload
-    }
     
     try { 
+        try {
+          decoded = await verify(token);
+        //   console.log(decoded)
+        } catch (error) {
+          payload.error = {
+            name: error.name,
+            message: error.message,
+          };
+          payload.success = false;
+          return payload;
+        }
         const user = await User.findOne({ username: decoded.username });
         if (user) {
             payload.success = true;
