@@ -12,7 +12,7 @@ const queries = {
         async inbox(parent, args) {
             const payload = await user.inbox(args);
             return payload;
-        }
+        },
         async outbox(parent, args) {
             const payload = await user.outbox(args);
             return payload;
