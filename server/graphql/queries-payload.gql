@@ -21,22 +21,22 @@ type InboxPayload {
 type OutboxPayload {
   success: Boolean!
   error: ErrorPayload
-  messages: [Message!]!
+  messages: [Message]
 }
 
 type DraftsPayload {
   success: Boolean!
   error: ErrorPayload
-  messages: [Message!]!
+  messages: [Message]
 }
 type SpamPayload {
   success: Boolean!
   error: ErrorPayload
-  messages: [Message!]!
+  messages: [Message]
 }
 
 type TrashPayload {
   success: Boolean!
   error: ErrorPayload
-  messages: [Message!]!
+  messages: [Message]
 }
