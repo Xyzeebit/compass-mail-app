@@ -4,7 +4,7 @@
 type Query {
     user(username: String!, token: String!): UserPayload!
     inbox(username: String!, page: Int!): InboxPayload!
-    outbox(page: Int!): OutboxPayload!
+    outbox(username: String!, page: Int!): OutboxPayload!
 }
 
 type Mutation {
