@@ -3,7 +3,8 @@
 
 type Query {
     user(username: String!, token: String!): UserPayload!
-    inbox(to: String!, page: Int!): InboxPayload!
+    inbox(username: String!, page: Int!): InboxPayload!
+    outbox(page: Int!): OutboxPayload!
 }
 
 type Mutation {
