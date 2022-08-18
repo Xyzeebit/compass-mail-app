@@ -24,8 +24,11 @@ const queries = {
         async spam(parent, args) {
             const payload = await user.spam(args);
             return payload;
+        },
+        async trash(parent, args) {
+            const payload = await user.trash(args);
+            return payload;
         }
-
 
     }
 }
