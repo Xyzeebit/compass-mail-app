@@ -248,45 +248,47 @@ async function markAs(args) {
         const { username, messageId, mark } = args;
         const user = await User.findOne({ username });
         const message = user.messages.id(messageId);
-        switch (mark) {
-            case "draft":
-                if (message) {
-                    message.draft = true;
-                    payload.success = true;
-                    await user.save();
-                }
-                break;
-            case "starred":
-                if (message) {
-                    message.starred = true;
-                    payload.success = true;
-                    await user.save();
-                }
-                break;
-            case "read":
-                if (message) {
-                    message.read = true;
-                    payload.success = true;
-                    await user.save();
-                }
-                break;
-            case "spam":
-                if (message) {
-                    message.spam = true;
-                    payload.success = true;
-                    await user.save();
-                }
-                break;
-            case "trash":
-                if (message) {
-                    message.trash = true;
-                    payload.success = true;
-                    await user.save();
-                }
-                break;
-            default:
-                payload.success = false;
-        }
+        message[mark] = true;
+        await user.save();
+        // switch (mark) {
+        //     case "draft":
+        //         if (message) {
+        //             message.draft = true;
+        //             payload.success = true;
+        //             await user.save();
+        //         }
+        //         break;
+        //     case "starred":
+        //         if (message) {
+        //             message.starred = true;
+        //             payload.success = true;
+        //             await user.save();
+        //         }
+        //         break;
+        //     case "read":
+        //         if (message) {
+        //             message.read = true;
+        //             payload.success = true;
+        //             await user.save();
+        //         }
+        //         break;
+        //     case "spam":
+        //         if (message) {
+        //             message.spam = true;
+        //             payload.success = true;
+        //             await user.save();
+        //         }
+        //         break;
+        //     case "trash":
+        //         if (message) {
+        //             message.trash = true;
+        //             payload.success = true;
+        //             await user.save();
+        //         }
+        //         break;
+        //     default:
+        //         payload.success = false;
+        // }
     } catch (error) {
         payload.success = false;
         return payload;
@@ -342,10 +344,17 @@ async function sendMessage(message) {
     }
 }
 
-async function deleteMessage({ messageId }) {
+async function deleteMessage({ username, messageId }) {
     const payload = {};
     try {
-
+        const user = await User.findOne({ username });
+        if (user) {
+            user.messages.id(messageId).remove();
+            await user.save();
+            payload.success = true;
+        } else {
+            payload.success = false;
+        }
     } catch (error) {
         payload.success = false;
     } finally {
@@ -362,6 +371,6 @@ module.exports = {
     trash,
     sendMessage,
     deleteMessage,
-    markMessage,
+    markAs,
 }
 
