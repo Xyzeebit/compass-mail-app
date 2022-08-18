@@ -52,21 +52,20 @@ async function inbox(args) {
     try {
         const { username, page } = args;
         const box = await MailBox.find({ to: username })
-            .where('trash').equals(false)
-            .where('draft').equals(false)
-            .where('spam').equals(false)
-            .select('_id from to subject body time read')
+            .select('_id from to subject body time')
             .limit(LIMIT).skip(LIMIT * page).sort({ time: 'asc' });
-        if (box) {
+        const user = await User.findOne({ username });
+        if (box && user) {
             payload.success = true;
             payload.messages = box.map(i => {
+                const msg = user.messages.id(i._id);
                 return {
                     id: i._id,
                     from: i.from,
                     to: i.to,
                     subject: i.subject,
                     body: i.body,
-                    read: i.read,
+                    read: msg ? msg.read : false,
                     time: i.time
                 }
             });
