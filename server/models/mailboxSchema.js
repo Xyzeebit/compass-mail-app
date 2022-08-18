@@ -11,26 +11,26 @@ const mailboxSchema = new mongoose.Schema({
         type: String,
     },
     body: String,
-    starred: {
-        type: Boolean,
-        default: false,
-    },
-    draft: {
-        type: Boolean,
-        default: false,
-    },
-    spam: {
-        type: Boolean,
-        default: false,
-    },
-    trash: {
-        type: Boolean,
-        default: false,
-    },
-    read: {
-        type: Boolean,
-        default: false,
-    },
+    // starred: {
+    //     type: Boolean,
+    //     default: false,
+    // },
+    // draft: {
+    //     type: Boolean,
+    //     default: false,
+    // },
+    // spam: {
+    //     type: Boolean,
+    //     default: false,
+    // },
+    // trash: {
+    //     type: Boolean,
+    //     default: false,
+    // },
+    // read: {
+    //     type: Boolean,
+    //     default: false,
+    // },
     time: {
         type: Date,
         default: Date.now(),

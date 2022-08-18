@@ -48,6 +48,10 @@ const mutations = {
         async markAs(parent, args) {
             const payload = { success: false };
             return payload;
+        },
+        async sendMessage(parent, args) {
+            const payload = await user.sendMessage(args.message);
+            return payload;
         }
 
         // DateTime: new GraphQLScalarType({

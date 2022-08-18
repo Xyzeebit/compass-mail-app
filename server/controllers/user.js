@@ -30,7 +30,7 @@ async function getUser(args) {
                 firstName: user.firstName,
                 lastName: user.lastName,
                 contacts: user.contacts,
-                mailId: user.mailbox
+                messageId: user.messages
             }
             return payload;
         }
@@ -268,6 +268,51 @@ async function markAs(args) {
     }
 }
 
+async function sendMessage(message) {
+    const payload = {};
+    try {
+        if (message.to) {
+            const receiver = await User.findOne({ username: message.to });
+            if (receiver) {
+                const user = await User.findOne({ username: message.from });
+                if (user) {
+                    const mail = new MailBox(message);
+                    await mail.save();
+                    user.messages.push({
+                        messageId: mail._id,
+                        outbox: true,
+                    });
+                    receiver.message.push({
+                        messageId: mail._id,
+                        inbox: true
+                    });
+                    await user.save();
+                    await receiver.save();
+                } else {
+                    payload.success = false;
+                }
+            } else {
+                payload.success = false;
+            }
+        } else {
+            const mail = new MailBox(message);
+            const user = await User.findOne({ username: message.from });
+            if(user) {
+                await mail.save();
+                user.message.push({
+                    messageId: mail._id,
+                    drafts: true
+                })
+            }
+        }
+        
+    } catch (error) {
+        payload.success = false;
+    } finally {
+        return payload;
+    }
+}
+
 module.exports = {
     getUser,
     inbox,
@@ -275,5 +320,6 @@ module.exports = {
     drafts,
     spam,
     trash,
+    sendMessage
 }
 

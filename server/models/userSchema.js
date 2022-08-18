@@ -14,6 +14,34 @@ const contactSchema = new mongoose.Schema({
   }
 });
 
+const messagesSchema = new mongoose.Schema({
+  messageId: mongoose.Schema.Types.ObjectId,
+  inbox:{
+    type: Boolean,
+    default: false,
+  },
+  outbox: {
+    type: Boolean,
+    default: false,
+  },
+  spam: {
+    type: Boolean,
+    default: false,
+  },
+  draft: {
+    type: Boolean,
+    default: false,
+  },
+  trash: {
+    type: Boolean,
+    default: false,
+  },
+  read: {
+    type: Boolean,
+    default: false,
+  },
+});
+
 const userSchema = new mongoose.Schema({
   firstName: {
     type: String,
@@ -38,12 +66,8 @@ const userSchema = new mongoose.Schema({
     type: String,
   },
   contacts: [contactSchema],
-  mailbox: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "MailBox",
-  },
   messages: {
-    type: [mongoose.Schema.Types.ObjectId]
+    type: [messagesSchema]
   },
   created: {
     type: Date,

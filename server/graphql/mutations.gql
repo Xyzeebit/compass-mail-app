@@ -36,3 +36,13 @@ type DeleteMessagePayload {
 type MarkAsPayload {
     success: Boolean!
 }
+
+input SendMessageInput{
+    from: String!
+    to: String
+    subject: String
+    body: String!
+}
+type SendMessagePayload {
+    success: Boolean!
+}
