@@ -1,4 +1,6 @@
 # import User from 'user.gql'
+# import Message from "messages.gql"
+# import Contact from "contacts.gql"
 
 scalar DateTime
 
@@ -29,6 +31,11 @@ type AuthUserPayload {
     user: UserPayLoad
 }
 
+type Error {
+    name: String
+    message: String
+}
+
 
 type EmptyTrashPayload {
     success: Boolean!
@@ -45,4 +52,13 @@ input SendMessageInput{
 }
 type SendMessagePayload {
     success: Boolean!
+    error: Error
+    message: Message
+}
+
+
+type AddContactPayload {
+    success: Boolean!
+    contact: Contact
+    error: Error
 }

@@ -214,7 +214,7 @@ async function trash(args) {
                   to: i.to,
                   subject: i.subject,
                   body: i.body,
-                  read: msg ? msg.read ? false,
+                  read: msg ? msg.read : false,
                   time: i.time,
                 };
             }
@@ -307,11 +307,25 @@ async function sendMessage(message) {
                     });
                     await user.save();
                     await receiver.save();
+                    payload.success = true;
+                    payload.message = {
+                        id: mail._id,
+                        time: mail.time,
+                        ...messages,
+                    }
                 } else {
                     payload.success = false;
+                    payload.error = {
+                        name: 'UserError',
+                        message: 'cannot send message to user'
+                    }
                 }
             } else {
                 payload.success = false;
+                payload.error = {
+                  name: "UserError",
+                  message: "cannot send message to user",
+                };
             }
         } else {
             const mail = new MailBox(message);
@@ -323,11 +337,21 @@ async function sendMessage(message) {
                     draft: true
                 });
                 await user.save();
+            } else {
+                payload.success = false;
+                payload.error = {
+                  name: "UserError",
+                  message: "cannot save message to draft",
+                };
             }
         }
         
     } catch (error) {
         payload.success = false;
+        payload.error = {
+          name: "RequestError",
+          message: "cannot perform request",
+        };
     } finally {
         return payload;
     }

@@ -1,7 +1,5 @@
 const auth = require('../controllers/auth');
 const user = require('../controllers/user');
-const { GraphQLScalarType } = require("graphql");
-
 
 const queries = {
     Query: {
@@ -46,7 +44,7 @@ const mutations = {
             return payload;
         },
         async markAs(parent, args) {
-            const payload = { success: false };
+            const payload = user.markAs(args);
             return payload;
         },
         async sendMessage(parent, args) {
@@ -57,14 +55,6 @@ const mutations = {
             const payload = await user.emptyTrash(args);
             return payload;
         },
-
-        DateTime: new GraphQLScalarType({
-            name: 'DateTime',
-            description: 'A valid date time value.',
-            parseValue: value => new Date(value),
-            serialize: value => new Date(value).toISOString(),
-            parseLiteral: ast => ast.value
-        }),
     }
 };
 
