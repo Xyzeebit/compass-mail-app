@@ -247,6 +247,7 @@ module.exports = {
     inbox,
     outbox,
     drafts,
-    spam
+    spam,
+    trash,
 }
 

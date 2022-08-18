@@ -16,7 +16,12 @@ const queries = {
         async outbox(parent, args) {
             const payload = await user.outbox(args);
             return payload;
+        },
+        async drafts(parent, args) {
+            const payload = await user.drafts(args);
+            return payload;
         }
+
 
     }
 }
