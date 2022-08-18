@@ -1,6 +1,7 @@
 const MailBox = require('../models/mailboxSchema');
 const User = require('../models/userSchema');
 const { verify } = require('./auth');
+const mongoose = require('mongoose');
 
 async function getUser(args) {
     const payload = {};
@@ -382,6 +383,30 @@ async function emptyTrash({ username }) {
     }
 }
 
+async function addContact({ username, name, contactUsername }) {
+    const payload = {};
+    try {
+        const user = await User.findOne({ username });
+        if (user) {
+            const id = mongoose.Schema.types.ObjectId;
+            user.contacts.push({ _id: id, name, contactUsername });
+            await user.save();
+            payload.success = true;
+            payload.contact = {
+              id,
+              name,
+              contactUsername,
+            };
+        }
+    } catch (error) {
+        payload.success - false;
+        payload.error = {
+            name: 'RequestError',
+            message: 'cannot perform operation'
+        }
+    }
+}
+
 module.exports = {
     getUser,
     inbox,
@@ -391,6 +416,7 @@ module.exports = {
     trash,
     sendMessage,
     markAs,
+    addContact,
     emptyTrash,
 }
 

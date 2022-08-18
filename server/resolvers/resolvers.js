@@ -55,6 +55,10 @@ const mutations = {
             const payload = await user.emptyTrash(args);
             return payload;
         },
+        async addContact(parent, args) {
+            const payload = await user.addContact(args);
+            return payload;
+        }
     }
 };
 
