@@ -117,7 +117,7 @@ async function outbox(args) {
     }
 }
 
-function drafts(args) {
+async function drafts(args) {
     const payload = {};
     const LIMIT = 20;
 
@@ -159,7 +159,7 @@ function drafts(args) {
     }
 }
 
-function spam(args) {
+async function spam(args) {
     const payload = {};
     const LIMIT = 20;
     try { 
@@ -200,7 +200,7 @@ function spam(args) {
     }
 }
 
-function trash(args) {
+async function trash(args) {
     
     const payload = {};
     const LIMIT = 20;

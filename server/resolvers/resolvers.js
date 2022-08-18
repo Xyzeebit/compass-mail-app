@@ -20,6 +20,10 @@ const queries = {
         async drafts(parent, args) {
             const payload = await user.drafts(args);
             return payload;
+        },
+        async spam(parent, args) {
+            const payload = await user.spam(args);
+            return payload;
         }
 
 

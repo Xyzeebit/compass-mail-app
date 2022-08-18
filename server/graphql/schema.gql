@@ -1,12 +1,12 @@
 # import SignUpInput, SignInInput, AuthUserPayload from "mutations.gql"
-# import UserPayload, InboxPayload, OutboxPayload, DraftPayload, SpamPayload, TrashPayload from "queries-payload.gql"
+# import UserPayload, InboxPayload, OutboxPayload, DraftsPayload, SpamPayload, TrashPayload from "queries-payload.gql"
 
 type Query {
     user(username: String!, token: String!): UserPayload!
     inbox(username: String!, page: Int!): InboxPayload!
     outbox(username: String!, page: Int!): OutboxPayload!
     spam(username: String!, page: Int!): SpamPayload!
-    drafts(username: String!, page: Int!): DraftPayload!
+    drafts(username: String!, page: Int!): DraftsPayload!
     trash(username: String!, page: Int!): TrashPayload!
 }
 
