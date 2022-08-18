@@ -53,18 +53,18 @@ const mutations = {
             const payload = await user.sendMessage(args.message);
             return payload;
         },
-        async deleteMessage(parent, args) {
-            const payload = await user.deleteMessage(args);
+        async emptyTrash(parent, args) {
+            const payload = await user.emptyTrash(args);
             return payload;
-        }
+        },
 
-        // DateTime: new GraphQLScalarType({
-        //     name: 'DateTime',
-        //     description: 'A valid date time value.',
-        //     parseValue: value => new Date(value),
-        //     serialize: value => new Date(value).toISOString(),
-        //     parseLiteral: ast => ast.value
-        // }),
+        DateTime: new GraphQLScalarType({
+            name: 'DateTime',
+            description: 'A valid date time value.',
+            parseValue: value => new Date(value),
+            serialize: value => new Date(value).toISOString(),
+            parseLiteral: ast => ast.value
+        }),
     }
 };
 

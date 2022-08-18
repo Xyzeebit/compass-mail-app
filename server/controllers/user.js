@@ -86,10 +86,7 @@ async function outbox(args) {
     try {
         const { username, page } = args;
         const box = await MailBox.find({ from: username })
-            .where('trash').equals(false)
-            .where('draft').equals(false)
-            .where('spam').equals(false)
-            .select('_id from to subject body time read')
+            .select('_id from to subject body time')
             .limit(LIMIT).skip(LIMIT * page).sort({ time: 'asc' });
         if (box) {
             payload.success = true;
@@ -100,7 +97,6 @@ async function outbox(args) {
                     to: i.to,
                     subject: i.subject,
                     body: i.body,
-                    read: i.read,
                     time: i.time
                 }
             });
@@ -123,28 +119,26 @@ async function drafts(args) {
     try {
         const { username, page } = args;
         const box = await MailBox.find({ from: username })
-          .where("trash")
-          .equals(false)
-          .where("draft")
-          .equals(true)
-          .where("spam")
-          .equals(false)
-          .select("_id from to subject body time read")
-          .limit(LIMIT)
-          .skip(LIMIT * page)
-          .sort({ time: "asc" });
+            .select("_id from to subject body time")
+            .limit(LIMIT)
+            .skip(LIMIT * page)
+            .sort({ time: "asc" });
+        const user = await User.findOne({ username });
         if (box) {
           payload.success = true;
-          payload.messages = box.map((i) => {
-              return {
-                  id: i._id,
-                  from: i.from,
-                  to: i.to,
-                  subject: i.subject,
-                  body: i.body,
-                  read: i.read,
-                  time: i.time,
-              };
+            payload.messages = box.map((i) => {
+                const msg = user.messages.id(i._id);
+                if (msg.draft) {
+                    return {
+                      id: i._id,
+                      from: i.from,
+                      to: i.to,
+                      subject: i.subject,
+                      body: i.body,
+                      time: i.time,
+                    };
+                }
+              
           });
         }
     } catch (error) {
@@ -164,28 +158,26 @@ async function spam(args) {
     try { 
         const { username, page } = args;
         const box = await MailBox.find({ to: username })
-          .where("trash")
-          .equals(false)
-          .where("draft")
-          .equals(false)
-          .where("spam")
-          .equals(true)
-          .select("_id from to subject body time read")
-          .limit(LIMIT)
-          .skip(LIMIT * page)
-          .sort({ time: "asc" });
+            .select("_id from to subject body time")
+            .limit(LIMIT)
+            .skip(LIMIT * page)
+            .sort({ time: "asc" });
+        const user = await User.findOne({ username });
         if (box) {
           payload.success = true;
-          payload.messages = box.map((i) => {
-              return {
-                  id: i._id,
-                  from: i.from,
-                  to: i.to,
-                  subject: i.subject,
-                  body: i.body,
-                  read: i.read,
-                  time: i.time,
-              };
+            payload.messages = box.map((i) => {
+                const msg = user.messages.id(i._id);
+                if (msg.spam) {
+                    return {
+                      id: i._id,
+                      from: i.from,
+                      to: i.to,
+                      subject: i.subject,
+                      body: i.body,
+                      read: msg ? msg.read : false,
+                      time: i.time,
+                    };
+                }
           });
         }
     } catch (error) {
@@ -206,28 +198,26 @@ async function trash(args) {
     try {
     const { username, page } = args;
     const box = await MailBox.find({ to: username })
-        .where("trash")
-        .equals(true)
-        .where("draft")
-        .equals(false)
-        .where("spam")
-        .equals(false)
-        .select("_id from to subject body time read")
+        .select("_id from to subject body time")
         .limit(LIMIT)
         .skip(LIMIT * page)
-        .sort({ time: "asc" });
+            .sort({ time: "asc" });
+        const user = await User.findOne({ username });
     if (box) {
         payload.success = true;
         payload.messages = box.map((i) => {
-            return {
-                id: i._id,
-                from: i.from,
-                to: i.to,
-                subject: i.subject,
-                body: i.body,
-                read: i.read,
-                time: i.time,
-            };
+            const msg = user.messages.id(i._id);
+            if (msg.trash) {
+                return {
+                  id: i._id,
+                  from: i.from,
+                  to: i.to,
+                  subject: i.subject,
+                  body: i.body,
+                  read: msg ? msg.read ? false,
+                  time: i.time,
+                };
+            }
         });
     }
     } catch (error) {
@@ -343,12 +333,19 @@ async function sendMessage(message) {
     }
 }
 
-async function deleteMessage({ username, messageId }) {
+async function emptyTrash({ username }) {
     const payload = {};
     try {
         const user = await User.findOne({ username });
         if (user) {
-            user.messages.id(messageId).remove();
+            const ids = user.messages.map((msg) => {
+                if (msg.trash) {
+                    return msg._id;
+                }
+            })
+            ids.map((id) => {
+                user.messages.id(id).remove();
+            });
             await user.save();
             payload.success = true;
         } else {
@@ -369,7 +366,7 @@ module.exports = {
     spam,
     trash,
     sendMessage,
-    deleteMessage,
     markAs,
+    emptyTrash,
 }
 

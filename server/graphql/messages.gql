@@ -4,9 +4,9 @@ type Message {
   id: ID!
   to: String
   from: String!
-  subject: String!
+  subject: String
   body: String
-  read: Boolean!
+  read: Boolean
   time: DateTime!
 }
 
