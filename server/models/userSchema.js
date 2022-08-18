@@ -2,17 +2,17 @@ const mongoose = require('mongoose');
 const crypto = require('crypto');
 
 const contactSchema = new mongoose.Schema({
-    name: {
-        type: String,
-        required: true
-    },
-    email: {
-        type: String,
-        lowercase: true,
-        trim: true,
-        required: true
-    }
-})
+  name: {
+    type: String,
+    required: true
+  },
+  email: {
+    type: String,
+    lowercase: true,
+    trim: true,
+    required: true
+  }
+});
 
 const userSchema = new mongoose.Schema({
   firstName: {
@@ -41,6 +41,9 @@ const userSchema = new mongoose.Schema({
   mailbox: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "MailBox",
+  },
+  messages: {
+    type: [mongoose.Schema.Types.ObjectId]
   },
   created: {
     type: Date,

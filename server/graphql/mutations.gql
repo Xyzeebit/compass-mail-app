@@ -30,3 +30,9 @@ type AuthUserPayload {
 }
 
 
+type DeleteMessagePayload {
+    success: Boolean!
+}
+type MarkAsPayload {
+    success: Boolean!
+}

@@ -140,11 +140,14 @@ function verifyToken(token, cb) {
         const secret = getSecret();
         decoded = jwt.verify(token, secret);
         const { exp } = decoded;
-        // console.log(new Date(exp))
-
-        if (Date.now() >= exp * 1000) {
+        
+        // console.log(exp, new Date().getTime())
+        const current = (new Date().getTime() / 1000);
+        if (exp < current) {
+            // console.log('greater')
             cb(new Error("Expired json token"));
         } else {
+            // console.log('lesser')
             cb(null, {
                 username: decoded.username,
                 id: decoded.id,

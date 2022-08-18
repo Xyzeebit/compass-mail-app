@@ -45,6 +45,10 @@ const mutations = {
             const payload = await auth.signIn(args);
             return payload;
         },
+        async markAs(parent, args) {
+            const payload = { success: false };
+            return payload;
+        }
 
         // DateTime: new GraphQLScalarType({
         //     name: 'DateTime',

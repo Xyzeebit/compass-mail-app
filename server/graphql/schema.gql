@@ -1,4 +1,4 @@
-# import SignUpInput, SignInInput, AuthUserPayload from "mutations.gql"
+# import SignUpInput, SignInInput, AuthUserPayload, MarkAsPayload from "mutations.gql"
 # import UserPayload, InboxPayload, OutboxPayload, DraftsPayload, SpamPayload, TrashPayload from "queries-payload.gql"
 
 type Query {
@@ -13,4 +13,5 @@ type Query {
 type Mutation {
     signUp(input: SignUpInput!): AuthUserPayload!
     signIn(input: SignInInput!): AuthUserPayload!
+    markAs(messageId: ID!, mark: String!): MarkAsPayload!
 }

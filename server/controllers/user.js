@@ -137,15 +137,15 @@ async function drafts(args) {
         if (box) {
           payload.success = true;
           payload.messages = box.map((i) => {
-            return {
-              id: i._id,
-              from: i.from,
-              to: i.to,
-              subject: i.subject,
-              body: i.body,
-              read: i.read,
-              time: i.time,
-            };
+              return {
+                  id: i._id,
+                  from: i.from,
+                  to: i.to,
+                  subject: i.subject,
+                  body: i.body,
+                  read: i.read,
+                  time: i.time,
+              };
           });
         }
     } catch (error) {
@@ -178,15 +178,15 @@ async function spam(args) {
         if (box) {
           payload.success = true;
           payload.messages = box.map((i) => {
-            return {
-              id: i._id,
-              from: i.from,
-              to: i.to,
-              subject: i.subject,
-              body: i.body,
-              read: i.read,
-              time: i.time,
-            };
+              return {
+                  id: i._id,
+                  from: i.from,
+                  to: i.to,
+                  subject: i.subject,
+                  body: i.body,
+                  read: i.read,
+                  time: i.time,
+              };
           });
         }
     } catch (error) {
@@ -220,24 +220,50 @@ async function trash(args) {
     if (box) {
         payload.success = true;
         payload.messages = box.map((i) => {
-        return {
-            id: i._id,
-            from: i.from,
-            to: i.to,
-            subject: i.subject,
-            body: i.body,
-            read: i.read,
-            time: i.time,
-        };
+            return {
+                id: i._id,
+                from: i.from,
+                to: i.to,
+                subject: i.subject,
+                body: i.body,
+                read: i.read,
+                time: i.time,
+            };
         });
     }
     } catch (error) {
-    payload.success = false;
-    payload.error = {
-        name: "RequestError",
-        message: "request error",
-    };
+        payload.success = false;
+        payload.error = {
+            name: "RequestError",
+            message: "request error",
+        };
     } finally {
+        return payload;
+    }
+}
+
+async function markAs(args) {
+    const payload = {};
+    try { 
+        const { messageId, mark } = args;
+        const message = MailBox.findById(messageId)
+        switch (mark) {
+            case 'draft':
+                payload.success = true;
+                break;
+            case 'spam':
+                payload.success = true;
+                break;
+            case 'trash':
+                payload.success = true;
+                break;
+            default:
+                payload.success = false;
+        }
+    } catch (error) {
+        payload.success = false;
+        return payload;
+    } finally { 
         return payload;
     }
 }
