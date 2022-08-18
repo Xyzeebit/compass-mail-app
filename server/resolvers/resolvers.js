@@ -52,6 +52,10 @@ const mutations = {
         async sendMessage(parent, args) {
             const payload = await user.sendMessage(args.message);
             return payload;
+        },
+        async deleteMessage(parent, args) {
+            const payload = await user.deleteMessage(args);
+            return payload;
         }
 
         // DateTime: new GraphQLScalarType({

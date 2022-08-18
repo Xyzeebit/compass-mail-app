@@ -245,17 +245,44 @@ async function trash(args) {
 async function markAs(args) {
     const payload = {};
     try { 
-        const { messageId, mark } = args;
-        const message = MailBox.findById(messageId)
+        const { username, messageId, mark } = args;
+        const user = await User.findOne({ username });
+        const message = user.messages.id(messageId);
         switch (mark) {
-            case 'draft':
-                payload.success = true;
+            case "draft":
+                if (message) {
+                    message.draft = true;
+                    payload.success = true;
+                    await user.save();
+                }
                 break;
-            case 'spam':
-                payload.success = true;
+            case "starred":
+                if (message) {
+                    message.starred = true;
+                    payload.success = true;
+                    await user.save();
+                }
                 break;
-            case 'trash':
-                payload.success = true;
+            case "read":
+                if (message) {
+                    message.read = true;
+                    payload.success = true;
+                    await user.save();
+                }
+                break;
+            case "spam":
+                if (message) {
+                    message.spam = true;
+                    payload.success = true;
+                    await user.save();
+                }
+                break;
+            case "trash":
+                if (message) {
+                    message.trash = true;
+                    payload.success = true;
+                    await user.save();
+                }
                 break;
             default:
                 payload.success = false;
@@ -281,6 +308,7 @@ async function sendMessage(message) {
                     user.messages.push({
                         messageId: mail._id,
                         outbox: true,
+                        draft: false
                     });
                     receiver.message.push({
                         messageId: mail._id,
@@ -301,11 +329,23 @@ async function sendMessage(message) {
                 await mail.save();
                 user.message.push({
                     messageId: mail._id,
-                    drafts: true
-                })
+                    draft: true
+                });
+                await user.save();
             }
         }
         
+    } catch (error) {
+        payload.success = false;
+    } finally {
+        return payload;
+    }
+}
+
+async function deleteMessage({ messageId }) {
+    const payload = {};
+    try {
+
     } catch (error) {
         payload.success = false;
     } finally {
@@ -320,6 +360,8 @@ module.exports = {
     drafts,
     spam,
     trash,
-    sendMessage
+    sendMessage,
+    deleteMessage,
+    markMessage,
 }
 

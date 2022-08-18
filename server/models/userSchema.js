@@ -32,6 +32,10 @@ const messagesSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  starred: {
+    type: Boolean,
+    default: false,
+  },
   trash: {
     type: Boolean,
     default: false,
