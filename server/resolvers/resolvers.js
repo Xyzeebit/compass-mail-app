@@ -58,6 +58,10 @@ const mutations = {
         async addContact(parent, args) {
             const payload = await user.addContact(args);
             return payload;
+        },
+        async removeContact(parent, args) {
+            const payload = await user.removeContact(args);
+            return payload;
         }
     }
 };

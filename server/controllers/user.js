@@ -407,6 +407,29 @@ async function addContact({ username, name, contactUsername }) {
     }
 }
 
+async function removeContact({ username, contactId }) {
+    const payload = {};
+    try {
+        const user = await User.findOne({ username });
+        if (user) {
+            user.contacts.id(contactId).remove();
+            await user.save();
+        } else {
+            payload.success = false;
+            payload.error = {
+              name: "UserError",
+              message: "cannot perform operation",
+            };
+        }
+    } catch (error) {
+        payload.success = false;
+        payload.error = {
+            name: 'RequestError',
+            message: 'cannot perform request'
+        }
+    }
+}
+
 module.exports = {
     getUser,
     inbox,
@@ -418,5 +441,6 @@ module.exports = {
     markAs,
     addContact,
     emptyTrash,
+    removeContact,
 }
 

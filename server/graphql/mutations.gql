@@ -62,3 +62,8 @@ type AddContactPayload {
     contact: Contact
     error: Error
 }
+
+type RemoveContactPayload {
+    success: Boolean!
+    error: Error
+}
