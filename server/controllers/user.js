@@ -297,6 +297,7 @@ async function sendMessage(message) {
                 if (user) {
                     const mail = new MailBox(message);
                     await mail.save();
+                    console.log(mail)
                     user.messages.push({
                         messageId: mail._id,
                         outbox: true,
@@ -308,14 +309,13 @@ async function sendMessage(message) {
                     });
                     await user.save();
                     await receiver.save();
-                    
                     payload.success = true;
                     payload.message = {
                         id: mail._id,
                         time: mail.time,
-                        ...messages,
+                        ...message,
                     }
-                    console.log(payload)
+                    
                 } else {
                     payload.success = false;
                     payload.error = {
@@ -335,7 +335,7 @@ async function sendMessage(message) {
             const user = await User.findOne({ username: message.from });
             if(user) {
                 await mail.save();
-                user.message.push({
+                user.messages.push({
                     messageId: mail._id,
                     draft: true
                 });
@@ -356,6 +356,7 @@ async function sendMessage(message) {
           message: "cannot perform request",
         };
     } finally {
+        console.log('finally', payload)
         return payload;
     }
 }
