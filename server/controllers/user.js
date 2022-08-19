@@ -302,18 +302,20 @@ async function sendMessage(message) {
                         outbox: true,
                         draft: false
                     });
-                    receiver.message.push({
+                    receiver.messages.push({
                         messageId: mail._id,
                         inbox: true
                     });
                     await user.save();
                     await receiver.save();
+                    
                     payload.success = true;
                     payload.message = {
                         id: mail._id,
                         time: mail.time,
                         ...messages,
                     }
+                    console.log(payload)
                 } else {
                     payload.success = false;
                     payload.error = {
