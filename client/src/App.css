@@ -26,14 +26,7 @@ a {
   color: inherit;
 }
 .app {
-  /* display: flex;
-  flex-direction: row;
-  overflow-x: hidden;
-  justify-content: space-between;
-  /* height: 100vh; */
-  /* overflow-y: auto; */ 
-  /* height: 100vh;
-  overflow: hidden; */
+  
   
 }
 .spin {
@@ -131,4 +124,11 @@ a {
   20% {
     transform: scaleY(1.0);
   }
+}
+
+::-webkit-scrollbar-track {
+  width: 5px;
+}
+::-webkit-scrollbar {
+  scrollbar-track-color: red;
 }

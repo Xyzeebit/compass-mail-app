@@ -17,6 +17,7 @@ export default function Contacts({ contacts, dispatch }) {
     
     return (
       <aside className={`contacts`}>
+        <h1 className="app-name">compass</h1>
         <div className={`profile`}>
           <p className="text">Profile</p>
           <span className="avatar photo">
@@ -46,6 +47,7 @@ export default function Contacts({ contacts, dispatch }) {
             <button className="form-button cancel" onClick={cancel}>Cancel</button>
           </div>
         )}
+        
         <ul className="contact-list">
           <li className="contact">
             <span className="avatar">

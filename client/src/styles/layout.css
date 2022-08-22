@@ -111,9 +111,16 @@
 }
 
 .contacts {
-    padding: 1.5rem;
+    padding: 1rem 1.5rem 1.5rem 1.5rem;
     width: 16rem;
-    /* background-color: var(--primary-light); */
+   
+    overflow-y: auto;
+    height: 100vh;
+}
+.app-name {
+    margin-block-start: 0rem;
+    font-size: 2rem;
+    color: var(--primary);
 }
 
 .profile {
@@ -159,23 +166,33 @@
 ul.contact-list {
     list-style-type: none;
     padding-left: 0;
+    margin-top: 3rem;
 }
 .contact {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    width: 14rem;
+    width: 13rem;
     padding: 0 10px 0 10px;
     margin-block-end: 0.5rem;
+    border-radius: 8px;
     transition: all 200ms linear;
 }
+.contact .avatar {
+    color: #fff;
+    border-color: #fff;
+    background-color: gray;
+}
 .contact:not(:last-child) {
-    border-bottom: 1px solid var(--primary);
+    /* border-bottom: 1px solid #fff; */
 }
 .contact:hover {
-    border-radius: 8px;
-    background-color: rgb(151, 169, 228);
+    background-color: #ccc;
     box-shadow: 0px 0px 4px var(--primary-light);
+}
+.contact:hover .avatar {
+    color: #fff;
+    border-color: gray;
 }
 .contact .avatar {
     margin-right: 0.5rem;
@@ -220,7 +237,8 @@ ul.contact-list {
     border-radius: 5px;
     outline: none;
     padding: 8px;
-    box-shadow: 0px 0px -5px 4px #000;
+    box-shadow: 0px 0px 2px 1px var(--primary-light);
+    
 }
 .form-button.save {
     background-color: var(--primary);
@@ -229,4 +247,8 @@ ul.contact-list {
 }
 .form-button.cancel {
     border: 2px solid var(--primary-light);
+    color: var(--primary-light);
+}
+.form-button:hover {
+    box-shadow: 0px 0px 0px 0px var(--primary-light);
 }
