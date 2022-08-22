@@ -8,7 +8,7 @@
 .container {
     background-color: #ffffff;
     position: absolute;
-    padding: 0 20px 20px 20px;
+    /* padding: 0 20px 20px 20px; */
     height: 100vh;
     z-index: 2;
     top: 0;
@@ -111,15 +111,18 @@
 }
 
 .contacts {
-    padding-top: 1.5rem;
+    padding: 1.5rem;
     width: 16rem;
+    /* background-color: var(--primary-light); */
 }
 
 .profile {
-    box-shadow: 0px 0px 5px #000;
-    width: 15rem;
+    box-shadow: 0px 0px 5px var(--primary-light);
+    width: 13rem;
     border-radius: 10px;
     padding: 10px;
+    margin: 0 auto;
+    background-color: #fff;
 }
 .profile .text {
     font-weight: 600;
@@ -147,10 +150,12 @@
     width: 80px;
     border-radius: 5px;
     color: #fff;
+    font-size: 0.7rem;
 }
 .profile button:hover {
     background-color: var(--primary-light);
 }
+
 ul.contact-list {
     list-style-type: none;
     padding-left: 0;
@@ -159,6 +164,18 @@ ul.contact-list {
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    width: 14rem;
+    padding: 0 10px 0 10px;
+    margin-block-end: 0.5rem;
+    transition: all 200ms linear;
+}
+.contact:not(:last-child) {
+    border-bottom: 1px solid var(--primary);
+}
+.contact:hover {
+    border-radius: 8px;
+    background-color: rgb(151, 169, 228);
+    box-shadow: 0px 0px 4px var(--primary-light);
 }
 .contact .avatar {
     margin-right: 0.5rem;
@@ -167,6 +184,14 @@ ul.contact-list {
     margin-block-start: 0.5rem;
     margin-block-end: 0.5rem;
 }
+.contact h3 {
+    font-size: 0.95rem;
+    font-weight: 500;
+}
 .contact p {
     font-size: 0.85rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 150px;
 }
