@@ -176,6 +176,11 @@ a {
 .p-skeleton {
   border-radius: 10px;
 }
+.p-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
 .p-text {
   width: 80%;
@@ -185,12 +190,10 @@ a {
   height: 65px;
   width: 65px;
   border-radius: 100px;
-  float: right;
 }
 .p-all {
   min-height: 5rem;
   min-width: 150px;
-  float: left;
 }
 .p-text, .p-image { margin: 5px;}
 

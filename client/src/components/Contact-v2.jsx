@@ -7,6 +7,7 @@ export default function Contacts({ contacts, dispatch }) {
     const [formVisible, setFormVisible] = useState(false);
     const [loading, setLoading] = useState(true);
     const [list, setList] = useState([]);
+    const [user, setUser] = useState({});
 
     function addContact() {
 
@@ -20,13 +21,23 @@ export default function Contacts({ contacts, dispatch }) {
   useEffect(() => {
     async function getMockUsers() {
       // https://random-data-api.com/api/v2/users?size=2
-      const resp = await fetch(`https://random-data-api.com/api/v2/users?size=${10}`);
+      const resp = await fetch(`https://randomuser.me/api/?results=${10}`);
       const users = await resp.json();
       if (resp.ok && users) {
-        setList(users);
+        setList(users.results);
+        setUser({
+          name: users.results[0].name.first + ' ' + users.results[0].name.last,
+          photo: users.results[0].picture.medium
+        });
+        setLoading(false);
       }
     }
-  })
+    try {
+      getMockUsers();
+    } catch (error) {
+      
+    }
+  }, []);
     
   return (
     <aside className={`contacts`}>
@@ -34,17 +45,28 @@ export default function Contacts({ contacts, dispatch }) {
       {loading ? (
         <div className="card p-5 p-skeleton">
           <div className="p-text" />
-          <div className="p-all" />
-          <div className="p-image" />
+          <div className="p-group">
+            <div className="p-all" />
+            <div className="p-image" />
+          </div>
         </div>
       ) : (
         <div className={`profile`}>
           <p className="text">Profile</p>
-          <span className="avatar photo">
+          {user.photo ? 
+          (<img 
+            src={user.photo}
+            alt={user.name}
+            width="75"
+            height="75"
+            className="photo"
+          />) : 
+          (<span className="avatar photo">
             <IoPerson size={40} />
-          </span>
+          </span>)
+          }
           <div className="name">
-            <p>John Doe</p>
+            <p>{user.name}</p>
             <button onClick={() => setFormVisible(true)}>Add contact</button>
           </div>
         </div>
@@ -92,20 +114,36 @@ export default function Contacts({ contacts, dispatch }) {
             </li>
           </>
         )}
-        {list &&
-          (<>
+        {list && (
+          <>
             {list.map((con, i) => (
-            <li key={i} className={`contact`}>
-              <span className="avatar">
-                <IoPerson size={30} />
-              </span>
-              <div>
-                <h3>{con.name}</h3>
-                <p>{con.email}</p>
-              </div>
-            </li>
+              <li key={con.login.uuid} className={`contact`}>
+                {con.picture ? (
+                  <div className="photo-container">
+                    <img
+                      src={con.picture.thumbnail}
+                      alt={con.name.first}
+                      width="50"
+                      height="50"
+                      className="photo"
+                    />
+                  </div>
+                ) : (
+                  <span className="avatar">
+                    <IoPerson size={30} />
+                  </span>
+                )}
+                <div>
+                  <h3>
+                    {con.name.first} {con.name.last}
+                  </h3>
+                  <p>{con.email}</p>
+                </div>
+              </li>
             ))}
-          </>)}
+            <div className="divider" />
+          </>
+        )}
       </ul>
     </aside>
   );
