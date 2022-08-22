@@ -112,6 +112,7 @@
 
 .contacts {
     padding-top: 1.5rem;
+    width: 16rem;
 }
 
 .profile {
@@ -124,8 +125,10 @@
     font-weight: 600;
     font-size: 0.9rem;
 }
-.avatar {
+.profile .photo {
     float: right;
+}
+.avatar {
     display: grid;
     place-items: center;
     padding: 5px;
@@ -147,4 +150,23 @@
 }
 .profile button:hover {
     background-color: var(--primary-light);
+}
+ul.contact-list {
+    list-style-type: none;
+    padding-left: 0;
+}
+.contact {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+.contact .avatar {
+    margin-right: 0.5rem;
+}
+.contact h3, p {
+    margin-block-start: 0.5rem;
+    margin-block-end: 0.5rem;
+}
+.contact p {
+    font-size: 0.85rem;
 }

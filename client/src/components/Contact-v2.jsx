@@ -6,7 +6,7 @@ export default function Contacts({ contacts, dispatch }) {
         <aside className={`contacts`}>
             <div className={`profile`}>
                 <p className="text">Profile</p>
-                <span className="avatar">
+                <span className="avatar photo">
                     <IoPerson size={40} />
                 </span>
                 <div className="name">
@@ -16,7 +16,7 @@ export default function Contacts({ contacts, dispatch }) {
             </div>
             <ul className="contact-list">
                 <li className="contact">
-                    <span>
+                    <span className="avatar">
                         <IoPerson size={30} />
                     </span>
                     <div>
