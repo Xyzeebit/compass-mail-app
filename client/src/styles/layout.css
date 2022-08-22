@@ -141,7 +141,10 @@
 }
 @media screen and (max-width: 768px) {
     .profile {
-        width: 75vw;
+        width: 85vw;
+    }
+    .app-name {
+        display: none;
     }
 }
 .profile .text {
@@ -243,6 +246,13 @@ ul.contact-list {
     width: 100%;
     height: 2px;
     background-color: var(--gray);
+}
+
+@media screen and (max-width: 768px) {
+    .contact-form {
+        width: 80vw;
+        margin: 0 auto;
+    }
 }
 .contact-form h4 {
     margin-block-end: 0.5rem;
