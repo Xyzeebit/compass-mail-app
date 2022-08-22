@@ -117,7 +117,8 @@ export default function Contacts({ contacts, dispatch }) {
         {list && (
           <>
             {list.map((con, i) => (
-              <li key={con.login.uuid} className={`contact`}>
+              <>
+                <li key={con.login.uuid} className={`contact`}>
                 {con.picture ? (
                   <div className="photo-container">
                     <img
@@ -140,8 +141,9 @@ export default function Contacts({ contacts, dispatch }) {
                   <p>{con.email}</p>
                 </div>
               </li>
+                <div className="divider" />
+              </>
             ))}
-            <div className="divider" />
           </>
         )}
       </ul>

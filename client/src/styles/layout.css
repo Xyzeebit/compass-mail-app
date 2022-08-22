@@ -118,6 +118,12 @@
     height: 100vh;
 }
 
+@media screen and (max-width: 768px) {
+    .contacts {
+        width: 100vw;
+    }
+}
+
 .app-name {
     margin-block-start: 0rem;
     font-size: 2rem;
@@ -132,6 +138,11 @@
     padding: 10px;
     margin: 0 auto;
     background-color: #fff;
+}
+@media screen and (max-width: 768px) {
+    .profile {
+        width: 75vw;
+    }
 }
 .profile .text {
     font-weight: 600;
@@ -177,6 +188,7 @@ ul.contact-list {
     align-items: center;
     width: 100%;
     padding: 0 10px 0 10px;
+    margin-block-start: 0.5rem;
     margin-block-end: 0.5rem;
     border-radius: 8px;
     transition: all 200ms linear;
@@ -229,7 +241,7 @@ ul.contact-list {
 
 .divider {
     width: 100%;
-    height: 5px;
+    height: 2px;
     background-color: var(--gray);
 }
 .contact-form h4 {
