@@ -5,6 +5,7 @@
   --primary: #0e1ac1;
   --primary-light: #3940a7e0;
   --primary-dark: #0a0a97;
+  --loading-grey: #ededed;
 }
 
 * {
@@ -134,4 +135,89 @@ a {
 }
 ::-webkit-scrollbar-thumb {
   background-color: #555;
+}
+
+.card {
+  width: 100%;
+  background-color: #fff;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, .12);
+}
+.skeleton-loader, 
+.p-text, 
+.p-image, 
+.p-all,
+.c-image,
+.c-name,
+.c-email {
+  background-color: var(--loading-grey);
+  background: linear-gradient(
+    100deg,
+    rgba(255, 255, 255, 0) 40%,
+    rgba(255, 255, 255, .5) 50%,
+    rgba(255, 255, 255, 0) 60%
+  ) var(--loading-grey);
+  background-size: 200% 100%;
+  background-position-x: 180%;
+  animation: 1s loading ease-in-out infinite;
+}
+
+
+@keyframes loading {
+  to {
+    background-position-x: -20%;
+  }
+}
+.p-5 {
+  padding: 5px;
+}
+
+.p-skeleton {
+  border-radius: 10px;
+}
+
+.p-text {
+  width: 80%;
+  min-height: 1rem;
+}
+.p-image {
+  height: 65px;
+  width: 65px;
+  border-radius: 100px;
+  float: right;
+}
+.p-all {
+  min-height: 5rem;
+  min-width: 150px;
+  float: left;
+}
+.p-text, .p-image { margin: 5px;}
+
+.c-skeleton {
+  border-radius: 8px;
+  width: 100%;
+  padding: 5px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 5px;
+}
+.c-group {
+  width: 70%;
+  margin-left: 5px;
+}
+.c-image {
+  width: 45px;
+  height: 45px;
+  border-radius: 100px;
+}
+.c-name {
+  width: 100%;
+  min-height: 1.2rem;
+  margin-bottom: 5px;
+}
+.c-email {
+  width: 100%;
+  min-height: 1rem;
 }
