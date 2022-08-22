@@ -4,10 +4,15 @@ import { IoPerson } from "react-icons/io5";
 export default function Contacts({ contacts, dispatch }) {
     return (
         <aside className={`contacts`}>
-            <div className={`user`}>
-                <span>
-                    <IoPerson size={25} />
+            <div className={`profile`}>
+                <p className="text">Profile</p>
+                <span className="avatar">
+                    <IoPerson size={40} />
                 </span>
+                <div className="name">
+                    <p>John Doe</p>
+                    <button>Add user</button>
+                </div>
             </div>
             <ul>
                 <li>User 1</li>

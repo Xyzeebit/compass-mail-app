@@ -109,3 +109,38 @@
     padding-right: 10px;
     font-weight: 500;
 }
+
+.contacts {
+    padding-top: 1.5rem;
+}
+
+.profile {
+    box-shadow: 0px 0px 5px #000;
+    width: 15rem;
+    border-radius: 10px;
+    padding: 10px;
+}
+.profile .text {
+    font-weight: 600;
+}
+.profile .avatar {
+    float: right;
+    display: grid;
+    place-items: center;
+    padding: 5px;
+    border-radius: 100px;
+    color: gray;
+    border: 2px solid grey;
+}
+.profile .name {
+    font-weight: 600;
+}
+.profile button {
+    border: none;
+    outline: none;
+    background-color: var(--primary);
+    padding: 8px;
+    width: 80px;
+    border-radius: 5px;
+    color: #fff;
+}

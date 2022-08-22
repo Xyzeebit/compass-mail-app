@@ -49,7 +49,7 @@ export const initState = {
         dropdown: false
     },
     contacts: {
-        open: false,,
+        open: false,
         contacts: []
     },
     marked: [],
