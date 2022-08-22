@@ -26,16 +26,24 @@ export default function Contacts({ contacts, dispatch }) {
             <p>John Doe</p>
             <button onClick={() => setFormVisible(true)}>Add contact</button>
           </div>
-            </div>
-            <div>
-                <h4>Add new contact</h4>
-                <input
-                    type="text"
-                    placeholder="Name"
-                    value={name}
-                    onChange={(evt) => setName(evt.target.value)}
-                />
-            </div>
+        </div>
+        {formVisible && (
+          <div className="contact-form">
+            <h4>Add new contact</h4>
+            <input
+              type="text"
+              placeholder="Name"
+              value={name}
+              onChange={(evt) => setName(evt.target.value)}
+            />
+            <input
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={(evt) => setEmail(evt.target.value)}
+            />
+          </div>
+        )}
         <ul className="contact-list">
           <li className="contact">
             <span className="avatar">
