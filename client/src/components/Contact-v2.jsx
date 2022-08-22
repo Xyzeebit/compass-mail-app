@@ -14,7 +14,16 @@ export default function Contacts({ contacts, dispatch }) {
                     <button>Add user</button>
                 </div>
             </div>
-            <ul>
+            <ul className="contact-list">
+                <li className="contact">
+                    <span>
+                        <IoPerson size={30} />
+                    </span>
+                    <div>
+                        <h3>John Smith</h3>
+                        <p>johnsmith@compass.com</p>
+                    </div>
+                </li>
                 <li>User 1</li>
                 <li>User 2</li>
                 <li>User 3</li>

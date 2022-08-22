@@ -122,8 +122,9 @@
 }
 .profile .text {
     font-weight: 600;
+    font-size: 0.9rem;
 }
-.profile .avatar {
+.avatar {
     float: right;
     display: grid;
     place-items: center;
@@ -143,4 +144,7 @@
     width: 80px;
     border-radius: 5px;
     color: #fff;
+}
+.profile button:hover {
+    background-color: var(--primary-light);
 }
