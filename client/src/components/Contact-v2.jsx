@@ -42,6 +42,8 @@ export default function Contacts({ contacts, dispatch }) {
               value={email}
               onChange={(evt) => setEmail(evt.target.value)}
             />
+            <button className="form-button save" onClick={addContact}>Save</button>
+            <button className="form-button cancel" onClick={cancel}>Cancel</button>
           </div>
         )}
         <ul className="contact-list">
