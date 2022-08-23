@@ -1,5 +1,8 @@
 .mails {
-    padding: 100rem 0.5rem 2rem 0.5rem;
+    padding: 2rem 0.5rem 2rem 0.5rem;
+    /* overflow-y: auto; */
+    height: 100%;
+    width: 20rem;
 }
 .mail-item {
     display: flex;
@@ -82,7 +85,7 @@ article.mail-head:hover {
 .flipped {
     transform: rotateY(180deg);
 }
-.mail-head a {
+.mail-item a {
     text-decoration: none;
     color: inherit;
     margin-left: 5px;
@@ -93,7 +96,7 @@ article.mail-head:hover {
 }
 .message-summary {
     overflow: hidden;
-    width: 500px;
+    /* width: 500px; */
     text-overflow: ellipsis;
     white-space: nowrap;
     /* margin: 0 auto; */
@@ -109,7 +112,7 @@ article.mail-head:hover {
 }
 @media screen and (max-width: 900px) {
     .message-summary {
-        width: 300px;
+        /* width: 300px; */
     }
     .time-and--badge {
         margin-left: 10px;
@@ -125,25 +128,26 @@ article.mail-head:hover {
     }
 }
 .message-summary h2 {
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: 600;
 }
-.mail-head a .message-summary h2, h3, p {
+.mail-item a .message-summary h2, h3, p {
     margin-block-start: 0.2rem;
-    margin-block-end: 0.2rem;
+    margin-block-end: 0.1rem;
 }
-.mail-head a .message-summary h3 {
-    font-size: 1rem;
+.mail-item a .message-summary h3 {
+    font-size: 0.9rem;
     font-weight: 500;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
 }
 .message-summary p {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
+    margin-block-start: 0.1rem;
 }
 .time-and--badge {
     display: flex;
@@ -151,7 +155,7 @@ article.mail-head:hover {
     align-items: center;
     justify-content: center;
     margin-left: 20px;
-    width: 40px;
+    /* width: 40px; */
 }
 .time {
     font-weight: 500;
