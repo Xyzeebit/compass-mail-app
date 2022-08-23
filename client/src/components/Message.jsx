@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 export default function Message({ message, dispatch }) {
   const { id, type, sender, subject, body, time, isMarked, isNew } = message;
   return (
-    <article className="mail-item" title={subject}>
+    <li className="mail-item" title={subject}>
       <Icon id={id} type={type} isMarked={isMarked} sender={sender} dispatch={dispatch} />
       <Link to={"/" + type + "/" + id}>
         <div className="message-summary">
@@ -18,7 +18,7 @@ export default function Message({ message, dispatch }) {
           {isNew && <Badge label="New" />}
         </div>
       </Link>
-    </article>
+    </li>
   );
 }
 

@@ -1,4 +1,4 @@
-import { useEffect, useReducer } from 'react';
+import { useState, useEffect, useReducer } from 'react';
 // import Paginator from '../components/Paginator';
 // import List from '../components/List';
 
@@ -9,15 +9,23 @@ import Mail from '../components/Mail';
 export default function Inbox() {
   const [state, dispatch] = useReducer(combineReducers, initState);
   const { sidebar, user, mails } = state;
+  const [loading, setLoading] = useState(true);
   
   useEffect(() => {
     dispatch({ type: 'FETCH_MAIL'});
   }, []);
+
+  useEffect(() => {
+    if(mails) {
+      setLoading(false);
+    }
+  }, [mails])
     
   return (
     <Layout sidebar={sidebar} dispatch={dispatch}>
       <Mail 
-        expand={sidebar.expand} 
+        expand={sidebar.expand}
+        loading={loading}
         user={user} 
         list={mails}
         label="Your have no messages in your inbox"

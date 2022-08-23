@@ -8,7 +8,7 @@ import EmptyList from './EmptyList';
 
 export default function List({ list, label, dispatch }) {
     return (
-        <>
+        <ul className="mail-list">
             {<Actions marked={() => {
                 return list.filter(i => i.isMarked === true )
             }} dispatch={dispatch} />}
@@ -24,7 +24,7 @@ export default function List({ list, label, dispatch }) {
                 );
             })) : ( <EmptyList text={label} /> )
         }
-        </>
+        </ul>
     )
 }
 
@@ -91,5 +91,3 @@ const Actions = ({ marked, dispatch }) => {
     );
 }
 
-
-// export default memo(List);

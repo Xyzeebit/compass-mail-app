@@ -150,7 +150,8 @@ a {
 .p-all,
 .c-image,
 .c-name,
-.c-email {
+.c-email,
+.c-time {
   background-color: var(--loading-grey);
   background: linear-gradient(
     100deg,
@@ -223,4 +224,9 @@ a {
 .c-email {
   width: 100%;
   min-height: 1rem;
+}
+.c-time {
+  width: 40px;
+  min-height: 50px;
+  margin-left: 5px;
 }
