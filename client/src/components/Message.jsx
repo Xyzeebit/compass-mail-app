@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 export default function Message({ message, dispatch }) {
   const { id, type, sender, subject, body, time, isMarked, isNew } = message;
   return (
-    <article className="mail-head" title={subject}>
+    <article className="mail-item" title={subject}>
       <Icon id={id} type={type} isMarked={isMarked} sender={sender} dispatch={dispatch} />
       <Link to={"/" + type + "/" + id}>
         <div className="message-summary">

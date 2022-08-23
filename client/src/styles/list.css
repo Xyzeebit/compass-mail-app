@@ -1,6 +1,15 @@
+.mails {
+    padding: 100rem 0.5rem 2rem 0.5rem;
+}
+.mail-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 section.list {
-    width: 60%;
-    padding: 50px;
+    /* width: 60%;
+    padding: 50px; */
 }
 @media screen and (max-width: 900px) {
     section.list {

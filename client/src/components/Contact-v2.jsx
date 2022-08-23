@@ -33,7 +33,7 @@ export default function Contacts({ contacts, dispatch }) {
       }
     }
     try {
-      getMockUsers();
+      // getMockUsers();
     } catch (error) {
       
     }
