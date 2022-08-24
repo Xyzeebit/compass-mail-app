@@ -1,9 +1,48 @@
 .compose-container {
     position: fixed;
+    bottom: 25px;
+    right: 25px;
+    width: 135px;
+    overflow: hidden;
+    padding: 5px;
+    transition: top 1s, width 1s;
+}
+.expand-composer {
     right: 20px;
-    bottom: 0;
-    top: 0;
+    bottom: 20px;
+    top: 20px;
     width: 400px;
+    padding: 20px;
+    box-shadow: 0px 0px 4px #000000c5;
+}
+.compose-message {
+    /* width: 0; */
+    height: 0;
+    overflow: hidden;
+    transition: width 1s ease-in;
+}
+.expand-message {
+    width: 100%;
+    height: 100%;
+}
+.hide-header {
+    display: none;
+}
+.compose-header {
+    padding: 0 0 5px 0;
+}
+.compose-header span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    border-radius: 100px;
+    width: 30px;
+    height: 30px;
+}
+.compose-header span:hover {
+    background-color: lightgrey;
+    color: gray;
 }
 .compose-message label {
     display: block;
@@ -14,23 +53,95 @@
     outline: none;
     width: 80%;
     padding: 10px 10px 10px 30px;
+    background: none;
 }
 
 .form-header input:focus {
     border: none;
     outline: none;
+    background: none;
 }
 
 .compose-body {
     margin-top: 20px;
+    border: 2px solid gray;
+    border-radius: 20px;
+    overflow: hidden;
 }
 .compose-body textarea {
     resize: none;
     width: 100%;
-    height: 300px;
-    border: 2px solid gray;
+    height: 200px;
+    border: none;
+    padding: 10px;
+    font-size: 1.025rem;
+    font-weight: 450;
 }
 .compose-body textarea:focus {
-    outline: 2px solid gray;
+    outline: none;
     border: none;
+}
+.shotcuts {
+    border-bottom: 1px solid gray;
+    display: flex;
+    padding: 5px;
+    color: gray;
+}
+
+.shotcuts-left {
+    border-right: 1px solid gray;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 40%;
+}
+.shotcuts-right {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 60%;
+}
+
+.send-save-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 20px;
+}
+.send-save-buttons button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+    border-radius: 5px;
+    background: #e4dddd;
+    color: gray;
+    font-weight: 500;
+    border: none;
+    outline: none;
+    box-shadow: 0px 0px 5px #000000c5;
+}
+.send-save-buttons button span {
+    padding-right: 10px;
+}
+.compose-options {
+    color: gray;
+}
+
+.compose-button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0px 0px 4px #000000c5;
+    width: 120px;
+    padding: 10px;
+    border-radius: 30px;
+    float: right;
+    cursor: pointer;
+}
+.compose-button span {
+    font-weight: 500;
+}
+.compose-button:hover {
+    color: gray;
 }
