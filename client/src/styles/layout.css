@@ -73,14 +73,30 @@
 .search-bar {
     width: 100%;
 }
+.search-bar form {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 .search-bar form input {
-    width: 100%;
+    width: 85%;
     height: 2.8rem;
     border-radius: 5px;
     outline: none;
     background-color: var(--gray);
     border: 1px solid var(--gray);
     padding-left: 15px;
+}
+.user-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    background: #fff;
+    color: gray;
+    border-radius: 100px;
+    border: 2px solid #fff;
+    box-shadow: 0px 0px 2px #000000c3;
 }
 
 .btn-user {
@@ -124,6 +140,30 @@
 @media screen and (max-width: 768px) {
     .contacts {
         width: 100vw;
+    }
+    .sm-none {
+        /* transform: translateX(-120vw); */
+        display: none;
+    }
+    .mails {
+        padding: 1.5rem 0.5rem 2rem 0.5rem;
+        margin-left: 0;
+        /* transform: translateX(-20px); */
+        /* width: 100vw; */
+    }
+    .expand-composer {
+       right: 0 !important;
+       
+       top: 0 !important;
+       bottom: 0 !important;
+       width: 100vw !important;
+       border-radius: 0 !important;
+    }
+    
+}
+@media screen and (min-width: 769px) {
+    .user-bar {
+        display: none;
     }
 }
 
