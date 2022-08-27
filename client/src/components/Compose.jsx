@@ -71,6 +71,7 @@ export default function Compose({ user, contact, dispatch }) {
                 type="email"
                 value={to}
                 id="to"
+                autocomplete="off"
                 onChange={handleTos}
                 placeholder="recipient"
               />
@@ -78,11 +79,11 @@ export default function Compose({ user, contact, dispatch }) {
             <label htmlFor="subject">
               <span>Subject</span>
               <input
-                type="email"
+                type="text"
                 value={subject}
                 id="subject"
                 onChange={handleSubject}
-                placeholder="recipient"
+                placeholder="message  title"
               />
             </label>
           </div>
@@ -108,7 +109,7 @@ export default function Compose({ user, contact, dispatch }) {
               <IoAttach size={20} />
               <IoSave size={20} />
             </div>
-            <button>
+            <button className="send-message">
               <span>Send</span>
               <IoSend size={20} />
             </button>

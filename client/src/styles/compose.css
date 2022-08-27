@@ -39,6 +39,8 @@
     border-radius: 100px;
     width: 30px;
     height: 30px;
+    background-color: var(--primary-light);
+    color: #fff;
 }
 .compose-header span:hover {
     background-color: lightgrey;
@@ -74,7 +76,8 @@
     height: 200px;
     border: none;
     padding: 10px;
-    font-size: 1.025rem;
+    font-size: 0.85rem;
+    line-height: 1.5;
     font-weight: 450;
 }
 .compose-body textarea:focus {
@@ -124,8 +127,23 @@
 .send-save-buttons button span {
     padding-right: 10px;
 }
+.send-message {
+    background: var(--primary) !important;
+    color: #fff !important;
+    padding: 5px 10px 5px 10px !important;
+    box-shadow: 0px 0px 5px #000000c5 !important;
+}
+.send-message:hover {
+    background: var(--primary-dark) !important;
+}
+.send-message:active {
+    box-shadow: 0px 0px 0px #000000c5 !important;
+}
 .compose-options {
     color: gray;
+}
+.compose-options svg:hover {
+    color: rgb(22, 20, 20);
 }
 
 .compose-button {

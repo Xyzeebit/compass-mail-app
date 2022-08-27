@@ -137,14 +137,14 @@
     margin-block-end: 0.1rem;
 }
 .mail-item a .message-summary h3 {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     font-weight: 500;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
 }
 .message-summary p {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
