@@ -48,6 +48,7 @@ export default function Compose({ user, contact, dispatch }) {
 
     return (
       <div className={`compose-container ${open ? 'expand-composer' : ''}`}>
+        <div className={`compose-group`}>
         <div className={`compose-header ${ open ? '' : 'hide-header'}`}>
           <span onClick={closeComposer}>
             <IoClose />
@@ -115,10 +116,11 @@ export default function Compose({ user, contact, dispatch }) {
             </button>
           </div>
         </div>
-        <div className={`compose-button`} onClick={openComposer}>
+        </div>
+        {!open && <div className={`compose-button`} onClick={openComposer}>
           <IoPencil />
           <span>Compose</span>
-        </div>
+        </div>}
       </div>
     );
 }
