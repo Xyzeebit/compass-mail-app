@@ -11,9 +11,8 @@ export default function Mail({ expand, loading, user, list, label, dispatch }) {
           expand ? "expand-container" : "shrink-container"
         }`}
       >
-        {/* <Contacts user={user} /> */}
         <div className="mails">
-          {/* <Searchbar dispatch={dispatch} /> */}
+          <Searchbar dispatch={dispatch} />
           {loading &&
             <>
               <ul className="mail-skeleton-list">
@@ -52,7 +51,7 @@ export default function Mail({ expand, loading, user, list, label, dispatch }) {
               </ul>
             </>
           }
-          {/* {loading === false && <List list={list} label={label} dispatch={dispatch} />} */}
+          {loading === false && <List list={list} label={label} dispatch={dispatch} />}
           {/* <Compose /> */}
         </div>
       </article>
