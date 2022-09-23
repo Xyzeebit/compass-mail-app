@@ -24,6 +24,9 @@
     background-color: #fff;
     margin-bottom: 0.5rem;
 }
+.mail-item:hover {
+    background-color: var(--gray);
+}
 
 
 /* .list article.mail-item{ */
