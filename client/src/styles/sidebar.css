@@ -7,7 +7,7 @@ aside.sidebar {
     justify-content: space-between;
     flex-direction: column;
     padding: 1rem;
-    position: absolute;
+    /* position: absolute; */
     left: 0;
     top: 0;
     bottom: 0;
@@ -31,7 +31,7 @@ aside.sidebar {
     .expand-button {
         display: none;
     }
-    .mb-sideber-button {
+    .mb-sidebar-button {
         position: fixed;
         top: 25px;
         right: 20px;

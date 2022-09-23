@@ -1,9 +1,35 @@
 .layout {
-  /* position: relative;
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden; */
-  background-color: var(--primary-dark);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  background-color: var(--primary);
+  overflow: hidden;
+}
+.aside-group {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 40%;
+}
+section.layout-container {
+    width: 60%;
+    background: #fff;
+    height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+@media screen and (min-width: 789px) {
+    .aside-group {
+        width: 55%;
+    }
+    .sidebar {
+        overflow-x: hidden !important;
+    }
+}
+@media screen and (min-width: 981px) {
+    .aside-group {
+        width: 30%;
+    }
 }
 .container {
     background-color: #ffffff;
@@ -170,7 +196,7 @@
 .app-name {
     margin-block-start: 0rem;
     font-size: 2rem;
-    color: var(--primary);
+    color: #fff;
 }
 
 .profile {

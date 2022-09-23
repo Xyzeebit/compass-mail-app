@@ -23,14 +23,14 @@ export default function Inbox() {
     
   return (
     <Layout sidebar={sidebar} dispatch={dispatch}>
-      <Mail 
+      {/* <Mail 
         expand={sidebar.expand}
         loading={loading}
         user={user} 
         list={mails}
         label="Your have no messages in your inbox"
         dispatch={dispatch} 
-      />
+      /> */}
     </Layout>
   );
 }
