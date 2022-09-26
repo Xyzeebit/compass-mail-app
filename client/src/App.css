@@ -16,20 +16,12 @@ html, body {
   padding: 0;
   margin: 0;
 }
-body {
-  /* background-image: url(./sustainable.jpg);
-  background-size: cover;
-  background-attachment: fixed;
-  background-position: center; */
-}
+
 a {
   text-decoration: none;
   color: inherit;
 }
-.app {
-  
-  
-}
+
 .spin {
   -webkit-animation: spin 60000ms linear infinite;
   -moz-animation: spin 60000ms linear infinite;
