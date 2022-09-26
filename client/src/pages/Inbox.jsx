@@ -1,5 +1,5 @@
 import { useState, useEffect, useReducer } from 'react';
-// import Paginator from '../components/Paginator';
+
 // import List from '../components/List';
 
 import combineReducers, { initState } from "../reducer/reducer";
