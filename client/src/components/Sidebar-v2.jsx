@@ -9,7 +9,6 @@ import { IoExpand, IoExpandSharp, IoMenu, IoSend, IoStar } from "react-icons/io5
 import { IoLogOut } from 'react-icons/io5';
 import { RiLogoutBoxLine } from 'react-icons/ri';
 
-// IoMdContact
 import { RiDraftFill, RiSpam2Fill } from "react-icons/ri";
 import NavButton from './NavButton';
 

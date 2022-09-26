@@ -81,9 +81,7 @@ function markedReducer(state, action) {
                 state.push({ location: action.location, id: action.id });
             }
             return state;
-        // case 'EMPTY_MARKED':
-        //     state = [];
-        //     return state;
+        
         default: return state;
     }
 }
