@@ -17,7 +17,7 @@ import NavButton from './NavButton';
 
 export default function Sidebar({ sidebar, dispatch }) {
     const navigate = useNavigate();
-  // const [expand, setExpand] = useState(false);
+  
     const { open, expand, dropdown } = sidebar;
 
     const handleCompose = () => {
