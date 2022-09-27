@@ -35,6 +35,14 @@ section.layout-container {
         bottom: 0;
         width: 100vw !important;
     }
+    aside.sidebar {
+        width: 100%;
+    }
+    button.mb-sidebar-button {
+        position: absolute;
+        right: 1rem;
+        top: 1rem;
+    }
     .layout-container {
         top: 5rem;
         left: 0;

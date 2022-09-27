@@ -51,7 +51,7 @@ export default function Sidebar({ sidebar, dispatch }) {
         </button>
 
         <button
-          className={`mb-sideber-button`}
+          className={`mb-sidebar-button`}
           onClick={() => dispatch({ type: "EXPAND" })}
         >
           <IoMdMenu size={25} />
