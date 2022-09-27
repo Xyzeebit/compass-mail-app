@@ -105,7 +105,7 @@ p.desc {
     position: absolute;
     bottom: 0;
     right: 0;
-    width: 38rem;
+    width: 40rem;
     height: 20rem;
     z-index: 2;
     background-image: url(../images/snapshot.png);
