@@ -18,7 +18,29 @@ section.layout-container {
     overflow-y: auto;
     overflow-x: hidden;
 }
-@media screen and (min-width: 789px) {
+@media screen and (max-width: 768px) {
+    .layout {
+        flex-direction: column;
+        position: relative;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        z-index: 1;
+        height: 100vh;
+    }
+    .aside-group {
+        position: absolute;
+        top: 2rem;
+        left: 0;
+        bottom: 0;
+    }
+    .layout-container {
+        width: 100vw !important;
+        position: absolute;
+        padding: 00.5rem;
+    }
+}
+@media screen and (min-width: 769px) {
     .aside-group {
         width: 55%;
     }
