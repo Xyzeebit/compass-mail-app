@@ -8,7 +8,7 @@ export default function Layout({ sidebar, contacts, dispatch, children }) {
     const { expand, flyout } = sidebar;
     return (
         <div className="layout">
-            <div className='aside-group'>
+            <div className={'aside-group ' + (flyout ? 'slide-left' : '')}>
                 <Sidebar sidebar={sidebar} dispatch={dispatch} />
                 <Contacts contacts={contacts} dispatch={dispatch} />
             </div>

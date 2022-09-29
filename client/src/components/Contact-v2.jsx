@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { IoPerson } from "react-icons/io5";
+import logo from '../images/logo-w.png';
+
 
 export default function Contacts({ contacts, dispatch }) {
     const [name, setName] = useState('');
@@ -41,7 +43,16 @@ export default function Contacts({ contacts, dispatch }) {
     
   return (
     <aside className={`contacts`}>
-      <h1 className="app-name">compass</h1>
+      <div className="contacts-header">
+        <img
+          src={logo}
+          alt="Compass Logo"
+          width="50"
+          height="50"
+          className="spin sidebar-logo"
+        />
+        <h1 className="app-name">compass</h1>
+      </div>
       {loading ? (
         <div className="card p-5 p-skeleton">
           <div className="p-text" />

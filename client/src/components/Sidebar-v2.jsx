@@ -17,7 +17,7 @@ import NavButton from './NavButton';
 export default function Sidebar({ sidebar, dispatch }) {
     const navigate = useNavigate();
   
-    const { open, expand, dropdown } = sidebar;
+    const { open, expand, flyout } = sidebar;
 
     const handleCompose = () => {
       navigate("/compose");
@@ -25,7 +25,13 @@ export default function Sidebar({ sidebar, dispatch }) {
 
     const closeSidebar = () => {
       // dispatch({ type: 'TOGGLE_SIDEBAR' });
-    };
+  };
+  const toggleMenu = () => {
+    dispatch({ type: 'TOGGLE_CONTACTS' });
+    setTimeout(() => {
+      dispatch({ type: "EXPAND" });
+    }, 100);
+  }
     const showContacts = () => {
       // dispatch({ type: "TOGGLE_SIDEBAR" });
       // dispatch({ type: "SHOW_CONTACTS" });
@@ -46,7 +52,7 @@ export default function Sidebar({ sidebar, dispatch }) {
         <button
           className="expand-button flex-center"
           title={expand ? "Collapse menu" : "Expand menu"}
-          onClick={() => dispatch({ type: "EXPAND" })}
+          onClick={toggleMenu}
         >
           <IoMdExpand size={20} />
         </button>

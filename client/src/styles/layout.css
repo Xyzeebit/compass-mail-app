@@ -36,7 +36,7 @@ section.layout-container {
         width: 200vw !important;
         transition: transform 300ms;
     }
-    aside.slide-left {
+    .slide-left {
         transform: translateX(-100vw);
     }
     aside.sidebar {
@@ -249,6 +249,15 @@ section.layout-container {
         width: 85vw;
     }
     .app-name {
+        padding-left: 1rem;
+        font-weight: 500;
+    }
+    .contacts-header {
+        display: flex;
+    }
+}
+@media screen and (min-width: 769px) {
+    .contacts-header img {
         display: none;
     }
 }
