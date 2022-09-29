@@ -79,6 +79,7 @@ section.layout-container {
 }
 .container {
     background-color: var(--gray);
+    height: 100vh;
 }
 
 
@@ -150,6 +151,12 @@ section.layout-container {
     padding-left: 15px;
 }
 @media screen and (min-width: 800px) {
+    .search-bar form input {
+        width: 86%;
+    }
+}
+
+@media screen and (min-width: 900px) {
     .search-bar form input {
         width: 92%;
     }

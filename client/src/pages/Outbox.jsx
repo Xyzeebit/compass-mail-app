@@ -27,7 +27,7 @@ export default function Outbox() {
         expand={sidebar.expand}
         loading={loading}
         user={user} 
-        list={mails}
+        list={[]}
         label="Your have no sent messages in your outbox"
         dispatch={dispatch} 
       />
