@@ -14,13 +14,13 @@ aside.sidebar {
     overflow: auto;
 }
 
-@media screen and (max-width: 760px) {
+@media screen and (max-width: 768px) {
     aside.sidebar {
         right: 0;
         bottom: 0;
         align-items: flex-start;
         justify-content: flex-start;
-
+        
     }
     nav {
         margin-block-start: 1.5rem;
@@ -42,9 +42,24 @@ aside.sidebar {
         color: #fff;
     }
 }
+@media screen and (max-height: 500px) {
+    aside.sidebar {
+        height: 100vh;
+        
+    }
+    aside.contacts {
+        padding-bottom: 10rem;
+    }
+    section.layout-container {
+        top: 80vh;
+    }
+    section.expand-container {
+        top: 5rem;
+    }
+}
 
 
-@media screen and (min-width: 761px) {
+@media screen and (min-width: 769px) {
     aside.sidebar {
         height: 100vh;
     }

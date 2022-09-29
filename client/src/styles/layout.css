@@ -41,9 +41,11 @@ section.layout-container {
     }
     aside.sidebar {
         width: 100vw;
+        height: 100%;
     }
     aside.contacts {
         width: 100vw;
+        height: 100%;
     }
     button.mb-sidebar-button {
         position: fixed;
@@ -109,7 +111,7 @@ section.layout-container {
         left: 0;
     }
     .shrink-container {
-        top: 70vh;
+        top: 75vh;
         left: 0;
         border-radius: 20px 20px 0 0;
         box-shadow: 0px 0px 4px black;
@@ -250,6 +252,7 @@ section.layout-container {
     }
     .app-name {
         padding-left: 1rem;
+        font-weight: 500;
     }
     .contacts-header {
         display: flex;
