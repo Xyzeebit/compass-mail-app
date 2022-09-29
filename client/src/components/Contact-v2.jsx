@@ -40,7 +40,7 @@ export default function Contacts({ contacts, dispatch }) {
   }, []);
     
   return (
-    <aside className={`contacts sm-none`}>
+    <aside className={`contacts`}>
       <h1 className="app-name">compass</h1>
       {loading ? (
         <div className="card p-5 p-skeleton">

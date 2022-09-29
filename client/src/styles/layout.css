@@ -33,10 +33,17 @@ section.layout-container {
         top: 0;
         left: 0;
         bottom: 0;
-        width: 100vw !important;
+        width: 200vw !important;
+        transition: transform 300ms;
+    }
+    aside.slide-left {
+        transform: translateX(-100vw);
     }
     aside.sidebar {
-        width: 100%;
+        width: 100vw;
+    }
+    aside.contacts {
+        width: 100vw;
     }
     button.mb-sidebar-button {
         position: absolute;

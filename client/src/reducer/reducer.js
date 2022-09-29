@@ -46,7 +46,7 @@ export const initState = {
     sidebar: {
         open: true,
         expand: false,
-        dropdown: false
+        flyout: false
     },
     contacts: {
         open: false,
@@ -62,8 +62,8 @@ function sidebarReducer(state, action) {
             return { ...state, open: !state.open };
         case 'EXPAND':
             return { ...state, expand: !state.expand };
-        case 'DROPDOWN':
-            return { ...state, dropdown: !state.dropdown };
+        case 'TOGGLE_CONTACT':
+            return { ...state, flyout: !state.dropdown };
         default: return state;
     }
 }

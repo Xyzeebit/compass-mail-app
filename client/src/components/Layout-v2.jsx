@@ -5,7 +5,7 @@ import Contacts from './Contact-v2';
 
 
 export default function Layout({ sidebar, contacts, dispatch, children }) {
-    const { expand } = sidebar;
+    const { expand, flyout } = sidebar;
     return (
         <div className="layout">
             <div className='aside-group'>

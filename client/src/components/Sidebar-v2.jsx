@@ -27,8 +27,9 @@ export default function Sidebar({ sidebar, dispatch }) {
       // dispatch({ type: 'TOGGLE_SIDEBAR' });
     };
     const showContacts = () => {
-      dispatch({ type: "TOGGLE_SIDEBAR" });
-      dispatch({ type: "SHOW_CONTACTS" });
+      // dispatch({ type: "TOGGLE_SIDEBAR" });
+      // dispatch({ type: "SHOW_CONTACTS" });
+      dispatch({ type: "TOGGLE_CONTACTS" });
     };
     return (
       <aside className="sidebar" style={{}}>
@@ -115,15 +116,15 @@ export default function Sidebar({ sidebar, dispatch }) {
             <IoMdTrash size={20} />
           </NavButton>
 
-          <div>
+          {/* <div>
             <button>
               <RiLogoutBoxLine />
             </button>
-          </div>
-          {/* <button className="contact-button" onClick={showContacts}>
+          </div> */}
+          <button className="contact-button" onClick={showContacts}>
             <IoMdContacts size={20} />
             <span>Contacts</span>
-          </button> */}
+          </button>
         </nav>
       </aside>
     );
