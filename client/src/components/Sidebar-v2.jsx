@@ -5,7 +5,7 @@ import style from "../styles/sidebar.css";
 import compose_image from "../compose-icon.png";
 import { GoInbox } from "react-icons/go";
 import { IoMdContact, IoMdContacts, IoMdExpand, IoMdMenu, IoMdTrash } from "react-icons/io";
-import { IoExpand, IoExpandSharp, IoMenu, IoSend, IoStar } from "react-icons/io5";
+import { IoArrowBack, IoExpand, IoExpandSharp, IoMenu, IoSend, IoStar } from "react-icons/io5";
 import { IoLogOut } from 'react-icons/io5';
 import { RiLogoutBoxLine } from 'react-icons/ri';
 
@@ -27,10 +27,7 @@ export default function Sidebar({ sidebar, dispatch }) {
       // dispatch({ type: 'TOGGLE_SIDEBAR' });
   };
   const toggleMenu = () => {
-    dispatch({ type: 'TOGGLE_CONTACTS' });
-    setTimeout(() => {
-      dispatch({ type: "EXPAND" });
-    }, 100);
+    dispatch({ type: 'EXPAND' });
   }
     const showContacts = () => {
       // dispatch({ type: "TOGGLE_SIDEBAR" });
@@ -52,17 +49,27 @@ export default function Sidebar({ sidebar, dispatch }) {
         <button
           className="expand-button flex-center"
           title={expand ? "Collapse menu" : "Expand menu"}
-          onClick={toggleMenu}
+          onClick={() => dispatch({ type: "EXPAND" })}
         >
           <IoMdExpand size={20} />
         </button>
 
-        <button
-          className={`mb-sidebar-button`}
-          onClick={() => dispatch({ type: "EXPAND" })}
-        >
-          <IoMdMenu size={28} />
-        </button>
+        <>
+          {flyout ?
+            (<button
+              className={`mb-sidebar-button`}
+              onClick={showContacts}
+              >
+              <IoArrowBack size={28} />
+             </button>) :
+            (<button
+              className={`mb-sidebar-button`}
+              onClick={toggleMenu}
+            >
+            <IoMdMenu size={28} />
+            </button>)
+            }
+        </>
 
         <nav
           className={`${open ? "expand" : ""} flex-center flex-column`}

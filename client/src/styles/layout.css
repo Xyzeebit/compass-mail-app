@@ -46,7 +46,7 @@ section.layout-container {
         width: 100vw;
     }
     button.mb-sidebar-button {
-        position: absolute;
+        position: fixed;
         right: 1rem;
         top: 1.3rem;
     }
@@ -250,7 +250,6 @@ section.layout-container {
     }
     .app-name {
         padding-left: 1rem;
-        font-weight: 500;
     }
     .contacts-header {
         display: flex;

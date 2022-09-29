@@ -63,7 +63,7 @@ function sidebarReducer(state, action) {
         case 'EXPAND':
             return { ...state, expand: !state.expand };
         case 'TOGGLE_CONTACTS':
-            return { ...state, flyout: !state.dropdown };
+            return { ...state, flyout: !state.flyout };
         default: return state;
     }
 }
