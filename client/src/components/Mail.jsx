@@ -4,12 +4,10 @@ import Contacts from "./Contact-v2";
 import List from './List';
 import Searchbar from "./SearchBar";
 
-export default function Mail({ expand, loading, user, list, label, dispatch }) {
+export default function Mail({ loading, user, list, label, dispatch }) {
     return (
       <article
-        className={`container ${
-          expand ? "expand-container" : "shrink-container"
-        }`}
+        className={`container`}
       >
         <div className="mails">
           <Searchbar dispatch={dispatch} />
