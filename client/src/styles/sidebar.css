@@ -45,7 +45,7 @@ aside.sidebar {
 @media screen and (max-height: 500px) {
     aside.sidebar {
         height: 100vh;
-        
+        padding-bottom: 8rem;
     }
     aside.contacts {
         padding-bottom: 10rem;
@@ -117,4 +117,25 @@ nav a p {
     margin-block-start: 0.2rem;
     margin-block-end: 0.3rem;
     overflow: hidden;
+}
+
+.contact-button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #fff;
+    background-color: #fff0;
+    border: none;
+    width: 9rem;
+    padding: 1rem 0.5rem 1rem 1.8rem;
+}
+.contact-button span {
+    color: #fff;
+    padding-left: 1rem;
+    font-size: 1rem;
+}
+@media screen and (min-width: 769px) {
+    .contact-button {
+        display: none;
+    }
 }
