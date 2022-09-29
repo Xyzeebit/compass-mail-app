@@ -1,5 +1,5 @@
 aside.contacts {
-    height: 80vh;
+    height: 100vh;
     position: relative;
     overflow-x: hidden;
     overflow-y: auto;
@@ -8,8 +8,8 @@ aside.contacts {
     display: flex;
     /* border-radius: 10px; */
     /* margin-right: 10px; */
-    transform: translateX(500px);
-    opacity: 0;
+    /* transform: translateX(500px); */
+    /* opacity: 0; */
     transition: all 500ms linear;
 }
 .close-button__panel {

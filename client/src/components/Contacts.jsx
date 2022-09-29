@@ -1,4 +1,4 @@
-import '../styles/contacts.css'
+// import '../styles/contacts.css'
 import { useNavigate } from 'react-router-dom';
 import { RiContactsBook2Fill } from 'react-icons/ri'
 import { IoArrowForward, IoPersonAddSharp } from 'react-icons/io5'

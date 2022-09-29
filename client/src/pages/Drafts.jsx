@@ -1,22 +1,37 @@
-import { useEffect, useReducer } from "react";
-import Paginator from "../components/Paginator";
-import List from "../components/List";
+import { useState, useEffect, useReducer } from 'react';
 
-import Layout from "../components/Layout";
+// import List from '../components/List';
+
 import combineReducers, { initState } from "../reducer/reducer";
+import Layout from '../components/Layout-v2';
+import Mail from '../components/Mail';
 
 export default function Drafts() {
   const [state, dispatch] = useReducer(combineReducers, initState);
+  const { sidebar, user, mails } = state;
+  const [loading, setLoading] = useState(true);
+  
+  useEffect(() => {
+    dispatch({ type: 'FETCH_MAIL'});
+  }, []);
 
-  const { sidebar, contacts, mails } = state;
-  useEffect(() => {}, []);
-
+  useEffect(() => {
+    if(mails) {
+      setLoading(false);
+    }
+  }, [mails])
+    
   return (
-    <Layout sidebar={sidebar} contacts={contacts} dispatch={dispatch}>
-      <section className="list">
-        <List list={mails} label="You have no saved messages" dispatch={dispatch} />
-        <Paginator />
-      </section>
+    <Layout sidebar={sidebar} dispatch={dispatch}>
+      <Mail 
+        expand={sidebar.expand}
+        loading={loading}
+        user={user} 
+        list={mails}
+        label="Your have no saved messages"
+        dispatch={dispatch} 
+      />
     </Layout>
   );
 }
+
