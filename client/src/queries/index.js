@@ -39,3 +39,22 @@ export const SIGN_UP = gql`
         }
     }
 `;
+
+export const INBOX = gql`
+    query inbox($username: String! $page: Int!) {
+        success
+        error {
+            name
+            message
+        }
+        message {
+            id
+            from
+            to
+            subject
+            body
+            time
+            read
+        }
+    }
+`
