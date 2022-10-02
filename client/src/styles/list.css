@@ -222,5 +222,5 @@
     flex-direction: column;
 }
 .empty-list h1 {
-    color: #666;
+    color: var(--primary-light);
 }
