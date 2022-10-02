@@ -91,15 +91,63 @@ function markedReducer(state, action) {
 function mailsReducer(state, action) {
     switch (action.type) {
       
-      case "FETCH_INBOX":
-        state.inbox = action.inbox;
-        return state;
+        case "FETCH_INBOX":
+            if (action.inbox) {
+                state.inbox = action.inbox.map(msg => {
+                    return {
+                        id: msg.id,
+                        from: msg.from,
+                        to: msg.to,
+                        subject: msg.subject,
+                        body: msg.body,
+                        time: msg.time,
+                        isNew: msg.read,
+                        isMarked: false,
+                        type: 'inbox'
+                    }
+                })
+            } else {
+                state.inbox = [];
+            }
+            return state;
       case "FETCH_OUTBOX":
-        state.outbox = action.outbox;
-        return state;
+        if (action.inbox) {
+                state.inbox = action.inbox.map(msg => {
+                    return {
+                        id: msg.id,
+                        from: msg.from,
+                        to: msg.to,
+                        subject: msg.subject,
+                        body: msg.body,
+                        time: msg.time,
+                        isNew: msg.read,
+                        isMarked: false,
+                        type: 'outbox'
+                    }
+                })
+            } else {
+                state.inbox = [];
+            }
+            return state;
       case "FETCH_STARRED":
-        state.starred = action.starred;
-        return state;
+        if (action.inbox) {
+                state.inbox = action.inbox.map(msg => {
+                    return {
+                        id: msg.id,
+                        from: msg.from,
+                        to: msg.to,
+                        subject: msg.subject,
+                        body: msg.body,
+                        time: msg.time,
+                        isNew: msg.read,
+                        isMarked: false,
+                        type: 'starred'
+                    }
+                })
+            } else {
+                state.inbox = [];
+            }
+            return state;
       case "FETCH_DRAFTS":
         state.drafts = action.drafts;
         return state;

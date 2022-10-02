@@ -24,6 +24,12 @@ type OutboxPayload {
   messages: [Message]
 }
 
+type StarredPayload {
+  success: Boolean!
+  error: ErrorPayload
+  messages: [Message]
+}
+
 type DraftsPayload {
   success: Boolean!
   error: ErrorPayload

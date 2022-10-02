@@ -49,6 +49,7 @@ export const INBOX = gql`
                 message
             }
             messages {
+                id
                 from
                 to
                 time

@@ -8,10 +8,12 @@ import Mail from '../components/Mail';
 import { useQuery } from '@apollo/client';
 
 import { INBOX } from '../queries';
+import { useQueryData } from '../hooks/fetch-data';
 
 export default function Inbox() {
-  const [pages, setPages] = useState(0);
-  const { loading, error, data } = useQuery(INBOX, { variables: { username: 'donald', page: pages } });
+  const { loading, error, data } = useQueryData(INBOX, { variables: { username: 'xsmith', page: 0 } }, 'inbox');
+  // const [pages, setPages] = useState(0);
+  // const { loading, error, data } = useQuery(INBOX, { variables: { username: 'donald', page: pages } });
   const [state, dispatch] = useReducer(combineReducers, initState);
   const { sidebar, user, mails } = state;
   const { inbox } = mails;
@@ -23,12 +25,10 @@ export default function Inbox() {
   useEffect(() => {
     
     if (error) {
-      // console.log(error)
       dispatch({ type: 'FETCH_INBOX', inbox: [] });
     } else {
-      if (data && data.inbox.success) {
-        dispatch({ type: 'FETCH_INBOX', inbox: data.inbox.messages });
-        // console.log(data);
+      if (data && data.success) {
+        dispatch({ type: 'FETCH_INBOX', inbox: data.messages });
       }
     }
   }, [error, data]);

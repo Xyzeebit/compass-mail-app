@@ -2,34 +2,37 @@ const auth = require('../controllers/auth');
 const user = require('../controllers/user');
 
 const queries = {
-    Query: {
-        async user(parent, args) {
-            const payload = await user.getUser(args);
-            return payload;
-        },
-        async inbox(parent, args) {
-            const payload = await user.inbox(args);
-            return payload;
-        },
-        async outbox(parent, args) {
-            const payload = await user.outbox(args);
-            return payload;
-        },
-        async drafts(parent, args) {
-            const payload = await user.drafts(args);
-            return payload;
-        },
-        async spam(parent, args) {
-            const payload = await user.spam(args);
-            return payload;
-        },
-        async trash(parent, args) {
-            const payload = await user.trash(args);
-            return payload;
-        }
-
-    }
-}
+  Query: {
+    async user(parent, args) {
+      const payload = await user.getUser(args);
+      return payload;
+    },
+    async inbox(parent, args) {
+      const payload = await user.inbox(args);
+      return payload;
+    },
+    async outbox(parent, args) {
+      const payload = await user.outbox(args);
+      return payload;
+    },
+    async starred(parent, args) {
+      const payload = await user.starred(args);
+      return payload;
+    },
+    async drafts(parent, args) {
+      const payload = await user.drafts(args);
+      return payload;
+    },
+    async spam(parent, args) {
+      const payload = await user.spam(args);
+      return payload;
+    },
+    async trash(parent, args) {
+      const payload = await user.trash(args);
+      return payload;
+    },
+  },
+};
 
 
 const mutations = {

@@ -3,13 +3,14 @@ import { GoCheck } from "react-icons/go";
 import { Link } from "react-router-dom";
 
 export default function Message({ message, dispatch }) {
-  const { id, type, sender, subject, body, time, isMarked, isNew } = message;
+  // console.log(message)
+  const { id, type, from, subject, body, time, isMarked, isNew } = message;
   return (
     <li className="mail-item" title={subject}>
-      <Icon id={id} type={type} isMarked={isMarked} sender={sender} dispatch={dispatch} />
+      <Icon id={id} type={type} isMarked={isMarked} sender={from} dispatch={dispatch} />
       <Link to={"/" + type + "/" + id}>
         <div className="message-summary">
-          <h2>{sender}</h2>
+          <h2>{from}</h2>
           <h3>{subject}</h3>
           <p>{body}</p>
         </div>
