@@ -53,7 +53,9 @@ export const initState = {
         contacts: []
     },
     marked: [],
-    mails: [],
+    mails: {
+
+    },
 };
 
 function sidebarReducer(state, action) {
@@ -88,15 +90,26 @@ function markedReducer(state, action) {
 
 function mailsReducer(state, action) {
     switch (action.type) {
-      case "FETCH_MAIL":
-        state = data;
-        return state;
+      
       case "FETCH_INBOX":
         state.inbox = action.inbox;
         return state;
       case "FETCH_OUTBOX":
         state.outbox = action.outbox;
         return state;
+      case "FETCH_STARRED":
+        state.starred = action.starred;
+        return state;
+      case "FETCH_DRAFTS":
+        state.drafts = action.drafts;
+        return state;
+      case "FETCH_SPAM":
+        state.spam = action.spam;
+        return state;
+      case "FETCH_OUTBOX":
+        state.trash = action.trash;
+        return state;
+
       case "TOGGLE_MARK":
         const found = state.find((i) => i.id === action.id);
         if (found) {
