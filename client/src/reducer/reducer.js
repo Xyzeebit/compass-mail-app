@@ -88,27 +88,36 @@ function markedReducer(state, action) {
 
 function mailsReducer(state, action) {
     switch (action.type) {
-        case 'FETCH_MAIL':
-            
-            state = data;
-            return state;
-        case 'TOGGLE_MARK':
-            const found = state.find(i => i.id === action.id);
-            if (found) {
-                found.isMarked = found.isMarked === undefined ? true : !found.isMarked;
-            }
-            return state;
-        case 'EMPTY_MARKED':
-            for (let mail of state) {
-                if (mail.isMarked) {
-                    mail.isMarked = false;
-                }
-            }
-            return state;
-        case 'DELETE_MARKED':
-            state = state.filter(i => (i.isMarked === undefined || i.isMarked !== true));
-            return state;
-        default: return state;
+      case "FETCH_MAIL":
+        state = data;
+        return state;
+      case "FETCH_INBOX":
+        state.inbox = action.inbox;
+        return state;
+      case "FETCH_OUTBOX":
+        state.outbox = action.outbox;
+        return state;
+      case "TOGGLE_MARK":
+        const found = state.find((i) => i.id === action.id);
+        if (found) {
+          found.isMarked =
+            found.isMarked === undefined ? true : !found.isMarked;
+        }
+        return state;
+      case "EMPTY_MARKED":
+        for (let mail of state) {
+          if (mail.isMarked) {
+            mail.isMarked = false;
+          }
+        }
+        return state;
+      case "DELETE_MARKED":
+        state = state.filter(
+          (i) => i.isMarked === undefined || i.isMarked !== true
+        );
+        return state;
+      default:
+        return state;
     }
 }
 
