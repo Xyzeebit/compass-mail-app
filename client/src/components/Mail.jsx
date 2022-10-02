@@ -5,13 +5,14 @@ import List from './List';
 import Searchbar from "./SearchBar";
 
 export default function Mail({ loading, user, list, label, dispatch }) {
+
     return (
       <article
         className={`container`}
       >
         <div className="mails">
           <Searchbar dispatch={dispatch} />
-          {loading &&
+          {loading ?
             <>
               <ul className="mail-skeleton-list">
                 <li className="c-skeleton card">
@@ -47,10 +48,9 @@ export default function Mail({ loading, user, list, label, dispatch }) {
                   <div className="c-time" />
                 </li>
               </ul>
-            </>
+            </> : <List list={list} label={label} dispatch={dispatch} />
           }
-          {loading === false && <List list={list} label={label} dispatch={dispatch} />}
-          {/* <Compose /> */}
+          
         </div>
       </article>
     );

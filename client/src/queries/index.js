@@ -41,20 +41,20 @@ export const SIGN_UP = gql`
 `;
 
 export const INBOX = gql`
-    query inbox($username: String! $page: Int!) {
-        success
-        error {
-            name
-            message
-        }
-        message {
-            id
-            from
-            to
-            subject
-            body
-            time
-            read
+    query inbox($username: String!, $page: Int!) {
+        inbox(username: $username, page: $page) {
+            success
+            error {
+                name
+                message
+            }
+            messages {
+                from
+                to
+                time
+                subject
+                body
+            }
         }
     }
-`
+`;

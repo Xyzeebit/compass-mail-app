@@ -9,11 +9,11 @@ import EmptyList from './EmptyList';
 export default function List({ list, label, dispatch }) {
     return (
         <ul className="mail-list">
-            {<Actions marked={() => {
+            {list && <Actions marked={() => {
                 return list.filter(i => i.isMarked === true )
             }} dispatch={dispatch} />}
            
-            {list.length > 0 ?
+            {(list && list.length > 0) ?
                 (list.map((message) => {
                 return (
                   <Message

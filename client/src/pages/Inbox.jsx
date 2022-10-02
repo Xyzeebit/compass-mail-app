@@ -1,5 +1,4 @@
 import { useState, useEffect, useReducer } from 'react';
-import { data } from '../data';
 
 // import List from '../components/List';
 
@@ -11,24 +10,25 @@ import { useQuery } from '@apollo/client';
 import { INBOX } from '../queries';
 
 export default function Inbox() {
-  const [inbox, { loading, error, data }] = useQuery(INBOX);
+  const [pages, setPages] = useState(0);
+  const { loading, error, data } = useQuery(INBOX, { variables: { username: 'donald', page: pages } });
   const [state, dispatch] = useReducer(combineReducers, initState);
   const { sidebar, user, mails } = state;
-  // const { inbox } = mails;
+  const { inbox } = mails;
   
   useEffect(() => {
-    inbox({ variables: { username: 'donald', page: 10 } });
-  }, [inbox]);
+    document.title = 'Compass Mail | Inbox'
+  }, []);
   
   useEffect(() => {
     
     if (error) {
-      console.log(error)
+      // console.log(error)
       dispatch({ type: 'FETCH_INBOX', inbox: [] });
     } else {
-      if (data && data.success) {
-        // dispatch({ type: 'FETCH_INBOX', inbox: data.inbox. });
-        console.log(data);
+      if (data && data.inbox.success) {
+        dispatch({ type: 'FETCH_INBOX', inbox: data.inbox.messages });
+        // console.log(data);
       }
     }
   }, [error, data]);
@@ -40,7 +40,7 @@ export default function Inbox() {
         expand={sidebar.expand}
         loading={loading}
         user={user} 
-        list={[]}
+        list={inbox}
         label="Your have no messages in your inbox"
         dispatch={dispatch} 
       />
