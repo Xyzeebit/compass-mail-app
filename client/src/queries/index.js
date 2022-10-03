@@ -59,3 +59,7 @@ export const INBOX = gql`
         }
     }
 `;
+
+export const queryType = {
+    inbox: INBOX,
+}

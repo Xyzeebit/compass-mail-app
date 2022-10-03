@@ -11,9 +11,9 @@ import { INBOX } from '../queries';
 import { useQueryData } from '../hooks/fetch-data';
 
 export default function Inbox() {
-  const { loading, error, data } = useQueryData(INBOX, { variables: { username: 'xsmith', page: 0 } }, 'inbox');
-  // const [pages, setPages] = useState(0);
-  // const { loading, error, data } = useQuery(INBOX, { variables: { username: 'donald', page: pages } });
+  const { loading, error, data } = useQueryData(INBOX, {
+    variables: { username: 'xsmith', page: 0 }
+  }, 'inbox');
   const [state, dispatch] = useReducer(combineReducers, initState);
   const { sidebar, user, mails } = state;
   const { inbox } = mails;
@@ -38,10 +38,9 @@ export default function Inbox() {
     <Layout sidebar={sidebar} dispatch={dispatch}>
       <Mail 
         expand={sidebar.expand}
-        loading={loading}
         user={user} 
-        list={inbox}
-        label="Your have no messages in your inbox"
+        label="inbox"
+        emptyMessage="Your have no messages in your inbox"
         dispatch={dispatch} 
       />
     </Layout>
