@@ -15,7 +15,7 @@ export function useQueryData(query, variables, type) {
                 setResult({ loading, error });
             }
         }
-    }, [loading, data]);
+    }, [loading, error, data]);
 
     return result;
 }

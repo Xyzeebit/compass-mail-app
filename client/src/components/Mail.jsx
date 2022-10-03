@@ -4,13 +4,7 @@ import Contacts from "./Contact-v2";
 import List from './List';
 import Searchbar from "./SearchBar";
 
-import { queryType } from '../queries';
-import { useQueryData } from '../hooks/fetch-data';
-
-export default function Mail({ user, list, label, emptyMessage, dispatch }) {
-  const { loading, error, data } = useQueryData(queryType[label], {
-    variables: { username: user.username, page: 0 }
-  }, label);
+export default function Mail({ loading, user, list, label, dispatch }) {
 
     return (
       <article
@@ -54,7 +48,7 @@ export default function Mail({ user, list, label, emptyMessage, dispatch }) {
                   <div className="c-time" />
                 </li>
               </ul>
-            </> : <List list={list} label={emptyMessage} dispatch={dispatch} />
+            </> : <List list={list} label={label} dispatch={dispatch} />
           }
           
         </div>

@@ -5,7 +5,6 @@ import { useState, useEffect, useReducer } from 'react';
 import combineReducers, { initState } from "../reducer/reducer";
 import Layout from '../components/Layout-v2';
 import Mail from '../components/Mail';
-import { useQuery } from '@apollo/client';
 
 import { INBOX } from '../queries';
 import { useQueryData } from '../hooks/fetch-data';
@@ -38,9 +37,10 @@ export default function Inbox() {
     <Layout sidebar={sidebar} dispatch={dispatch}>
       <Mail 
         expand={sidebar.expand}
+        loading={loading}
         user={user} 
-        label="inbox"
-        emptyMessage="Your have no messages in your inbox"
+        list={inbox}
+        label="Your have no messages in your inbox"
         dispatch={dispatch} 
       />
     </Layout>

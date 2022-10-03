@@ -40,6 +40,27 @@ export const SIGN_UP = gql`
     }
 `;
 
+export const USER = gql`
+    query user($username: String!, token: String!) {
+        user(username: $username, token: $token) {
+            success
+            error {
+                name
+                message
+            }
+            user {
+                id
+                username
+                firstName
+                lastName
+                email
+                contacts
+                messageId
+            }
+        }
+    }
+`
+
 export const INBOX = gql`
     query inbox($username: String!, $page: Int!) {
         inbox(username: $username, page: $page) {
@@ -62,4 +83,5 @@ export const INBOX = gql`
 
 export const queryType = {
     inbox: INBOX,
+    user: USER,
 }
