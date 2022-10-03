@@ -6,20 +6,26 @@ import combineReducers, { initState } from "../reducer/reducer";
 import Layout from '../components/Layout-v2';
 import Mail from '../components/Mail';
 
-import { INBOX } from '../queries';
 import { useQueryData } from '../hooks/fetch-data';
 
 export default function Inbox() {
-  const { loading, error, data } = useQueryData(INBOX, {
-    variables: { username: 'xsmith', page: 0 }
-  }, 'inbox');
   const [state, dispatch] = useReducer(combineReducers, initState);
   const { sidebar, user, mails } = state;
+
+  const { loading, error, data } = useQueryData({
+    variables: { username: user.username, page: 0 },
+  }, 'inbox');
+  
+  
   const { inbox } = mails;
   
   useEffect(() => {
-    document.title = 'Compass Mail | Inbox'
+    document.title = 'Compass | Inbox'
   }, []);
+
+  useEffect(() => {
+
+  })
   
   useEffect(() => {
     

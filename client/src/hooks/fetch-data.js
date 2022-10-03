@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { useQuery } from "@apollo/client";
+import { queries } from '../queries';
 
-export function useQueryData(query, variables, type) {
-    const { loading, error, data } = useQuery(query, variables);
+export function useQueryData(variables, type) {
+    const { loading, error, data } = useQuery(queries[type], variables);
     const [result, setResult] = useState({ loading });
     
     useEffect(() => {

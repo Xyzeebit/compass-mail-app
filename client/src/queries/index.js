@@ -81,7 +81,7 @@ export const INBOX = gql`
     }
 `;
 
-export const queryType = {
+export const queries = {
     inbox: INBOX,
     user: USER,
 }
