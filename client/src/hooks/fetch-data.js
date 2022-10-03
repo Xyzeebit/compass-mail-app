@@ -5,6 +5,7 @@ import { queries } from '../queries';
 export function useQueryData(variables, type) {
     const { loading, error, data } = useQuery(queries[type], variables);
     const [result, setResult] = useState({ loading });
+    const user = useUser();
     
     useEffect(() => {
         if (error) {
@@ -19,4 +20,37 @@ export function useQueryData(variables, type) {
     }, [loading, error, data]);
 
     return result;
+}
+
+export function useUser() {
+    
+    const [variables, setVariables] = useState({ username: '', token: '' });
+    const { loading, error, data, refetch } = useQuery(queries['user'], variables);
+    const [user, setUser] = useState({ loading });
+
+    useEffect(() => {
+        let storage = localStorage.getItem('compass');
+        if (storage) {
+            storage = JSON.parse(storage);
+            setVariables({username: storage.username, token: storage.token });
+        }
+    }, []);
+
+    useEffect(() => {
+        if (variables.username && variables.token) {
+            refetch(variables);
+        }
+    }, [variables]);
+
+    useEffect(() => {
+        if (error) {
+            setUser({ loading, error: error.message });
+        } else {
+            if (data && data.success) {
+                setUser({ loading, error: null, data: data.user });
+            }
+        }
+    }, [loading, error, data]);
+
+    return user;
 }
