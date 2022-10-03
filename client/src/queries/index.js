@@ -41,7 +41,7 @@ export const SIGN_UP = gql`
 `;
 
 export const USER = gql`
-    query user($username: String!, token: String!) {
+    query user($username: String!, $token: String!) {
         user(username: $username, token: $token) {
             success
             error {
@@ -54,7 +54,9 @@ export const USER = gql`
                 firstName
                 lastName
                 email
-                contacts
+                contacts {
+                    name
+                }
                 messageId
             }
         }

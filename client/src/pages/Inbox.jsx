@@ -6,14 +6,15 @@ import combineReducers, { initState } from "../reducer/reducer";
 import Layout from '../components/Layout-v2';
 import Mail from '../components/Mail';
 
-import { useQueryData } from '../hooks/fetch-data';
+import { useQueryData } from '../hooks';
+import { INBOX } from '../queries';
 
 export default function Inbox() {
   const [state, dispatch] = useReducer(combineReducers, initState);
   const { sidebar, user, mails } = state;
 
-  const { loading, error, data } = useQueryData({
-    variables: { username: user.username, page: 0 },
+  const { loading, error, data } = useQueryData(INBOX, {
+    variables: { username: 'xsmith', page: 0 },
   }, 'inbox');
   
   

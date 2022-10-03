@@ -2,11 +2,13 @@ import { useEffect, useState } from "react";
 import { useQuery } from "@apollo/client";
 import { queries } from '../queries';
 
-export function useQueryData(variables, type) {
-    const { loading, error, data } = useQuery(queries[type], variables);
+export function useQueryData(query, variables, type) {
+    const { loading, error, data } = useQuery(query, variables);
     const [result, setResult] = useState({ loading });
     const user = useUser();
-    
+
+    console.log(user)
+
     useEffect(() => {
         if (error) {
             setResult({ loading, error });
@@ -32,12 +34,14 @@ export function useUser() {
         let storage = localStorage.getItem('compass');
         if (storage) {
             storage = JSON.parse(storage);
-            setVariables({username: storage.username, token: storage.token });
+            setVariables({ username: storage.username, token: storage.token });
         }
     }, []);
 
     useEffect(() => {
+        
         if (variables.username && variables.token) {
+            console.log('refetching...', variables)
             refetch(variables);
         }
     }, [variables]);
