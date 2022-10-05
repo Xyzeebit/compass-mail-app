@@ -57,9 +57,6 @@ export const USER = gql`
                 contacts {
                     name
                 }
-                messageId {
-                    messageId
-                }
             }
         }
     }

@@ -5,7 +5,7 @@ import { queries } from '../queries';
 export function useQueryData(query, variables, type) {
     const { loading, error, data } = useQuery(query, variables);
     const [result, setResult] = useState({ loading });
-    
+
     const user = useUser();
 
     console.log(user)
@@ -27,7 +27,7 @@ export function useQueryData(query, variables, type) {
 
 export function useUser() {
     
-    const [variables, setVariables] = useState({ username: "", token: "" });
+    const [variables, setVariables] = useState({ username: "donald", token: "" });
     const { loading, error, data, refetch } = useQuery(queries['user'], variables);
     const [user, setUser] = useState({ loading });
 

@@ -11,7 +11,7 @@ async function getUser(args) {
     try { 
         try {
           decoded = await verify(token);
-        //   console.log(decoded)
+          console.log(decoded)
         } catch (error) {
           payload.error = {
             name: error.name,
@@ -31,7 +31,7 @@ async function getUser(args) {
                 firstName: user.firstName,
                 lastName: user.lastName,
                 contacts: user.contacts,
-                messagesId: user.messages
+                // messagesId: user.messages
             }
             return payload;
         }

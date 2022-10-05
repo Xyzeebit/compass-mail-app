@@ -7,7 +7,6 @@ type User {
     firstName: String!
     lastName: String!
     email: String!
-    messagesId: [ID!]!
     username: String!
     contacts: [Contact!]!
     created: DateTime!
