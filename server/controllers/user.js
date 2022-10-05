@@ -31,7 +31,7 @@ async function getUser(args) {
                 firstName: user.firstName,
                 lastName: user.lastName,
                 contacts: user.contacts,
-                messageId: user.messages
+                messagesId: user.messages
             }
             return payload;
         }

@@ -5,9 +5,10 @@ import { queries } from '../queries';
 export function useQueryData(query, variables, type) {
     const { loading, error, data } = useQuery(query, variables);
     const [result, setResult] = useState({ loading });
-    // const user = useUser();
+    
+    const user = useUser();
 
-    // console.log(user)
+    console.log(user)
 
     useEffect(() => {
         if (error) {
