@@ -9,6 +9,7 @@ export default function Contacts({ user, dispatch }) {
     const [email, setEmail] = useState('');
     const [formVisible, setFormVisible] = useState(false);
     const [loading, setLoading] = useState(true);
+    const [showPanel, setShowPanel] = useState(false);
     const [list, setList] = useState([]);
     const navigate = useNavigate();
 
@@ -70,30 +71,31 @@ export default function Contacts({ user, dispatch }) {
       ) : (
         <div className={`profile`}>
           <p className="text">Profile</p>
-          {user.photo ? 
-          (<img 
-            src={user.photo}
-            alt={user.firstName}
-            width="75"
-            height="75"
-            className="photo"
-          />) : 
-          (<span className="avatar photo">
-            <IoPerson size={70} />
-          </span>)
-          }
-          <div className="name">
-            <p>{user.firstName} { user.lastName}</p>
-            
+          <div className="profile__group">
+            {user.photo ? 
+            (<img 
+              src={user.photo}
+              alt={user.firstName}
+              width="75"
+              height="75"
+              className="photo"
+            />) : 
+            (<span className="avatar photo">
+              <IoPerson size={70} />
+            </span>)
+            }
+            <div className="name">
+              <p>{user.firstName} { user.lastName}</p>
+            </div>
           </div>
           <div className="profile__settings">
-              <div>
+              <div className="group">
                 <button onClick={() => setFormVisible(true)}>Add contact</button>
-                <button onClick={logout}><IoSettings /></button>
+                <span title="settings" onClick={() => setShowPanel(!showPanel)}><IoSettings size={25} color={'#3940a7e0'} /></span>
               </div>
-              <div>
-                <span title="sign out"><IoLogOut size={25} /></span>
-              </div>
+              {showPanel && <div className="settings__panel">
+                <span title="sign out" onClick={logout}><IoLogOut size={25} color={'#3940a7e0'} /></span>
+              </div>}
           </div>
         </div>
       )}

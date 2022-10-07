@@ -295,8 +295,12 @@ div.load-user {
     font-weight: 600;
     font-size: 0.9rem;
 }
+.profile__group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 .profile .photo {
-    float: right;
     border-radius: 100px;
 }
 .avatar {
@@ -312,7 +316,6 @@ div.load-user {
 }
 .profile button {
     border: none;
-    outline: none;
     background-color: var(--primary);
     padding: 8px;
     width: 80px;
@@ -322,6 +325,24 @@ div.load-user {
 }
 .profile button:hover {
     background-color: var(--primary-light);
+}
+
+.profile__settings {
+    margin-block-start: 0.5rem;
+}
+.profile__settings .group {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    column-gap: 0.5rem;
+}
+.settings__panel {
+    margin-block-start: 0.25rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 0.25rem;
+    row-gap: 0.25rem;
 }
 
 ul.contact-list {
