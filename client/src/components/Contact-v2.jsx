@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
-import { IoPerson } from "react-icons/io5";
+import { IoLogOut, IoPerson, IoSettings } from "react-icons/io5";
 import logo from '../images/logo-w.png';
+import { useNavigate } from "react-router-dom";
 
 
 export default function Contacts({ user, dispatch }) {
@@ -9,16 +10,20 @@ export default function Contacts({ user, dispatch }) {
     const [formVisible, setFormVisible] = useState(false);
     const [loading, setLoading] = useState(true);
     const [list, setList] = useState([]);
-    // const [user, setUser] = useState({});
+    const navigate = useNavigate();
 
     function addContact() {
-
+      cancel();
     }
     function cancel() {
         setName('');
         setEmail('');
         setFormVisible(false);
-  }
+    }
+    function logout() {
+      localStorage.setItem('compass', '');
+      navigate('/auth/signin');
+    }
   
   useEffect(() => {
     async function getMockUsers() {
@@ -38,7 +43,7 @@ export default function Contacts({ user, dispatch }) {
     try {
       // getMockUsers();
     } catch (error) {
-      
+      console.log(error.message)
     }
   }, []);
     
@@ -74,12 +79,21 @@ export default function Contacts({ user, dispatch }) {
             className="photo"
           />) : 
           (<span className="avatar photo">
-            <IoPerson size={40} />
+            <IoPerson size={70} />
           </span>)
           }
           <div className="name">
-            <p>{user.firstName}</p>
-            <button onClick={() => setFormVisible(true)}>Add contact</button>
+            <p>{user.firstName} { user.lastName}</p>
+            
+          </div>
+          <div className="profile__settings">
+              <div>
+                <button onClick={() => setFormVisible(true)}>Add contact</button>
+                <button onClick={logout}><IoSettings /></button>
+              </div>
+              <div>
+                <span title="sign out"><IoLogOut size={25} /></span>
+              </div>
           </div>
         </div>
       )}
@@ -108,7 +122,7 @@ export default function Contacts({ user, dispatch }) {
       )}
 
       <ul className="contact-list">
-        {list.length === 0 && (
+        {loading && (
           <>
             <li className="c-skeleton card">
               <div className="c-image" />
@@ -162,5 +176,3 @@ export default function Contacts({ user, dispatch }) {
     </aside>
   );
 }
-
-// https://random-data-api.com/api/v2/users?size=2

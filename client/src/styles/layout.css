@@ -268,7 +268,6 @@ div.load-user {
 
 .profile {
     box-shadow: 0px 0px 5px var(--primary-light);
-    width: 13rem;
     min-height: 150px;
     border-radius: 10px;
     padding: 10px;
