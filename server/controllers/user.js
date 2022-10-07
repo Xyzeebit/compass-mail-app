@@ -11,7 +11,7 @@ async function getUser(args) {
     try { 
         try {
           decoded = await verify(token);
-        //   console.log(decoded)
+          console.log(decoded)
         } catch (error) {
           payload.error = {
             name: error.name,

@@ -2,7 +2,7 @@
 # import UserPayload, InboxPayload, OutboxPayload, StarredPayload, DraftsPayload, SpamPayload, TrashPayload from "queries-payload.gql"
 
 type Query {
-    user(username: String!, token: String!): UserPayload!
+    user(username: String, token: String): UserPayload!
     inbox(username: String!, page: Int!): InboxPayload!
     outbox(username: String!, page: Int!): OutboxPayload!
     starred(username: String!, page: Int!): StarredPayload!

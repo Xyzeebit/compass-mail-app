@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import { useQuery } from "@apollo/client";
 import { queries } from '../queries';
 
@@ -26,7 +27,7 @@ export function useQueryData(query, variables, type) {
 }
 
 export function useUser() {
-    
+    const navigate = useNavigate();
     const [variables, setVariables] = useState({ username: "", token: "" });
     const { loading, error, data, refetch } = useQuery(queries['user'], variables);
     const [user, setUser] = useState({ loading });
@@ -36,6 +37,9 @@ export function useUser() {
         if (storage) {
             storage = JSON.parse(storage);
             setVariables({ username: storage.username, token: storage.token });
+            console.log(storage)
+        } else {
+            navigate('/login');
         }
     }, []);
 
