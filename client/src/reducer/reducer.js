@@ -204,6 +204,9 @@ function contactsReducer(state, action) {
 function userReducer(state, action) {
     switch (action.type) {
         case 'FETCH_USER':
+            if (action.user) {
+                state = action.user;
+            }
             return state;
         case 'TO':
             state.to = action.to;

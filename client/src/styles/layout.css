@@ -128,6 +128,27 @@ section.layout-container {
     }
 }
 
+div.load-user {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+@media screen and (max-width: 800px) {
+    div.load-user {
+        left: 0;
+    }
+}
+@media screen and (min-width: 801px) {
+    div.load-user {
+        left: 10rem;
+    }
+}
+
 .userbar-header {
     display: flex;
     justify-content: space-around;

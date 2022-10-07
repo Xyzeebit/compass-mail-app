@@ -6,10 +6,10 @@ import combineReducers, { initState } from "../reducer/reducer";
 import Layout from '../components/Layout-v2';
 import Mail from '../components/Mail';
 
-import { useQueryData, useUser } from '../hooks';
+import { useQueryData } from '../hooks';
 import { INBOX } from '../queries';
 
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 
 
 export default function Inbox() {
@@ -20,12 +20,12 @@ export default function Inbox() {
     variables: { username: 'xsmith', page: 0 },
   }, 'inbox');
 
-  const [username, setUsername] = useState('');
-  const [token, setToken] = useState('');
+  // const [username, setUsername] = useState('');
+  // const [token, setToken] = useState('');
 
-    const navigate = useNavigate();
+  //   const navigate = useNavigate();
 
-  const usr = useUser(username, token);
+  // const usr = useUser(username, token);
   
   
   const { inbox } = mails;
@@ -34,20 +34,25 @@ export default function Inbox() {
     document.title = 'Compass | Inbox'
   }, []);
 
-  useEffect(() => {
-        let storage = localStorage.getItem('compass');
-        if (storage) {
-            storage = JSON.parse(storage);
-            // setVariables({ username: storage.username, token: storage.token });
-          setUsername(storage.username)
-          setToken(storage.token);
-            // refetch(variables);
-        } else {
-            navigate('/login');
-        }
-    }, []);
+  // useEffect(() => {
+  //       let storage = localStorage.getItem('compass');
+  //       if (storage) {
+  //           storage = JSON.parse(storage);
+  //           // setVariables({ username: storage.username, token: storage.token });
+  //         setUsername(storage.username)
+  //         setToken(storage.token);
+  //           // refetch(variables);
+  //       } else {
+  //           navigate('/login');
+  //       }
+  //   }, []);
 
-  console.log(usr)
+  // useEffect(() => {
+  //   if (usr && usr.data && usr.data.user) {
+  //     dispatch({ type: 'FETCH_USER', user: usr.data.user.user });
+  //   }
+  //   console.log(user)
+  // }, [])
   
   useEffect(() => {
     
