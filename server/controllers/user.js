@@ -7,7 +7,6 @@ async function getUser(args) {
     const payload = {};
     const { username, token } = args
     let decoded;
-    
     try { 
         try {
           decoded = await verify(token);
