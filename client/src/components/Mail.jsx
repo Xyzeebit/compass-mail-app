@@ -4,7 +4,7 @@ import Contacts from "./Contact-v2";
 import List from './List';
 import Searchbar from "./SearchBar";
 
-export default function Mail({ loading, user, list, label, dispatch }) {
+export default function Mail({ loading, list, label, dispatch }) {
 
     return (
       <article

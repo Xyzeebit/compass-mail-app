@@ -3,13 +3,13 @@ import { IoPerson } from "react-icons/io5";
 import logo from '../images/logo-w.png';
 
 
-export default function Contacts({ contacts, dispatch }) {
+export default function Contacts({ user, dispatch }) {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [formVisible, setFormVisible] = useState(false);
     const [loading, setLoading] = useState(true);
     const [list, setList] = useState([]);
-    const [user, setUser] = useState({});
+    // const [user, setUser] = useState({});
 
     function addContact() {
 
@@ -27,10 +27,11 @@ export default function Contacts({ contacts, dispatch }) {
       const users = await resp.json();
       if (resp.ok && users) {
         setList(users.results);
-        setUser({
-          name: users.results[0].name.first + ' ' + users.results[0].name.last,
-          photo: users.results[0].picture.medium
-        });
+        // setUser({
+        //   name: users.results[0].name.first + ' ' + users.results[0].name.last,
+        //   photo: users.results[0].picture.medium
+        // });
+        
         setLoading(false);
       }
     }
@@ -53,7 +54,7 @@ export default function Contacts({ contacts, dispatch }) {
         />
         <h1 className="app-name">compass</h1>
       </div>
-      {loading ? (
+      {!user ? (
         <div className="card p-5 p-skeleton">
           <div className="p-text" />
           <div className="p-group">
@@ -67,7 +68,7 @@ export default function Contacts({ contacts, dispatch }) {
           {user.photo ? 
           (<img 
             src={user.photo}
-            alt={user.name}
+            alt={user.firstName}
             width="75"
             height="75"
             className="photo"
@@ -77,7 +78,7 @@ export default function Contacts({ contacts, dispatch }) {
           </span>)
           }
           <div className="name">
-            <p>{user.name}</p>
+            <p>{user.firstName}</p>
             <button onClick={() => setFormVisible(true)}>Add contact</button>
           </div>
         </div>

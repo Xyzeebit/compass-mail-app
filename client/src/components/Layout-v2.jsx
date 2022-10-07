@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { useUser } from '../hooks';
 
 
-export default function Layout({ sidebar, contacts, dispatch, children }) {
+export default function Layout({ sidebar, user, dispatch, children }) {
     const { expand, flyout } = sidebar;
     const [username, setUsername] = useState('');
     const [token, setToken] = useState('');
@@ -22,13 +22,15 @@ export default function Layout({ sidebar, contacts, dispatch, children }) {
             setToken(storage.token);
             
         } else {
-            navigate('/login');
+            navigate('/auth/signin');
         }
     }, []);
 
     useEffect(() => {
         if (!loading) {
-            console.log(data)
+            if (data && data.user && data.user.user) {
+                dispatch({ type: 'FETCH_USER', user: data.user.user });
+            }
         }
     }, [loading]);
 
@@ -36,7 +38,7 @@ export default function Layout({ sidebar, contacts, dispatch, children }) {
         <div className="layout">
             <div className={'aside-group ' + (flyout ? 'slide-left' : '')}>
                 <Sidebar sidebar={sidebar} dispatch={dispatch} />
-                {!loading && <Contacts contacts={contacts} dispatch={dispatch} />}
+                {!loading && <Contacts user={user} dispatch={dispatch} />}
             </div>
             {loading ? <div className="load-user">
                 <Loader />
