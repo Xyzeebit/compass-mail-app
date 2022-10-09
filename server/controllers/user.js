@@ -464,6 +464,46 @@ async function removeContact({ username, contactId }) {
     }
 }
 
+function message({ username, messageId }) {
+    const payload = {};
+    try {
+        const mail = MailBox.findById(messageId);
+        if (mail) {
+            payload.id = mail._id;
+            payload.from = mail.from;
+            payload.to = mail.to;
+            payload.subject = mail.subject
+        }
+        const user = await User.findOne({ username });
+        if (user) {
+            payload.success = true;
+            const msg = user.messages.id(i._id);
+            payload.messages = box.map((i) => {
+                
+                if (msg) {
+                    return {
+                      id: i._id,
+                      from: i.from,
+                      to: i.to,
+                      subject: i.subject,
+                      body: i.body,
+                      read: msg ? msg.read : false,
+                      time: i.time,
+                    };
+                }
+          });
+        }
+    } catch (error) {
+        payload.success = false;
+        payload.error = {
+          name: "RequestError",
+          message: "cannot perform request",
+        };
+    } finally {
+        return payload;
+    }
+}
+
 module.exports = {
     getUser,
     inbox,
@@ -477,5 +517,6 @@ module.exports = {
     addContact,
     emptyTrash,
     removeContact,
+    message,
 }
 

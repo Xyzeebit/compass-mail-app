@@ -119,9 +119,69 @@ export const STARRED = gql`
     }
 `;
 
+export const DRAFTS = gql`
+  query drafts($username: String!, $page: Int!) {
+    drafts(username: $username, page: $page) {
+      success
+      error {
+        name
+        message
+      }
+      messages {
+        id
+        from
+        to
+        time
+        subject
+      }
+    }
+  }
+`;
+
+export const SPAM = gql`
+  query spam($username: String!, $page: Int!) {
+    spam(username: $username, page: $page) {
+      success
+      error {
+        name
+        message
+      }
+      messages {
+        id
+        from
+        to
+        time
+        subject
+      }
+    }
+  }
+`;
+
+export const TRASH = gql`
+  query trash($username: String!, $page: Int!) {
+    trash(username: $username, page: $page) {
+      success
+      error {
+        name
+        message
+      }
+      messages {
+        id
+        from
+        to
+        time
+        subject
+      }
+    }
+  }
+`;
+
 export const queries = {
     inbox: INBOX,
     user: USER,
     outbox: OUTBOX,
     starred: STARRED,
+    drafts: DRAFTS,
+    spam: SPAM,
+    trash: TRASH,
 }

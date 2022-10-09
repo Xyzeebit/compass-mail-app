@@ -65,7 +65,7 @@ export default function Mail({ username, label, text }) {
                   <div className="c-time" />
                 </li>
               </ul>
-            </> : <List list={mails[label]} label={text} dispatch={dispatch} />
+            </> : <List list={mails[label]} type={label} label={text} dispatch={dispatch} />
           }
           
         </div>

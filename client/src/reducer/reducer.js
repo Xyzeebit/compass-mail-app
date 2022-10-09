@@ -168,14 +168,14 @@ function mailsReducer(state, action) {
             return state;
 
       case "TOGGLE_MARK":
-        const found = state.find((i) => i.id === action.id);
+        const found = state[action.label].find((i) => i.id === action.id);
         if (found) {
           found.isMarked =
             found.isMarked === undefined ? true : !found.isMarked;
         }
         return state;
       case "EMPTY_MARKED":
-        for (let mail of state) {
+        for (let mail of state[action.label]) {
           if (mail.isMarked) {
             mail.isMarked = false;
           }

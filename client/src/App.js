@@ -14,6 +14,7 @@ import Trash from './pages/Trash';
 import Spam from './pages/Spam';
 import ComposePage from './pages/Compose';
 import Auth from './pages/Auth';
+import Mail from './pages/Mail';
 
 //////////////////////////////
 
@@ -47,6 +48,8 @@ function App() {
         <Route path="/spam" element={<Spam />} />
 
         <Route path="/compose" element={<ComposePage />} />
+
+        <Route path='/:slug/:id' element={<Mail />} />
       </Routes>
     </Router>
   );

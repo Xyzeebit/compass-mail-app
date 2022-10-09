@@ -6,10 +6,10 @@ import { GoStar } from 'react-icons/go';
 import Message from "./Message";
 import EmptyList from './EmptyList';
 
-export default function List({ list, label, dispatch }) {
+export default function List({ list, type, label, dispatch }) {
     return (
         <ul className="mail-list">
-            {list && <Actions marked={() => {
+            {list && <Actions type={type} marked={() => {
                 return list.filter(i => i.isMarked === true )
             }} dispatch={dispatch} />}
            
@@ -28,7 +28,7 @@ export default function List({ list, label, dispatch }) {
     )
 }
 
-const Actions = ({ marked, dispatch }) => {
+const Actions = ({ type, marked, dispatch }) => {
     const STAR = 0, SHARE = 1, DELETE = 2;
     const [action, setAction] = useState(-1);
 
@@ -46,7 +46,7 @@ const Actions = ({ marked, dispatch }) => {
         dispatch({ type: "EMPTY_MARKED" });
     }
     const clearMarked = () => {
-        dispatch({ type: 'EMPTY_MARKED'})
+        dispatch({ type: 'EMPTY_MARKED', label: type });
     }
 
     useEffect(() => {

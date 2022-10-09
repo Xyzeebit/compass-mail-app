@@ -46,3 +46,9 @@ type TrashPayload {
   error: ErrorPayload
   messages: [Message]
 }
+
+type MessagePayload {
+  success: Boolean!
+  error: ErrorPayload
+  message: [Message]
+}

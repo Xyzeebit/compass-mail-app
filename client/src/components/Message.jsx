@@ -43,12 +43,12 @@ const Time = ({ time }) => {
   return <p className="time">{value}</p>;
 };
 
-const Icon = ({ id, sender, isMarked, dispatch }) => {
+const Icon = ({ id, type, sender, isMarked, dispatch }) => {
   const firstLetter = sender.substring(0, 1).toUpperCase();
   const colors = ['#d4793d', '#8abcdb', '#2140db', '#479167', '#cfd66f'];
   const markMessage = (evt) => {
     evt.preventDefault();
-    dispatch({ type: "TOGGLE_MARK", id });
+    dispatch({ type: "TOGGLE_MARK", id, label: type });
   };
   return (
     <div className={`${isMarked ? "flipped" : ""} icon`} onClick={markMessage}>

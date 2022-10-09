@@ -1,35 +1,23 @@
-import { useState, useEffect, useReducer } from 'react';
-
-// import List from '../components/List';
+import { useEffect, useReducer } from 'react';
 
 import combineReducers, { initState } from "../reducer/reducer";
 import Layout from '../components/Layout-v2';
 import Mail from '../components/Mail';
 
-export default function Spam() {
+export default function Starred() {
   const [state, dispatch] = useReducer(combineReducers, initState);
-  const { sidebar, user, mails } = state;
-  const [loading, setLoading] = useState(true);
-  
-  useEffect(() => {
-    dispatch({ type: 'FETCH_MAIL'});
-  }, []);
+  const { sidebar, user } = state;
 
   useEffect(() => {
-    if(mails) {
-      setLoading(false);
-    }
-  }, [mails])
-    
+    document.title = 'Compass | Spam'
+  }, []);
+
   return (
-    <Layout sidebar={sidebar} dispatch={dispatch}>
-      <Mail 
-        expand={sidebar.expand}
-        loading={loading}
-        user={user} 
-        list={mails}
-        label="Hurray! you have no spam messages"
-        dispatch={dispatch} 
+    <Layout sidebar={sidebar} user={user} dispatch={dispatch}>
+      <Mail
+        username={Promise.resolve(user.username).then((value) => value)}
+        label={"spam"}
+        text="Hurray! you have no spam messages"
       />
     </Layout>
   );

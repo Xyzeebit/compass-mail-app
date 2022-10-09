@@ -12,7 +12,6 @@ export default function Inbox() {
     document.title = 'Compass | Inbox'
   }, []);
 
-console.log(user)
     
   return (
     <Layout sidebar={sidebar} user={user} dispatch={dispatch}>

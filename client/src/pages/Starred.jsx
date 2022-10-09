@@ -15,7 +15,7 @@ export default function Starred() {
   return (
     <Layout sidebar={sidebar} user={user} dispatch={dispatch}>
       <Mail
-        username={user.username}
+        username={Promise.resolve(user.username).then((value) => value)}
         label={"starred"}
         text="You have no starred messages"
       />

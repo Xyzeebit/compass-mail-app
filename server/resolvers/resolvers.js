@@ -31,6 +31,10 @@ const queries = {
       const payload = await user.trash(args);
       return payload;
     },
+    async message(parent, args) {
+      const payload = await user.message(args);
+      return payload;
+    }
   },
 };
 

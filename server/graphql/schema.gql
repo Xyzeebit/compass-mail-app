@@ -1,5 +1,5 @@
 # import SignUpInput, SignInInput, AuthUserPayload, MarkAsPayload, SendMessagePayload, SendMessageInput, EmptyTrashPayload, AddContactPayload, RemoveContactPayload from "mutations.gql"
-# import UserPayload, InboxPayload, OutboxPayload, StarredPayload, DraftsPayload, SpamPayload, TrashPayload from "queries-payload.gql"
+# import UserPayload, MessagePayload, InboxPayload, OutboxPayload, StarredPayload, DraftsPayload, SpamPayload, TrashPayload from "queries-payload.gql"
 
 type Query {
     user(username: String, token: String): UserPayload!
@@ -9,6 +9,7 @@ type Query {
     spam(username: String!, page: Int!): SpamPayload!
     drafts(username: String!, page: Int!): DraftsPayload!
     trash(username: String!, page: Int!): TrashPayload!
+    message(username: String!, messageId: ID!): MessagePayload!
 }
 
 type Mutation {
