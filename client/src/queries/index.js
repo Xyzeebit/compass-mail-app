@@ -82,7 +82,28 @@ export const INBOX = gql`
     }
 `;
 
+export const OUTBOX = gql`
+    query outbox($username: String!, $page: Int!) {
+        outbox(username: $username, page: $page) {
+            success
+            error {
+                name
+                message
+            }
+            messages {
+                id
+                from
+                to
+                time
+                subject
+                body
+            }
+        }
+    }
+`;
+
 export const queries = {
     inbox: INBOX,
     user: USER,
+    outbox: OUTBOX,
 }
