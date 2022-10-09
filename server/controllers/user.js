@@ -469,26 +469,19 @@ async function message({ username, messageId }) {
     try {
         const mail = await MailBox.findById(messageId);
         if (mail) {
-            payload.id = mail._id;
-            payload.from = mail.from;
-            payload.to = mail.to;
-            payload.subject = mail.subject;
-            payload.body = mail.body;
-            payload.time = mail.time;
-            payload.success = true;
-            console.log(mail)
-        }
-        const user = await User.findOne({ username });
-        
-        if (user) {
-            const msg = user.messages.id(messageId);
-            if (msg) {
-                msg.read = true;
-                await msg.save();
-                
+            payload.message = {
+                id: mail._id,
+                from: mail.from,
+                to: mail.to,
+                subject: mail.subject,
+                body: mail.body,
+                time: mail.time,
             }
+            payload.success = true;
             
         }
+        console.log(payload)
+        
     } catch (error) {
         payload.success = false;
         payload.error = {
