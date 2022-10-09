@@ -50,5 +50,5 @@ type TrashPayload {
 type MessagePayload {
   success: Boolean!
   error: ErrorPayload
-  message: [Message]
+  message: Message
 }

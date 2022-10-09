@@ -480,7 +480,6 @@ async function message({ username, messageId }) {
             payload.success = true;
             
         }
-        console.log(payload)
         
     } catch (error) {
         payload.success = false;
