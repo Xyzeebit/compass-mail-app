@@ -111,7 +111,7 @@ function mailsReducer(state, action) {
             }
             return state;
       case "FETCH_OUTBOX":
-        if (action.outbox) {
+            if (action.outbox) {
                 state.outbox = action.outbox.map(msg => {
                     return {
                         id: msg.id,
@@ -149,14 +149,62 @@ function mailsReducer(state, action) {
             }
             return state;
       case "FETCH_DRAFTS":
-        state.drafts = action.drafts;
-        return state;
+        if (action.drafts) {
+                state.drafts = action.drafts.map(msg => {
+                    return {
+                        id: msg.id,
+                        from: msg.from,
+                        to: msg.to,
+                        subject: msg.subject,
+                        body: msg.body,
+                        time: msg.time,
+                        isNew: msg.read,
+                        isMarked: false,
+                        type: 'drafts'
+                    }
+                })
+            } else {
+                state.drafts = [];
+            }
+            return state;
       case "FETCH_SPAM":
-        state.spam = action.spam;
-        return state;
-      case "FETCH_OUTBOX":
-        state.trash = action.trash;
-        return state;
+            if (action.spam) {
+                state.spam = action.spam.map(msg => {
+                    return {
+                        id: msg.id,
+                        from: msg.from,
+                        to: msg.to,
+                        subject: msg.subject,
+                        body: msg.body,
+                        time: msg.time,
+                        isNew: msg.read,
+                        isMarked: false,
+                        type: 'spam'
+                    }
+                })
+            } else {
+                state.spam = [];
+            }
+            return state;
+      case "FETCH_TRASH":
+            if (action.trash) {
+                state.trash = action.trash.map(msg => {
+                    return {
+                        id: msg.id,
+                        from: msg.from,
+                        to: msg.to,
+                        subject: msg.subject,
+                        body: msg.body,
+                        time: msg.time,
+                        isNew: msg.read,
+                        isMarked: false,
+                        type: 'trash'
+                    }
+                })
+            } else {
+                state.trash = [];
+            }
+            return state;
 
       case "TOGGLE_MARK":
         const found = state.find((i) => i.id === action.id);

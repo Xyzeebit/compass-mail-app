@@ -102,8 +102,29 @@ export const OUTBOX = gql`
     }
 `;
 
+export const STARRED = gql`
+    query starred($username: String!, $page: Int!) {
+        starred(username: $username, page: $page) {
+            success
+            error {
+                name
+                message
+            }
+            messages {
+                id
+                from
+                to
+                time
+                subject
+                body
+            }
+        }
+    }
+`;
+
 export const queries = {
     inbox: INBOX,
     user: USER,
     outbox: OUTBOX,
+    starred: STARRED,
 }

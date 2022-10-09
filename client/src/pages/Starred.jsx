@@ -5,29 +5,29 @@ import Layout from '../components/Layout-v2';
 import Mail from '../components/Mail';
 
 import { useQueryData } from '../hooks';
-import { INBOX } from '../queries';
+import { STARRED } from '../queries';
 
 export default function Starred() {
   const [state, dispatch] = useReducer(combineReducers, initState);
   const { sidebar, user, mails } = state;
 
-  const { loading, error, data } = useQueryData(INBOX, {
+  const { loading, error, data } = useQueryData(STARRED, {
     variables: { username: user.username, page: 0 },
-  }, 'inbox');
+  }, 'starred');
   
-  const { inbox } = mails;
+  const { starred } = mails;
   
   useEffect(() => {
-    document.title = 'Compass | Inbox'
+    document.title = 'Compass | Starred'
   }, []);
 
   useEffect(() => {
     
     if (error) {
-      dispatch({ type: 'FETCH_INBOX', inbox: [] });
+      dispatch({ type: 'FETCH_STARRED', starred: [] });
     } else {
       if (data && data.success) {
-        dispatch({ type: 'FETCH_INBOX', inbox: data.messages });
+        dispatch({ type: 'FETCH_INBOX', starred: data.messages });
       }
     }
   }, [error, data]);
@@ -38,8 +38,8 @@ export default function Starred() {
       <Mail 
         expand={sidebar.expand}
         loading={loading}
-        list={inbox}
-        label="Your have no messages in your inbox"
+        list={starred}
+        label="Your have no starred messages"
         dispatch={dispatch} 
       />
     </Layout>

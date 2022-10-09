@@ -39,7 +39,7 @@ export default function Outbox() {
         expand={sidebar.expand}
         loading={loading}
         list={outbox}
-        label="Your have no messages in your inbox"
+        label="Your have no messages in your outbox"
         dispatch={dispatch} 
       />
     </Layout>
