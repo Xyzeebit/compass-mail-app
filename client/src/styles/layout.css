@@ -346,6 +346,7 @@ div.load-user {
 }
 .settings__panel span {
     display: inline-flex;
+    justify-content: center;
 }
 
 ul.contact-list {
