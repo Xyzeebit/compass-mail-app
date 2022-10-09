@@ -1,6 +1,4 @@
-import { useState, useEffect, useReducer } from 'react';
-
-// import List from '../components/List';
+import { useEffect, useReducer } from 'react';
 
 import combineReducers, { initState } from "../reducer/reducer";
 import Layout from '../components/Layout-v2';

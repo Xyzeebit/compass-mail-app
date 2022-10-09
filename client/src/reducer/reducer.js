@@ -111,8 +111,8 @@ function mailsReducer(state, action) {
             }
             return state;
       case "FETCH_OUTBOX":
-        if (action.inbox) {
-                state.inbox = action.inbox.map(msg => {
+        if (action.outbox) {
+                state.outbox = action.outbox.map(msg => {
                     return {
                         id: msg.id,
                         from: msg.from,
@@ -126,12 +126,12 @@ function mailsReducer(state, action) {
                     }
                 })
             } else {
-                state.inbox = [];
+                state.outbox = [];
             }
             return state;
       case "FETCH_STARRED":
-        if (action.inbox) {
-                state.inbox = action.inbox.map(msg => {
+            if (action.starred) {
+                state.starred = action.starred.map(msg => {
                     return {
                         id: msg.id,
                         from: msg.from,
@@ -145,7 +145,7 @@ function mailsReducer(state, action) {
                     }
                 })
             } else {
-                state.inbox = [];
+                state.starred = [];
             }
             return state;
       case "FETCH_DRAFTS":
