@@ -475,6 +475,8 @@ async function message({ username, messageId }) {
             payload.subject = mail.subject;
             payload.body = mail.body;
             payload.time = mail.time;
+            payload.success = true;
+            console.log(mail)
         }
         const user = await User.findOne({ username });
         
@@ -483,7 +485,7 @@ async function message({ username, messageId }) {
             if (msg) {
                 msg.read = true;
                 await msg.save();
-                payload.success = true;
+                
             }
             
         }
