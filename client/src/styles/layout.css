@@ -344,6 +344,9 @@ div.load-user {
     column-gap: 0.25rem;
     row-gap: 0.25rem;
 }
+.settings__panel span {
+    display: inline-flex;
+}
 
 ul.contact-list {
     list-style-type: none;

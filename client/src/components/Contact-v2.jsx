@@ -94,7 +94,7 @@ export default function Contacts({ user, dispatch }) {
                 <span title="settings" onClick={() => setShowPanel(!showPanel)}><IoSettings size={25} color={'#3940a7e0'} /></span>
               </div>
               {showPanel && <div className="settings__panel">
-                <span title="sign out" onClick={logout}><IoLogOut size={25} color={'#3940a7e0'} /></span>
+                <span title="sign out" onClick={logout}><IoLogOut size={25} color={'#3940a7e0'} /> <small>sign out</small></span>
               </div>}
           </div>
         </div>
