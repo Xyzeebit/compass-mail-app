@@ -76,7 +76,6 @@ export const INBOX = gql`
                 to
                 time
                 subject
-                body
             }
         }
     }
@@ -96,7 +95,6 @@ export const OUTBOX = gql`
                 to
                 time
                 subject
-                body
             }
         }
     }
@@ -116,7 +114,6 @@ export const STARRED = gql`
                 to
                 time
                 subject
-                body
             }
         }
     }

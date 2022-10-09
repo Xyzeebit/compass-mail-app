@@ -1,10 +1,27 @@
 import { useEffect, useReducer } from "react";
+import { useQueryMail } from "../hooks";
 import Compose from "./Compose";
 import Contacts from "./Contact-v2";
 import List from './List';
 import Searchbar from "./SearchBar";
+import combineReducers, { initState } from "../reducer/reducer";
 
-export default function Mail({ loading, list, label, dispatch }) {
+export default function Mail({ username, label, text }) {
+  const { loading, error, data } = useQueryMail(username, label, 0);
+  const [state, dispatch] = useReducer(combineReducers, initState);
+  const { mails } = state;
+  const list = mails[label];
+
+  useEffect(() => {
+    
+    if (error) {
+      dispatch({ type: 'FETCH_' + label.toUpperCase(), [label]: [] });
+    } else {
+      if (data && data.success) {
+        dispatch({ type: 'FETCH_' + label.toUpperCase(), [label]: data.messages });
+      }
+    }
+  }, [error, data]);
 
     return (
       <article
@@ -48,7 +65,7 @@ export default function Mail({ loading, list, label, dispatch }) {
                   <div className="c-time" />
                 </li>
               </ul>
-            </> : <List list={list} label={label} dispatch={dispatch} />
+            </> : <List list={list} label={text} dispatch={dispatch} />
           }
           
         </div>

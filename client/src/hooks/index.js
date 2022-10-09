@@ -7,10 +7,6 @@ export function useQueryData(query, variables, type) {
     const { loading, error, data } = useQuery(query, variables);
     const [result, setResult] = useState({ loading });
 
-    // const user = useUser();
-
-    // console.log(user)
-
     useEffect(() => {
         if (error) {
             setResult({ loading, error });
@@ -24,6 +20,12 @@ export function useQueryData(query, variables, type) {
     }, [loading, error, data]);
 
     return result;
+}
+
+export function useQueryMail(username, type, page) {
+    const { loading, error, data } = useQuery(queries[type], { variables: { username, page } });
+
+    return { loading, error, data };
 }
 
 export function useUser(username, token) {
