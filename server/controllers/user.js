@@ -464,10 +464,10 @@ async function removeContact({ username, contactId }) {
     }
 }
 
-function message({ username, messageId }) {
+async function message({ username, messageId }) {
     const payload = {};
     try {
-        const mail = MailBox.findById(messageId);
+        const mail = await MailBox.findById(messageId);
         if (mail) {
             payload.id = mail._id;
             payload.from = mail.from;
