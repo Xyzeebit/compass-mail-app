@@ -2,46 +2,7 @@ import { data, users } from '../data';
 
 export const initState = {
     user: {
-        from: {
-            id: "ayuUIB780xui0",
-            name: "Peters",
-            email: "Peters@pt.com",
-        },
-        to: "",
-        firstName: "John",
-        lastName: "Smith",
-        contacts: [
-            {
-                id: "jsjks87kHJJl",
-                name: "John Smith",
-                username: "xsmith",
-                photo: "/avatar.png",
-            },
-            {
-                id: "jsjksd87kHJJl",
-                name: "John Smith",
-                username: "xsmith",
-                photo: "/avatar.png",
-            },
-            {
-                id: "jsjks87kHJ3Jl",
-                name: 'John Smith',
-                username: 'xsmith',
-                photo: '/avatar.png'
-            },
-            {
-                id: "jhsjks87kbHJJl",
-                name: 'John Smith',
-                username: 'xsmith',
-                photo: '/avatar.png'
-            },
-            {
-                id: "jsjks87kHoJJl",
-                name: 'John Smith',
-                username: 'xsmith',
-                photo: '/avatar.png'
-            },
-        ]
+        
     },
     sidebar: {
         open: true,

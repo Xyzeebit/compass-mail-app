@@ -13,7 +13,7 @@ export default function Layout({ sidebar, user, dispatch, children }) {
     const [token, setToken] = useState('');
     const { loading, error, data } = useUser(username, token);
     const navigate = useNavigate();
-
+    
     useEffect(() => {
         let storage = localStorage.getItem('compass');
         if (storage) {
@@ -32,7 +32,7 @@ export default function Layout({ sidebar, user, dispatch, children }) {
                 dispatch({ type: 'FETCH_USER', user: data.user.user });
             }
         }
-    }, [loading]);
+    }, [loading, data]);
 
     return (
         <div className="layout">
@@ -40,12 +40,14 @@ export default function Layout({ sidebar, user, dispatch, children }) {
                 <Sidebar sidebar={sidebar} dispatch={dispatch} />
                 {!loading && <Contacts user={user} dispatch={dispatch} />}
             </div>
-            {loading ? <div className="load-user">
-                <Loader />
-            </div> :
-            <section className={`layout-container ${expand ? 'expand-container' : 'shrink-container'}`}>
-                { children }
-            </section>}
+            {loading ?
+                (<div className="load-user">
+                    <Loader />
+                </div>) : username ?
+                (<section className={`layout-container ${expand ? 'expand-container' : 'shrink-container'}`}>
+                    { children }
+                </section>) : ( <div />)
+            }
         </div>
     );
 }

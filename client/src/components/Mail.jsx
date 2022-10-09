@@ -10,15 +10,15 @@ export default function Mail({ username, label, text }) {
   const { loading, error, data } = useQueryMail(username, label, 0);
   const [state, dispatch] = useReducer(combineReducers, initState);
   const { mails } = state;
-  const list = mails[label];
-
+  
+  
   useEffect(() => {
     
     if (error) {
       dispatch({ type: 'FETCH_' + label.toUpperCase(), [label]: [] });
     } else {
-      if (data && data.success) {
-        dispatch({ type: 'FETCH_' + label.toUpperCase(), [label]: data.messages });
+      if (data && data[label].success) {
+        dispatch({ type: 'FETCH_' + label.toUpperCase(), [label]: data[label].messages });
       }
     }
   }, [error, data]);
@@ -65,7 +65,7 @@ export default function Mail({ username, label, text }) {
                   <div className="c-time" />
                 </li>
               </ul>
-            </> : <List list={list} label={text} dispatch={dispatch} />
+            </> : <List list={mails[label]} label={text} dispatch={dispatch} />
           }
           
         </div>
