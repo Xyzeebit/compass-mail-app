@@ -345,8 +345,10 @@ div.load-user {
     row-gap: 0.25rem;
 }
 .settings__panel span {
-    display: inline-flex;
+    display: flex;
     justify-content: center;
+    align-items: center;
+    color: blue;
 }
 
 ul.contact-list {
