@@ -350,6 +350,10 @@ div.load-user {
     align-items: center;
     color: var(--primary-light);
 }
+.settings__panel svg {
+    transform: rotateY(-180deg);
+    padding-right: 0.1rem;
+}
 
 ul.contact-list {
     list-style-type: none;
