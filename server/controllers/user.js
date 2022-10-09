@@ -472,26 +472,20 @@ function message({ username, messageId }) {
             payload.id = mail._id;
             payload.from = mail.from;
             payload.to = mail.to;
-            payload.subject = mail.subject
+            payload.subject = mail.subject;
+            payload.body = mail.body;
+            payload.time = mail.time;
         }
         const user = await User.findOne({ username });
+        
         if (user) {
-            payload.success = true;
-            const msg = user.messages.id(i._id);
-            payload.messages = box.map((i) => {
-                
-                if (msg) {
-                    return {
-                      id: i._id,
-                      from: i.from,
-                      to: i.to,
-                      subject: i.subject,
-                      body: i.body,
-                      read: msg ? msg.read : false,
-                      time: i.time,
-                    };
-                }
-          });
+            const msg = user.messages.id(messageId);
+            if (msg) {
+                msg.read = true;
+                await msg.save();
+                payload.success = true;
+            }
+            
         }
     } catch (error) {
         payload.success = false;
