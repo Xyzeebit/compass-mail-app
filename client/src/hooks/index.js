@@ -12,3 +12,9 @@ export function useUser(username, token) {
 
     return {loading, error, data};
 }
+
+export function useMessage(username, messageId) {
+    const { loading, error, data } = useQuery(queries['messageQL'], { variables: { username, messageId } });
+
+    return { loading, error, data };
+}

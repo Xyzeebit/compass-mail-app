@@ -176,6 +176,26 @@ export const TRASH = gql`
   }
 `;
 
+export const MESSAGE = gql`
+  query message($username: String!, $messageId: ID!) {
+    message(username: $username, messageId: $messageId) {
+      success
+      error {
+        name
+        message
+      }
+      message {
+        id
+        from
+        to
+        subject
+        body
+        time
+      }
+    }
+  }
+`;
+
 export const queries = {
     inbox: INBOX,
     user: USER,
@@ -184,4 +204,5 @@ export const queries = {
     drafts: DRAFTS,
     spam: SPAM,
     trash: TRASH,
+    messageQL: MESSAGE
 }

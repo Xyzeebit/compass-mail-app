@@ -1,0 +1,21 @@
+{
+  "name": "compass-mail-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": " cd client && yarn start && cd ../ && cd server yarn dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Xyzeebit/compass-mail-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Xyzeebit/compass-mail-app/issues"
+  },
+  "homepage": "https://github.com/Xyzeebit/compass-mail-app#readme"
+}
