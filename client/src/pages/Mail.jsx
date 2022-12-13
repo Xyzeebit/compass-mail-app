@@ -29,6 +29,29 @@ export default function Mail() {
             <span><IoPerson size={18} /></span>
             <span>example@example.com</span>
           </div>
+
+          <div className='mail-time'>
+            <time>{ new Date().toDateString() }</time>
+          </div>
+
+          <h1>This is the mail subject, it is about Rust path module</h1>
+
+          <p>
+            The Path struct represents file paths in the underlying filesystem.
+            There are two flavors of Path: posix::Path, for UNIX-like systems,
+            and windows::Path, for Windows. The prelude exports the appropriate
+            platform-specific Path variant.
+
+            The Path struct represents file paths in the underlying filesystem.
+            There are two flavors of Path: posix::Path, for UNIX-like systems,
+            and windows::Path, for Windows. The prelude exports the appropriate
+            platform-specific Path variant.
+
+            The Path struct represents file paths in the underlying filesystem.
+            There are two flavors of Path: posix::Path, for UNIX-like systems,
+            and windows::Path, for Windows. The prelude exports the appropriate
+            platform-specific Path variant.
+          </p>
         </section>
       </Layout>
     );

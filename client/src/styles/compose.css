@@ -173,8 +173,10 @@
 
 .mail-body {
     background: #fff;
-    padding: 1rem;
+    padding: 1rem 1rem 3rem 1rem;
     height: 100vh;
+    overflow: auto;
+
 }
 
 .mail-body .mail-info {
@@ -214,4 +216,19 @@
 }
 .mail-body .mail-info:nth-of-type(2) span:nth-of-type(2) {
     font-size: 0.85rem;
+}
+
+.mail-body .mail-time {
+    text-align: right;
+    font-weight: 400;
+    font-size: 0.6rem;
+}
+.mail-body .mail-time time {
+    background: var(--gray);
+    border-radius: 10px;
+    padding: 5px 10px 5px 10px;
+}
+
+.mail-body p {
+    font-size: 0.95rem;
 }
