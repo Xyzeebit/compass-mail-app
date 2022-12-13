@@ -18,7 +18,7 @@ export default function Inbox() {
       <Mail 
         username={user.username}
         label={"inbox"}
-        text="Your have no messages in your inbox" 
+        text="You have no messages in your inbox" 
       />
     </Layout>
   );
