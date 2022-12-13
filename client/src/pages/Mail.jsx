@@ -3,16 +3,15 @@ import { useEffect, useReducer } from 'react';
 import { useParams } from 'react-router-dom';
 import { useMessage } from '../hooks';
 import combineReducers, { initState } from "../reducer/reducer";
-import { IoArrowForward, IoPerson, IoShare, IoTrashBin } from 'react-icons/io5';
-import { GoTrashcan } from 'react-icons/go';
+import { IoArrowForward, IoPerson } from 'react-icons/io5';
 import { IoMdTrash } from 'react-icons/io';
 
 export default function Mail() {
     const [state, dispatch] = useReducer(combineReducers, initState);
     const { sidebar, user } = state;
     const params = useParams();
-    const data = useMessage(user.username, params.id);
-    console.log(data)
+    const { loading, error, data } = useMessage(user.username, params.id);
+    console.log(loading, error, data);
     useEffect(() => {
       document.title = 'Compass | Message'
     }, []);
@@ -23,37 +22,24 @@ export default function Mail() {
       <Layout sidebar={sidebar} user={user} dispatch={dispatch}>
         {/* <p>{ params.slug }:{ params.id }</p> */}
         <section className='mail-body'>
-          <div className='mail-info'>
+          {!loading && <div className='mail-info'>
             <span><IoPerson size={25} /></span>
-            <span>example@example.com</span>
-          </div>
-          <div className='mail-info'>
+            <span>{ data.message.message.to }@compass.com</span>
+          </div>}
+          {!loading && <div className='mail-info'>
             <span><IoPerson size={18} /></span>
-            <span>example@example.com</span>
-          </div>
+            <span>{ data.message.message.from }@compass.com</span>
+          </div>}
 
-          <div className='mail-time'>
-            <time>{ new Date().toDateString() }</time>
-          </div>
+          {!loading && <div className='mail-time'>
+            <time>{ new Date(data.message.message.time).toDateString() }</time>
+          </div>}
 
-          <h1>This is the mail subject, it is about Rust path module</h1>
+          {!loading && <h1>{data.message.message.subject}</h1>}
 
-          <p>
-            The Path struct represents file paths in the underlying filesystem.
-            There are two flavors of Path: posix::Path, for UNIX-like systems,
-            and windows::Path, for Windows. The prelude exports the appropriate
-            platform-specific Path variant.
-
-            The Path struct represents file paths in the underlying filesystem.
-            There are two flavors of Path: posix::Path, for UNIX-like systems,
-            and windows::Path, for Windows. The prelude exports the appropriate
-            platform-specific Path variant.
-
-            The Path struct represents file paths in the underlying filesystem.
-            There are two flavors of Path: posix::Path, for UNIX-like systems,
-            and windows::Path, for Windows. The prelude exports the appropriate
-            platform-specific Path variant.
-          </p>
+          {!loading && <p>
+            {data.message.message.body}
+          </p>}
 
           <div className='mail-icons'>
             <button>
