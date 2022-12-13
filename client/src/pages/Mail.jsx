@@ -3,7 +3,9 @@ import { useEffect, useReducer } from 'react';
 import { useParams } from 'react-router-dom';
 import { useMessage } from '../hooks';
 import combineReducers, { initState } from "../reducer/reducer";
-import { IoPerson } from 'react-icons/io5';
+import { IoArrowForward, IoPerson, IoShare, IoTrashBin } from 'react-icons/io5';
+import { GoTrashcan } from 'react-icons/go';
+import { IoMdTrash } from 'react-icons/io';
 
 export default function Mail() {
     const [state, dispatch] = useReducer(combineReducers, initState);
@@ -52,6 +54,17 @@ export default function Mail() {
             and windows::Path, for Windows. The prelude exports the appropriate
             platform-specific Path variant.
           </p>
+
+          <div className='mail-icons'>
+            <button>
+              <span><IoArrowForward size={18} /></span>
+              <span>Forward</span>
+            </button>
+            <button>
+              <span><IoMdTrash size={18} /></span>
+              <span>Move to Trash</span>
+            </button>
+          </div>
         </section>
       </Layout>
     );
