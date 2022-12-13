@@ -22,11 +22,11 @@ export default function Mail() {
         {/* <p>{ params.slug }:{ params.id }</p> */}
         <section className='mail-body'>
           <div className='mail-info'>
-            <IoPerson size={25} />
+            <span><IoPerson size={25} /></span>
             <span>example@example.com</span>
           </div>
           <div className='mail-info'>
-            <IoPerson size={25} />
+            <span><IoPerson size={18} /></span>
             <span>example@example.com</span>
           </div>
         </section>
