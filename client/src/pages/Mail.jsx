@@ -21,12 +21,12 @@ export default function Mail() {
       <Layout sidebar={sidebar} user={user} dispatch={dispatch}>
         {/* <p>{ params.slug }:{ params.id }</p> */}
         <section className='mail-body'>
-          <div className='block'>
-            <IoPerson />
+          <div className='mail-info'>
+            <IoPerson size={25} />
             <span>example@example.com</span>
           </div>
-          <div className='block'>
-            <IoPerson />
+          <div className='mail-info'>
+            <IoPerson size={25} />
             <span>example@example.com</span>
           </div>
         </section>
