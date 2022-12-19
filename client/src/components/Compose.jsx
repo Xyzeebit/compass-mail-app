@@ -7,7 +7,7 @@ import { RiAlignCenter, RiAlignJustify, RiAlignRight, RiAlignLeft, RiUnderline }
 
 import '../styles/compose.css';
 
-export default function Compose({ user, contact, dispatch }) {
+export default function Compose({ user, dispatch }) {
     const [body, setBody] = useState('');
     const [subject, setSubject] = useState('');
   const [to, setTo] = useState('');
@@ -60,7 +60,7 @@ export default function Compose({ user, contact, dispatch }) {
               <span>From</span>
               <input
                 type="text"
-                value={"john@mail.com"}
+                value={user.email}
                 id="from"
                 randomly
                 readOnly
