@@ -46,14 +46,14 @@ export default function Compose({ user, dispatch }) {
       // document.querySelector('.contacts').classList.add('hide-mb');
     }, []);
 
-    return (
-      <div className={`compose-container ${open ? 'expand-composer' : ''}`}>
-        <div className={`compose-group`}>
-        <div className={`compose-header ${ open ? '' : 'hide-header'}`}>
+  return (
+    <div className={`compose-container ${open ? 'expand-composer' : ''}`}>
+      <div className={`compose-group`}>
+        {/* <div className={`compose-header ${ open ? '' : 'hide-header'}`}>
           <span onClick={closeComposer}>
             <IoClose />
           </span>
-        </div>
+        </div> */}
         <div className={`compose-message ${open ? "expand-message" : ''}`}>
           <div className="form-header">
             <label htmlFor="from">
@@ -116,11 +116,11 @@ export default function Compose({ user, dispatch }) {
             </button>
           </div>
         </div>
-        </div>
-        {!open && <div className={`compose-button`} onClick={openComposer}>
+      </div>
+      {/* {!open && <div className={`compose-button`} onClick={openComposer}>
           <IoPencil />
           <span>Compose</span>
-        </div>}
-      </div>
-    );
+        </div>} */}
+    </div>
+  );
 }
