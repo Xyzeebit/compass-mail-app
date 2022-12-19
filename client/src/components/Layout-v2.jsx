@@ -2,6 +2,7 @@ import '../styles/layout.css';
 import Sidebar from './Sidebar-v2';
 import Loader from './Loader';
 import Contacts from './Contact-v2';
+import ComposeButton from './ComposeButton'
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useUser } from '../hooks';
@@ -45,8 +46,9 @@ export default function Layout({ sidebar, user, dispatch, children }) {
                     <Loader />
                 </div>) : username ?
                 (<section className={`layout-container ${expand ? 'expand-container' : 'shrink-container'}`}>
-                    { children }
-                </section>) : ( <div />)
+                    {children}
+                    <ComposeButton />
+                </section>) : (<div />)
             }
         </div>
     );
