@@ -14,11 +14,11 @@ export default function Starred() {
 
   return (
     <Layout sidebar={sidebar} user={user} dispatch={dispatch}>
-      <Mail
-        username={Promise.resolve(user.username).then((value) => value)}
+      {user && user.username ? <Mail
+        username={user.username}
         label={"trash"}
         text="Empty"
-      />
+      /> : <div />}
     </Layout>
   );
 }

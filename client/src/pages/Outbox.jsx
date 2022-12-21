@@ -14,11 +14,11 @@ export default function Outbox() {
 
   return (
     <Layout sidebar={sidebar} user={user} dispatch={dispatch}>
-      <Mail 
+      {user && user.username ? <Mail 
         username={user.username}
         label="outbox"
-        text="Your have no messages in your outbox"
-      />
+        text="You have no messages in your outbox"
+      /> : <div />}
     </Layout>
   );
 }
