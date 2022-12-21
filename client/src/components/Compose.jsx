@@ -41,7 +41,7 @@ export default function Compose({ user, dispatch }) {
   
 
     useEffect(() => {
-      const composeButton = document.querySelector('.compose-button');
+      const composeButton = document.querySelector('.compose-anchor');
       if (composeButton) {
         composeButton.style.display = 'none';
       }

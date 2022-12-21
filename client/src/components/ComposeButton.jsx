@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export default function ComposeButton () {
     return (
-        <Link to={`/compose`}>
+        <Link to={`/compose`} className="compose-anchor">
             <div className={`compose-button`}>
                 <IoPencil size={25} />
                 <span>Compose</span>

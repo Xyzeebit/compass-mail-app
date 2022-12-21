@@ -11,18 +11,19 @@ export default function Mail() {
     const { sidebar, user } = state;
     const params = useParams();
     const { loading, error, data } = useMessage(user.username, params.id);
-  console.log(loading, error, data);
+  // console.log(loading, error, data);
   
     useEffect(() => {
       document.title = 'Compass | Message'
     }, []);
 
   useEffect(() => {
-      const composeButton = document.querySelector('.compose-button');
+      const composeButton = document.querySelector('.compose-anchor');
       if (composeButton) {
         composeButton.style.display = 'none';
+        console.log(composeButton)
       }
-    }, []);
+    }, [params]);
 
 
   
