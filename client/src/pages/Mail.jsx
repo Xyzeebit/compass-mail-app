@@ -5,6 +5,7 @@ import { useMessage } from '../hooks';
 import combineReducers, { initState } from "../reducer/reducer";
 import { IoArrowForward, IoPerson } from 'react-icons/io5';
 import { IoMdTrash } from 'react-icons/io';
+import PageError from '../components/PageError';
 
 export default function Mail() {
     const [state, dispatch] = useReducer(combineReducers, initState);
@@ -29,7 +30,7 @@ export default function Mail() {
   return (
     <Layout sidebar={sidebar} user={user} dispatch={dispatch}>
       {
-        loading ? <div /> : (error ? <div>error</div> : <MailBody message={data.message.message} />)
+        loading ? <div /> : (error ? <PageError /> : <MailBody message={data.message.message} />)
       }
     </Layout>
   );

@@ -1,21 +1,26 @@
 {
   "name": "compass-mail-app",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "version": "0.0.0",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": " cd client && yarn start && cd ../ && cd server yarn dev"
+    "start": "node app",
+    "dev": "nodemon -e js,json,gql",
+    "client": "yarn start --prefix client",
+    "build": "yarn build --prefix client"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Xyzeebit/compass-mail-app.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Xyzeebit/compass-mail-app/issues"
-  },
-  "homepage": "https://github.com/Xyzeebit/compass-mail-app#readme"
+  "dependencies": {
+    "@graphql-tools/graphql-file-loader": "^7.3.3",
+    "@graphql-tools/load": "^7.4.1",
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "dot-env": "^0.0.1",
+    "express": "~4.16.1",
+    "express-graphql": "^0.12.0",
+    "graphql": "^16.0.1",
+    "graphql-tools": "^8.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.0.12",
+    "morgan": "~1.9.1",
+    "node-mailjet": "^5.1.1"
+  }
 }

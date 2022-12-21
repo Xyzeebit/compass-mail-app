@@ -31,9 +31,6 @@ const schemaWithResolvers = addResolversToSchema({
     resolvers,
 });
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-
 const app = express();
 const PORT = 4000;
 
@@ -41,20 +38,21 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+// app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(express.static(path.join(__dirname, "./client/build")));
+
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "./client/build/index.html"))
+});
 
 app.use(
     graphqlHTTP({
         schema: schemaWithResolvers,
-        graphiql: true
+        graphiql: false
     })
 )
 
-// app.use('/', indexRouter);
-// app.use('/users', usersRouter);
-
-app.listen(PORT, () => {
+module.exports = app.listen(PORT, () => {
     console.log(`Server started on port http://localhost:${PORT}`);
 });
-
-// module.exports = app;
