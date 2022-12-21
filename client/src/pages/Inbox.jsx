@@ -15,11 +15,11 @@ export default function Inbox() {
     
   return (
     <Layout sidebar={sidebar} user={user} dispatch={dispatch}>
-      <Mail 
+      {user && user.username ? <Mail 
         username={user.username}
         label={"inbox"}
         text="You have no messages in your inbox" 
-      />
+      /> : <div />}
     </Layout>
   );
 }

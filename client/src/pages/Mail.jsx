@@ -21,9 +21,8 @@ export default function Mail() {
       const composeButton = document.querySelector('.compose-anchor');
       if (composeButton) {
         composeButton.style.display = 'none';
-        console.log(composeButton)
       }
-    }, [params]);
+    }, [loading]);
 
 
   

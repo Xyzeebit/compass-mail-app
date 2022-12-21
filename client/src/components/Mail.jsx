@@ -23,52 +23,52 @@ export default function Mail({ username, label, text }) {
     }
   }, [error, data]);
 
-    return (
-      <article
-        className={`container`}
-      >
-        <div className="mails">
-          <Searchbar dispatch={dispatch} />
-          {loading ?
-            <>
-              <ul className="mail-skeleton-list">
-                <li className="c-skeleton card">
-                  <div className="c-image" />
-                  <div className="c-group">
-                    <div className="c-name" />
-                    <div className="c-email" />
-                  </div>
-                  <div className="c-time" />
-                </li>
-                <li className="c-skeleton card">
-                  <div className="c-image" />
-                  <div className="c-group">
-                    <div className="c-name" />
-                    <div className="c-email" />
-                  </div>
-                  <div className="c-time" />
-                </li>
-                <li className="c-skeleton card">
-                  <div className="c-image" />
-                  <div className="c-group">
-                    <div className="c-name" />
-                    <div className="c-email" />
-                  </div>
-                  <div className="c-time" />
-                </li>
-                <li className="c-skeleton card">
-                  <div className="c-image" />
-                  <div className="c-group">
-                    <div className="c-name" />
-                    <div className="c-email" />
-                  </div>
-                  <div className="c-time" />
-                </li>
-              </ul>
-            </> : <List list={mails[label]} type={label} label={text} dispatch={dispatch} />
-          }
+  return (
+    <article
+      className={`container`}
+    >
+      <div className="mails">
+        <Searchbar dispatch={dispatch} />
+        {loading ?
+          <>
+            <ul className="mail-skeleton-list">
+              <li className="c-skeleton card">
+                <div className="c-image" />
+                <div className="c-group">
+                  <div className="c-name" />
+                  <div className="c-email" />
+                </div>
+                <div className="c-time" />
+              </li>
+              <li className="c-skeleton card">
+                <div className="c-image" />
+                <div className="c-group">
+                  <div className="c-name" />
+                  <div className="c-email" />
+                </div>
+                <div className="c-time" />
+              </li>
+              <li className="c-skeleton card">
+                <div className="c-image" />
+                <div className="c-group">
+                  <div className="c-name" />
+                  <div className="c-email" />
+                </div>
+                <div className="c-time" />
+              </li>
+              <li className="c-skeleton card">
+                <div className="c-image" />
+                <div className="c-group">
+                  <div className="c-name" />
+                  <div className="c-email" />
+                </div>
+                <div className="c-time" />
+              </li>
+            </ul>
+          </> : (error ? <div>error</div> : <List list={mails[label]} type={label} label={text} dispatch={dispatch} />)
+        }
           
-        </div>
-      </article>
-    );
+      </div>
+    </article>
+  );
 }
