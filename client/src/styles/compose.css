@@ -1,54 +1,10 @@
 .compose-container {
-    position: fixed;
-    bottom: 25px;
-    right: 25px;
-    width: 135px;
-    overflow: hidden;
-    padding: 5px;
-    transition: top 1s, width 1s;
-    border-radius: 10px;
-}
-.expand-composer {
+    overflow: auto;
+    padding: 1rem;
     background-color: #fff;
-    right: 20px;
-    bottom: 20px;
-    top: 20px;
-    width: 20rem;
-    padding: 20px;
-    overflow-y: auto;
-    box-shadow: 0px 0px 4px #000000c5;
+    height: 100vh;
 }
-.compose-message {
-    /* width: 0; */
-    height: 0;
-    overflow: hidden;
-    transition: width 1s ease-in;
-}
-.expand-message {
-    width: 100%;
-    height: 100%;
-}
-.hide-header {
-    display: none;
-}
-.compose-header {
-    padding: 0 0 5px 0;
-}
-.compose-header span {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 5px;
-    border-radius: 100px;
-    width: 30px;
-    height: 30px;
-    background-color: var(--primary-light);
-    color: #fff;
-}
-.compose-header span:hover {
-    background-color: lightgrey;
-    color: gray;
-}
+
 .compose-message label {
     display: block;
     border-bottom: 2px solid gray;
@@ -158,9 +114,10 @@
     width: 120px;
     padding: 10px;
     border-radius: 30px;
-    float: right;
-    cursor: pointer;
     transition: all 300ms;
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
 }
 .compose-button span {
     font-weight: 500;

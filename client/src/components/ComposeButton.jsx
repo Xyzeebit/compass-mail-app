@@ -5,7 +5,7 @@ export default function ComposeButton () {
     return (
         <Link to={`/compose`}>
             <div className={`compose-button`}>
-                <IoPencil />
+                <IoPencil size={25} />
                 <span>Compose</span>
             </div>
         </Link>

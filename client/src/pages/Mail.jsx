@@ -11,47 +11,61 @@ export default function Mail() {
     const { sidebar, user } = state;
     const params = useParams();
     const { loading, error, data } = useMessage(user.username, params.id);
-    console.log(loading, error, data);
+  console.log(loading, error, data);
+  
     useEffect(() => {
       document.title = 'Compass | Message'
     }, []);
 
+  useEffect(() => {
+      const composeButton = document.querySelector('.compose-button');
+      if (composeButton) {
+        composeButton.style.display = 'none';
+      }
+    }, []);
+
 
   
-    return (
-      <Layout sidebar={sidebar} user={user} dispatch={dispatch}>
-        {/* <p>{ params.slug }:{ params.id }</p> */}
-        <section className='mail-body'>
-          {!loading && <div className='mail-info'>
-            <span><IoPerson size={25} /></span>
-            <span>{ data.message.message.to }@compass.com</span>
-          </div>}
-          {!loading && <div className='mail-info'>
-            <span><IoPerson size={18} /></span>
-            <span>{ data.message.message.from }@compass.com</span>
-          </div>}
-
-          {!loading && <div className='mail-time'>
-            <time>{ new Date(data.message.message.time).toDateString() }</time>
-          </div>}
-
-          {!loading && <h1>{data.message.message.subject}</h1>}
-
-          {!loading && <p>
-            {data.message.message.body}
-          </p>}
-
-          <div className='mail-icons'>
-            <button>
-              <span><IoArrowForward size={18} /></span>
-              <span>Forward</span>
-            </button>
-            <button>
-              <span><IoMdTrash size={18} /></span>
-              <span>Move to Trash</span>
-            </button>
-          </div>
-        </section>
-      </Layout>
-    );
+  return (
+    <Layout sidebar={sidebar} user={user} dispatch={dispatch}>
+      {
+        loading ? <div /> : (error ? <div>error</div> : <MailBody message={data.message.message} />)
+      }
+    </Layout>
+  );
 }
+
+
+const MailBody = ({ message }) => (
+  <section className='mail-body'>
+    <div className='mail-info'>
+      <span><IoPerson size={25} /></span>
+      <span>{message.to}@compass.com</span>
+    </div>
+    <div className='mail-info'>
+      <span><IoPerson size={18} /></span>
+      <span>{message.from}@compass.com</span>
+    </div>
+
+    <div className='mail-time'>
+      <time>{new Date(message.time).toDateString()}</time>
+    </div>
+
+    <h1>{message.subject}</h1>
+
+    <p>
+      {message.body}
+    </p>
+
+    <div className='mail-icons'>
+      <button>
+        <span><IoArrowForward size={18} /></span>
+        <span>Forward</span>
+      </button>
+      <button>
+        <span><IoMdTrash size={18} /></span>
+        <span>Move to Trash</span>
+      </button>
+    </div>
+  </section>
+);

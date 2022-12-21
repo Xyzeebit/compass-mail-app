@@ -41,20 +41,17 @@ export default function Compose({ user, dispatch }) {
   
 
     useEffect(() => {
-      // document.getElementsByClassName('nav-button')[0].classList.add('hide-mb');
-      // document.getElementsByClassName('search-box')[0].classList.add('hide-mb');
-      // document.querySelector('.contacts').classList.add('hide-mb');
+      const composeButton = document.querySelector('.compose-button');
+      if (composeButton) {
+        composeButton.style.display = 'none';
+      }
     }, []);
 
   return (
-    <div className={`compose-container ${open ? 'expand-composer' : ''}`}>
+    <div className={`compose-container`}>
       <div className={`compose-group`}>
-        {/* <div className={`compose-header ${ open ? '' : 'hide-header'}`}>
-          <span onClick={closeComposer}>
-            <IoClose />
-          </span>
-        </div> */}
-        <div className={`compose-message ${open ? "expand-message" : ''}`}>
+      
+        <div className={`compose-message`}>
           <div className="form-header">
             <label htmlFor="from">
               <span>From</span>
