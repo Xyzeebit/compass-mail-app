@@ -66,13 +66,10 @@ export default function Mail({ username, label, text }) {
                 <div className="c-time" />
               </li>
             </ul>
-          </> : (error ? <PageError /> : <PageError />)
+          </> : (error ? <PageError /> : <List list={mails[label]} type={label} label={text} dispatch={dispatch} />)
         }
           
       </div>
     </article>
   );
 }
-
-
-// {/* <List list={mails[label]} type={label} label={text} dispatch={dispatch} /> */}

@@ -1,10 +1,10 @@
-import { IoCloudCircle } from "react-icons/io5";
+import { GoServer } from "react-icons/go";
 
 export default function PageError() {
     return(
         <div className="page-error">
             <div>
-                <IoCloudCircle size={30} />
+                <GoServer size={100} color="#3940a7e0" />
                 <p>Connection error</p>
             </div>
         </div>
