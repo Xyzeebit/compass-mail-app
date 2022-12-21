@@ -224,3 +224,19 @@
 .mail-body .mail-icons button:hover {
     background: #fff;
 }
+
+.page-error {
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+}
+
+.page-error div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

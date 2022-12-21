@@ -5,6 +5,7 @@ import Contacts from "./Contact-v2";
 import List from './List';
 import Searchbar from "./SearchBar";
 import combineReducers, { initState } from "../reducer/reducer";
+import PageError from "./PageError";
 
 export default function Mail({ username, label, text }) {
   const { loading, error, data } = useQueryMail(username, label, 0);
@@ -65,10 +66,13 @@ export default function Mail({ username, label, text }) {
                 <div className="c-time" />
               </li>
             </ul>
-          </> : (error ? <div>error</div> : <List list={mails[label]} type={label} label={text} dispatch={dispatch} />)
+          </> : (error ? <PageError /> : <PageError />)
         }
           
       </div>
     </article>
   );
 }
+
+
+// {/* <List list={mails[label]} type={label} label={text} dispatch={dispatch} /> */}
