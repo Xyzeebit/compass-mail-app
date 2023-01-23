@@ -1,3 +1,4 @@
+require('dotenv').config();
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
@@ -11,7 +12,7 @@ const { graphqlHTTP } = require('express-graphql');
 const mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise;
-const mongoURI = 'mongodb://localhost:27017/mailbox_db';
+const mongoURI = process.env.DB_URI | 'mongodb://localhost:27017/mailbox_db';
 mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
@@ -32,7 +33,7 @@ const schemaWithResolvers = addResolversToSchema({
 });
 
 const app = express();
-const PORT = 4000;
+const PORT = process.env.PORT | 4000;
 
 app.use(logger('dev'));
 app.use(express.json());

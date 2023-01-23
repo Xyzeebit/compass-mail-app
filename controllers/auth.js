@@ -138,7 +138,7 @@ function sign(payload, cb) {
 function verifyToken(token, cb) {
     try {
         const secret = getSecret();
-        decoded = jwt.verify(token, secret);
+        decoded = jwt.verify(token, secret, { algorithm: 'RS256' });
         const { exp } = decoded;
         
         // console.log(exp, new Date().getTime())

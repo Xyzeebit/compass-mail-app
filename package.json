@@ -5,8 +5,8 @@
   "scripts": {
     "start": "node app",
     "dev": "nodemon -e js,json,gql",
-    "client": "yarn start --prefix client",
-    "build": "yarn build --prefix client"
+    "client": "cd client && yarn start",
+    "build": "cd client && yarn build"
   },
   "dependencies": {
     "@graphql-tools/graphql-file-loader": "^7.3.3",
