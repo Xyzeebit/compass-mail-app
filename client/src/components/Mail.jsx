@@ -1,7 +1,5 @@
 import { useEffect, useReducer } from "react";
 import { useQueryMail } from "../hooks";
-import Compose from "./Compose";
-import Contacts from "./Contact-v2";
 import List from './List';
 import Searchbar from "./SearchBar";
 import combineReducers, { initState } from "../reducer/reducer";

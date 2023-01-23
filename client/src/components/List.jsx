@@ -54,6 +54,7 @@ const Actions = ({ type, marked, dispatch }) => {
             switch (action) {
                 case DELETE:
                     // perform gql delete mutation
+                    
                     break;
                 case STAR:
                     // perform a gql star mutation

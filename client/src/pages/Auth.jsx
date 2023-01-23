@@ -514,16 +514,6 @@ const AuthSignIn = ({ username, password, setAuthError }) => {
   return (
     <div className="auth-loading flex-center flex-column" ref={loaderRef}>
       {loading && <Loader />}
-      
-      {/* {error && <p>{error.message}</p>}
-      {user.token &&
-        (<>
-          <p>{username}</p>
-          <p>{user.id}</p>
-          <p>{user.token}</p>
-        </>)
-      } */}
-      
     </div>
   );
 }

@@ -230,7 +230,7 @@ div.load-user {
     width: 18rem;
    /* background-color: #fff; */
     overflow-y: auto;
-    height: 100%;
+    height: 100vh;
 }
 
 @media screen and (max-width: 768px) {
@@ -272,7 +272,8 @@ div.load-user {
     border-radius: 10px;
     padding: 10px;
     margin: 0 auto;
-    background-color: #fff;
+    /* background-color: #fff; */
+    background: linear-gradient(45deg, #fafafa, #ffffffe7, #7076ca);
 }
 @media screen and (max-width: 768px) {
     .profile {
