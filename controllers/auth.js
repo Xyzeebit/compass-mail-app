@@ -105,14 +105,8 @@ async function signIn(args) {
 }
 
 function getSecret() {
-    try {
-        const secret = fs.readFileSync(path.join(__dirname, "secret.txt"), {
-            encoding: "utf-8",
-        });
-        return secret;
-    } catch (error) {
-        return undefined;
-    }
+    const secret = process.env.JWT_SECRET;
+    return secret;
 }
 
 function sign(payload, cb) {

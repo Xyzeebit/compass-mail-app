@@ -1,4 +1,4 @@
-require('dot-env').config;
+require('dot-env');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
