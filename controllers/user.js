@@ -271,6 +271,7 @@ async function markAs(args) {
         const message = user.messages.id(messageId);
         message[mark] = true;
         await user.save();
+        payload.success = true;
         // switch (mark) {
         //     case "draft":
         //         if (message) {

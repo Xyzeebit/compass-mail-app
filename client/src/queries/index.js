@@ -196,6 +196,12 @@ export const MESSAGE = gql`
   }
 `;
 
+const MARK = gql`
+  mutation markAs($username: String!, $messageId: String!, $mark: String!) {
+    success
+  }
+`;
+
 export const queries = {
     inbox: INBOX,
     user: USER,
@@ -204,5 +210,6 @@ export const queries = {
     drafts: DRAFTS,
     spam: SPAM,
     trash: TRASH,
-    messageQL: MESSAGE
+    messageQL: MESSAGE,
+    mark: MARK,
 }

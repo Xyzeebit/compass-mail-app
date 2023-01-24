@@ -5,6 +5,9 @@ import { IoShareSocial, IoClose } from "react-icons/io5";
 import { GoStar } from 'react-icons/go';
 import Message from "./Message";
 import EmptyList from './EmptyList';
+import { useMark } from '../hooks';
+import { useMutation } from '@apollo/client';
+import { queries } from '../queries';
 
 export default function List({ list, type, label, dispatch }) {
     return (
@@ -31,11 +34,22 @@ export default function List({ list, type, label, dispatch }) {
 const Actions = ({ type, marked, dispatch }) => {
     const STAR = 0, SHARE = 1, DELETE = 2;
     const [action, setAction] = useState(-1);
+    const [asMark, mark] = useMutation(queries["mark"]);
 
+    console.log(marked()[0])
 
     const starMarked = () => {
         setAction(STAR);
-        dispatch({ type: 'EMPTY_MARKED' });
+        // dispatch({ type: 'EMPTY_MARKED' });
+        for (let i = 0; i < marked().length; i++) {
+            asMark({
+                variables: {
+                    username: "donald",
+                    messageId: marked()[i].id,
+                    mark: type
+                }
+            });
+        }
     }
     const deleteMarked = () => {
         setAction(DELETE);
@@ -54,10 +68,11 @@ const Actions = ({ type, marked, dispatch }) => {
             switch (action) {
                 case DELETE:
                     // perform gql delete mutation
-                    
+
                     break;
                 case STAR:
                     // perform a gql star mutation
+                    // const { loading, error, data } = useMark();
                     break;
                 case SHARE:
                     // forward mail
