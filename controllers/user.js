@@ -272,6 +272,7 @@ async function markAs(args) {
         message[mark] = true;
         await user.save();
         payload.success = true;
+        console.log(args, payload)
         // switch (mark) {
         //     case "draft":
         //         if (message) {
